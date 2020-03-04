@@ -1,0 +1,14 @@
+﻿<UserControl x:Class="ToolshopApp2.View.UserControlers.NewUserEmailUserControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:ToolshopApp2.View.UserControlers"
+             mc:Ignorable="d" Height="111" Width="500">
+    <Grid>
+        <Label Name="_LabelInfo" Content="You are new user" Height="69" Margin="10,0,10,0" VerticalAlignment="Top"  Foreground="AliceBlue" FontSize="18" HorizontalContentAlignment="Center"/>
+        <Label Name="_LabelEmail" Content="Please enter your email: " Height="29" Margin="10,74,0,0" VerticalAlignment="Top"  Foreground="AliceBlue" HorizontalAlignment="Left" Width="144"/>
+        <TextBox Name="_TextboxEmail" HorizontalAlignment="Left" Height="29" Margin="159,74,0,0" TextWrapping="Wrap" Text="patryk.malik@electrolux.com" VerticalAlignment="Top" Width="239"/>
+        <Button Name="_ButtonAddEmail" Content="Add Email" HorizontalAlignment="Left" Margin="403,74,0,0" VerticalAlignment="Top" Width="87" Height="29" Click="_ButtonAddEmailClick"/>
+    </Grid>
+</UserControl>

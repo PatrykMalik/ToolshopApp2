@@ -1,0 +1,18 @@
+﻿<UserControl x:Class="ToolshopApp2.View.UserControlers.AdministratorDataViewUserControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:ToolshopApp2.View.UserControlers"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="407*"/>
+        </Grid.RowDefinitions>
+        <Button x:Name="_ButtonShowUsers" Click="_ButtonShowUsersClick" Content="Show Users" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="75" />
+        <Button x:Name="_ButtonShowProject" Click="_ButtonShowProjectClick"  Content="Show Project" HorizontalAlignment="Left" Margin="90,10,0,0" VerticalAlignment="Top" Width="75"/>
+        <DataGrid x:Name="_DataGridDatabaseView" Grid.Row="1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" />
+    </Grid>
+</UserControl>

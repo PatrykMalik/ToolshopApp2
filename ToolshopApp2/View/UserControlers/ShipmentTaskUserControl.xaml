@@ -1,0 +1,43 @@
+﻿<UserControl x:Class="ToolshopApp2.View.UserControlers.ShipmentTaskUserControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:ToolshopApp2.View.UserControlers"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="399*"/>
+            <ColumnDefinition Width="401*"/>
+        </Grid.ColumnDefinitions>
+
+        <Label Content="Begining SRZ: " HorizontalAlignment="Left" Margin="10,37,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.053,-0.09" Foreground="White" Grid.Column="1" Height="26" Width="86"/>
+        <Label Content="Ending SRZ:" HorizontalAlignment="Left" Margin="10,69,0,0" VerticalAlignment="Top" Foreground="White" Grid.Column="1" Height="26" Width="73"/>
+        <Label Content="Transport: " HorizontalAlignment="Left" Margin="10,99,0,0" VerticalAlignment="Top" Foreground="White" Height="27" Grid.Column="1" Width="66"/>
+        <Label Content="Insurance:" HorizontalAlignment="Left" Margin="10,139,0,0" VerticalAlignment="Top" Foreground="White" Grid.Column="1" Height="26" Width="63"/>
+        <Label Content="Insurance Cost [EUR]: " HorizontalAlignment="Left" Margin="10,165,0,0" VerticalAlignment="Top" Foreground="White" Grid.Column="1" Height="26" Width="126"/>
+        <Label Content="Contact_Person:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Foreground="White" Height="26" Width="89"/>
+        <Label Content="Email Address:" HorizontalAlignment="Left" Margin="10,69,0,0" VerticalAlignment="Top" Width="181" Foreground="White" Height="26"/>
+
+        <ComboBox x:Name="_ComboBoxTransport" Margin="109,99,10,0" VerticalAlignment="Top" Height="26" SelectedIndex="1" Grid.Column="1">
+            <ComboBoxItem Content="Ekspress" HorizontalAlignment="Left" Width="108"/>
+            <ComboBoxItem Content="Standard" HorizontalAlignment="Left" Width="108"/>
+        </ComboBox>
+        <ComboBox x:Name="_ComboBoxContactPerson" Margin="10,41,25,0" VerticalAlignment="Top" IsEditable="True" Height="26" />
+
+        <CheckBox x:Name="_ComboBoxInsurance" Content="CheckBox" HorizontalAlignment="Left" Margin="109,139,0,0" VerticalAlignment="Top" Width="22" Height="22" RenderTransformOrigin="-0.727,0.545"  Grid.Column="1"/>
+
+        <TextBox x:Name="_TextBoxSrzBegin" Height="26" Margin="109,37,10,0" TextWrapping="Wrap" VerticalAlignment="Top" Grid.Column="1" MaxLines="1" MaxLength="5" />
+        <TextBox x:Name="_TextBoxSrzEnd" Height="26" Margin="109,68,10,0" TextWrapping="Wrap" VerticalAlignment="Top" Grid.Column="1" MaxLines="1" MaxLength="5" />
+        <TextBox x:Name="_TextBoxInsuranceCost" Height="23" Margin="141,168,10,0" TextWrapping="Wrap" VerticalAlignment="Top" IsEnabled="False" Grid.Column="1" MaxLines="1" MaxLength="13"/>
+        <TextBox x:Name="_TextBoxAdress" Margin="10,134,25,51" TextWrapping="Wrap" Text="Address" AcceptsReturn="True" MaxLines="20" MaxLength="5000"/>
+        <TextBox x:Name="_TextBoxEmail" Height="26" Margin="10,99,25,0" TextWrapping="Wrap" VerticalAlignment="Top" MaxLines="1" MaxLength="200"/>
+
+        <Button x:Name="_ButtonPorcia" Content="Porcia" Margin="10,196,0,0" VerticalAlignment="Top" Height="26" Grid.Column="1" HorizontalAlignment="Left" Width="86" />
+        <Button x:Name="_ButtonStockholm" Content="Stockholm" Margin="10,258,0,0" VerticalAlignment="Top" Height="26" Grid.Column="1" HorizontalAlignment="Left" Width="86" />
+        <Button x:Name="_ButtonSolaro" Content="Solaro" Margin="10,227,0,0" VerticalAlignment="Top" Height="26" Grid.Column="1" HorizontalAlignment="Left" Width="86" />
+        <Button x:Name="_ButtonClearAdress" Content="Clear Adress" HorizontalAlignment="Left" Margin="116,0,0,10" Width="101"  Height="26" VerticalAlignment="Bottom"/>
+        <Button x:Name="_ButtonAddAdress" Content="Add Adress" HorizontalAlignment="Left" Margin="10,0,0,10" Width="101"  Height="26" VerticalAlignment="Bottom"/>
+    </Grid>
+</UserControl>

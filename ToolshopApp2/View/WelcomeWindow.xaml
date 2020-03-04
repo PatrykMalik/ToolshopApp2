@@ -1,0 +1,15 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ToolshopApp2.View"
+        xmlns:UserControlers="clr-namespace:ToolshopApp2.View.UserControlers" x:Class="ToolshopApp2.View.WelcomeWindow"
+        mc:Ignorable="d"
+        Title="Welcome" Height="218.223" Width="520.926" SizeToContent="WidthAndHeight">
+    <Grid Background="Black" Margin="0,0,-8,0">
+        <Label x:Name="_LabelWelcome" Content="Welcome" Height="40" Margin="10,10,10,0" VerticalAlignment="Top"  Foreground="AliceBlue" FontSize="20" FontWeight="Bold" HorizontalContentAlignment="Center"/>
+        <UserControlers:NewUserEmailUserControl x:Name="_NewUserEmailUserControl" Margin="0,50,0,0"/>
+
+    </Grid>
+</Window>

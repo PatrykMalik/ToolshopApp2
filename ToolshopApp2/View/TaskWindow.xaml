@@ -1,0 +1,26 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ToolshopApp2.View"
+        xmlns:UserControlers="clr-namespace:ToolshopApp2.View.UserControlers" x:Class="ToolshopApp2.View.TaskWindow"
+        mc:Ignorable="d"
+        Name="_TaskWindow" Title="Task Window" Height="723.194" Width="1061" SizeToContent="WidthAndHeight">
+    <Grid Background="Black" x:Name="_TaskWindowGrid">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="257*"/>
+            <ColumnDefinition Width="257*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="342*"/>
+            <RowDefinition Height="69*"/>
+            <RowDefinition Height="281*"/>
+        </Grid.RowDefinitions>
+
+        <UserControlers:SimpleTaskUserControl x:Name="_SimpleTaskUserControl" Grid.Row ="0" Grid.Column="0" HorizontalAlignment="Stretch" Height="Auto" Width="Auto"/>
+        <UserControlers:ShipmentTaskUserControl x:Name="_ShipmentTaskUserControl" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Stretch" Height="Auto" Width="Auto" />
+        <UserControlers:TaskControlersUserControl x:Name="_TaskControlersUserControl" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Stretch" Height="Auto" Width="Auto"/>
+        <UserControlers:ToolshopPartUserControl x:Name="_ToolshopPartUserControl" Grid.Row="2" Grid.Column="0" HorizontalAlignment="Stretch" Height="Auto" Width="Auto" />
+    </Grid>
+</Window>
