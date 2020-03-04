@@ -64,10 +64,11 @@ namespace ToolshopApp2.Controllers
         {
             var context = new DatabaseConnectionContext();
             var user = context.Users
-                .Where(u => u.Name == Environment.UserName)
-                .FirstOrDefault();
-            
-            return user != null;
+                .Where(u => u.Name == Environment.UserName);
+                
+            if (user != null)
+                return true;
+            return false;
         }
     }
 }
