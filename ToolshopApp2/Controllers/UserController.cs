@@ -14,32 +14,40 @@ namespace ToolshopApp2.Controllers
         {
             DatabaseConnectionContext _context = new DatabaseConnectionContext();
 
-            var user = _context.Users
-                .Where(u => u.Name == Environment.UserName)
-                .FirstOrDefault();
-            return user;
+            var users = GetUsers();
+            foreach (var user in users)
+            {
+                if (user.Name == Environment.UserName)
+                {
+                    return user;
+                }
+            }
+            return null;
         }
         public static bool IsUserToolshopMember()
         {
             DatabaseConnectionContext _context = new DatabaseConnectionContext();
-
+            
+            if (GetUser() != null)
             return _context.Users
                 .Where(u => u.Name == Environment.UserName)
                 .FirstOrDefault().KindOfUserId 
                 == _context.KindOfUsers
                 .Where(k => k.Id == 2)
                 .FirstOrDefault().Id;
+            return false;
         }
         public static bool IsUserAdministartor()
         {
             DatabaseConnectionContext _context = new DatabaseConnectionContext();
-
-            return _context.Users
+            if (GetUser() != null)
+                return _context.Users
                 .Where(u => u.Name == Environment.UserName)
                 .FirstOrDefault().KindOfUserId
                 == _context.KindOfUsers
                 .Where(k => k.Id == 3)
                 .FirstOrDefault().Id;
+            return false;
         }
         public static IEnumerable<User> GetUsers()
         {

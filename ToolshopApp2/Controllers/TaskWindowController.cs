@@ -63,8 +63,7 @@ namespace ToolshopApp2.Controllers
         public static bool UserExistInDatabase()
         {
             var context = new DatabaseConnectionContext();
-            var user = context.Users
-                .Where(u => u.Name == Environment.UserName);
+            var user = UserController.GetUser();
                 
             if (user != null)
                 return true;
