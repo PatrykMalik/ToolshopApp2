@@ -44,5 +44,6 @@ namespace ToolshopApp2.Model
         public string PackageWeight { get; set; }
         public string PackageType { get; set; }
         public bool PackageOnPalltete { get; set; }        
+        public DateTime CreationTime { get; set; }
     }
 }

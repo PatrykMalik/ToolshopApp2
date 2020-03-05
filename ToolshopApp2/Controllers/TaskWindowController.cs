@@ -25,7 +25,8 @@ namespace ToolshopApp2.Controllers
                 Description = TaskWindow.task._SimpleTaskUserControl._TextBoxDescription.Text,
                 CostCenter = TaskWindow.task._SimpleTaskUserControl._ComboBoxCostCenter.Text,
                 RequestStatusesId = 1,
-                Attachment = TaskWindow.task._TaskControlersUserControl._CheckBoxAttachement.IsChecked.Value,                
+                Attachment = TaskWindow.task._TaskControlersUserControl._CheckBoxAttachement.IsChecked.Value,
+                CreationTime = DateTime.UtcNow
             };
             if ((request.Order == "Shipping Dishwasher" || request.Order == "Shipping Components") && TaskWindow.task._ShipmentTaskUserControl.IsInitialized)
             {

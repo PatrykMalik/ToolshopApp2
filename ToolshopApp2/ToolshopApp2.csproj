@@ -188,6 +188,10 @@
     <Compile Include="Migrations\20200302151650_RequestRemoveStatusColumn.designer.cs">
       <DependentUpon>20200302151650_RequestRemoveStatusColumn.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\20200304153457_CrationTimeTabAdd.cs" />
+    <Compile Include="Migrations\20200304153457_CrationTimeTabAdd.designer.cs">
+      <DependentUpon>20200304153457_CrationTimeTabAdd.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\DatabaseConnectionContextModelSnapshot.cs" />
     <Compile Include="Model\ClassyfyList.cs" />
     <Compile Include="Model\CostCenterList.cs" />
