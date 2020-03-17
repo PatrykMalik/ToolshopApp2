@@ -27,7 +27,7 @@ namespace ToolshopApp2.View.UserControlers
 
         private void _ButtonAddTaskClick(object sender, RoutedEventArgs e)
         {
-            TaskController.AddTask(_TextBoxAddTask.Text);
+            TaskListController.AddTask(_TextBoxAddTask.Text);
         }
     }
 }

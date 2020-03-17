@@ -18,16 +18,27 @@
             <RowDefinition Height="305*"/>
         </Grid.RowDefinitions>
         <Button x:Name="_ButtonNewTask" Content="New Task" Grid.Row="1" Click="_ButtonNewTaskClick"/>
+        
         <TabControl Grid.Row="2" Grid.ColumnSpan="2">
+            
             <TabItem x:Name="_TabItemCalendarView" Header="Calendar View">
                 <Grid x:Name="_GridCalendarView" Background="Black"/>
             </TabItem>
+            
             <TabItem x:Name="_TabItemAllTasks" Header="All Tasks">
-                <Grid x:Name="_GridAllTasks" Background="Black"/>
+                <Grid x:Name="_GridAllTasks" Background="Black" >
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="27*"/>
+                        <RowDefinition Height="556*"/>
+                    </Grid.RowDefinitions>
+                    <DataGrid x:Name="_DataGridAllRequests" Height="556" VerticalAlignment="Top" Grid.Row="1" MouseDoubleClick="_DataGridAllRequestsMouseDoubleClick"/>
+                </Grid>
             </TabItem>
+            
             <TabItem x:Name="_TabItemListOfPCDishwashers" Header="List of PC Dishwashers">
                 <Grid x:Name="_GridListOfPCDishwashers" Background="Black"/>
             </TabItem>
+            
             <TabItem x:Name="_TabItemAdministrator" Header="Administrator">
                 <Grid x:Name="_GridAdministartor" Background="Black">
                     <Grid.RowDefinitions>
@@ -48,6 +59,7 @@
                     <Button x:Name="_ButtonDataView" Content="Data View" HorizontalAlignment="Left" Margin="90,10,0,0" VerticalAlignment="Top" Width="75" Click="_ButtonDataViewClick"/>
                 </Grid>
             </TabItem>
+            
         </TabControl>
     </Grid>
 </Window>

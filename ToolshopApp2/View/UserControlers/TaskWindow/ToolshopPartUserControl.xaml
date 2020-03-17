@@ -4,8 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:ToolshopApp2.View.UserControlers"
-             mc:Ignorable="d" 
-             d:DesignHeight="280" d:DesignWidth="600">
+             mc:Ignorable="d" d:DesignWidth="600" Height="172.941">
     <Grid x:Name="g_main">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="170*"/>
@@ -13,14 +12,10 @@
         </Grid.ColumnDefinitions>
 
         <Label x:Name="_LabelTime" Content="Time:" HorizontalAlignment="Left" Margin="10,108,0,0" VerticalAlignment="Top" Foreground="White"/>
-        <Label x:Name="_LabelPackage" Content="Package:" HorizontalAlignment="Left" Margin="10,139,0,0" VerticalAlignment="Top" Foreground="White"/>
-        <Label x:Name="_LabelWeight" Content="Weight:" HorizontalAlignment="Left" Margin="10,170,0,0" VerticalAlignment="Top" Foreground="White"/>
-        <Label x:Name="_LabelType" Content="Type:" HorizontalAlignment="Left" Margin="10,201,0,0" VerticalAlignment="Top" Foreground="White"/>
-        <Label x:Name="_LabelPalette" Content="Palette:" HorizontalAlignment="Left" Margin="10,232,0,0" VerticalAlignment="Top" Foreground="White"/>
         <Label Content="SWZ:" HorizontalAlignment="Left" Margin="10,54,0,0" VerticalAlignment="Top" Foreground="White"/>
         <Label Content="SRZ:" HorizontalAlignment="Left" Margin="10,5,0,0" VerticalAlignment="Top" Foreground="White"/>
 
-        <TextBox x:Name="_TextBoxDescription" Margin="10" TextWrapping="Wrap" Text="Description" Grid.Column="1" AcceptsReturn="True"/>
+        <TextBox x:Name="_TextBoxDescription" Margin="10,10,10,14" TextWrapping="Wrap" Text="Description" Grid.Column="1" AcceptsReturn="True"/>
         <TextBox x:Name="_TextBoxSrz_1" HorizontalAlignment="Left" Height="23" Margin="61,31,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="40" MaxLines="1" MaxLength="5"/>
         <TextBox x:Name="_TextBoxSrz_2" HorizontalAlignment="Left" Height="23" Margin="106,31,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="40" MaxLines="1" MaxLength="5"/>
         <TextBox x:Name="_TextBoxSrz_3" HorizontalAlignment="Left" Height="23" Margin="151,31,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="40" MaxLines="1" MaxLength="5"/>
@@ -32,21 +27,12 @@
         <TextBox x:Name="_TextBoxSwz_4" HorizontalAlignment="Left" Height="23" Margin="196,80,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="40" MaxLines="1" MaxLength="5"/>
         <TextBox x:Name="_TextBoxSwz_5" HorizontalAlignment="Left" Height="23" Margin="241,80,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="40" MaxLines="1" MaxLength="5"/>
         <TextBox x:Name="_TextBoxTime" HorizontalAlignment="Left" Height="23" Margin="72,111,0,0" TextWrapping="Wrap" Text="minutes" VerticalAlignment="Top" Width="74" MaxLength="4" MaxLines="1"/>
-        <TextBox x:Name="_TextBoxPackage" HorizontalAlignment="Left" Height="23" Margin="72,139,0,0" TextWrapping="Wrap" Text="cm,cm,cm" VerticalAlignment="Top" Width="74" MaxLines="1" MaxLength="15"/>
-        <TextBox x:Name="_TextBoxWeight" HorizontalAlignment="Left" Height="23" Margin="71,170,0,0" TextWrapping="Wrap" Text="kg" VerticalAlignment="Top" Width="75" MaxLines="1" MaxLength="3"/>
-        <ComboBox x:Name="_ComboBoxTypeOfPackage" HorizontalAlignment="Left" Margin="72,205,0,0" VerticalAlignment="Top" Width="74">
-            <ComboBoxItem Content="Dishwasher" HorizontalAlignment="Left" Width="92"/>
-            <ComboBoxItem Content="Package" HorizontalAlignment="Left" Width="92"/>
-        </ComboBox>
-
-        <CheckBox x:Name="_CheckBoxPalette" Content="CheckBox" HorizontalAlignment="Left" Margin="61,243,0,0" VerticalAlignment="Top"/>
 
         <Button x:Name="_ButtonSrzPlus" Content="+" HorizontalAlignment="Left" Margin="10,31,0,0" VerticalAlignment="Top" Width="23" Height="23" />
         <Button x:Name="_ButtonSrzMinus" Content="-" HorizontalAlignment="Left" Margin="33,31,0,0" VerticalAlignment="Top" Width="23" Height="23" />
         <Button x:Name="_ButtonSwzPlus" Content="+" HorizontalAlignment="Left" Margin="10,80,0,0" VerticalAlignment="Top" Width="23" Height="23" />
         <Button x:Name="_ButtonSwzMinus" Content="-" HorizontalAlignment="Left" Margin="33,80,0,0" VerticalAlignment="Top" Width="23" Height="23" />
-        <Button x:Name="_ButtonEdit" Content="Edit Task" HorizontalAlignment="Left" Margin="206,176,0,0" VerticalAlignment="Top" Width="75" />
-        <Button x:Name="_ButtonAccept" Content="Accept task" HorizontalAlignment="Left" Margin="206,207,0,0" Width="75" Height="20" VerticalAlignment="Top"/>
-        <Button x:Name="_ButtonClose" Content="Close Task" HorizontalAlignment="Left" Margin="206,238,0,0" VerticalAlignment="Top" Width="75" />
+        <Button x:Name="_ButtonAccept" Content="Accept task" HorizontalAlignment="Left" Margin="10,139,0,0" Width="75" Height="20" VerticalAlignment="Top"/>
+        <Button x:Name="_ButtonClose" Content="Close Task" HorizontalAlignment="Left" Margin="90,139,0,0" VerticalAlignment="Top" Width="75" />
     </Grid>
 </UserControl>

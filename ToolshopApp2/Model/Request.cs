@@ -40,10 +40,6 @@ namespace ToolshopApp2.Model
         public string Swz5 { get; set; }
         public string Time { get; set; }
         public string DescpriptionToolshop { get; set; }
-        public string PackageDimmention { get; set; }
-        public string PackageWeight { get; set; }
-        public string PackageType { get; set; }
-        public bool PackageOnPalltete { get; set; }        
         public DateTime CreationTime { get; set; }
     }
 }

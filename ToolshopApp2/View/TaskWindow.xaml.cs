@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using ToolshopApp2.Controllers;
 
+
 namespace ToolshopApp2.View
 {
     /// <summary>
@@ -27,17 +28,6 @@ namespace ToolshopApp2.View
         {
             InitializeComponent();
             task = this;
-            if (_ShipmentTaskUserControl.IsInitialized)
-            {
-                _ShipmentTaskUserControl.Visibility = Visibility.Hidden;
-                _ShipmentTaskUserControl.Width = 0;
-            }
-            if (!(UserController.IsUserToolshopMember() || UserController.IsUserAdministartor()))
-            {
-                _ToolshopPartUserControl.Visibility = Visibility.Hidden;
-                _ToolshopPartUserControl.Height = 0;
-            }
-            this.ShowDialog();
         }
     }
 }

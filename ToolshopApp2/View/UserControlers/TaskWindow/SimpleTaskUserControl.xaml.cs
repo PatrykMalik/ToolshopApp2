@@ -46,5 +46,14 @@ namespace ToolshopApp2.View.UserControlers
                 }
             }
         }
+
+        private void _DatePickerDeadlineSelectedDateChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (!DateManagingController.IsDateAvaiable(_DatePickerDeadline.SelectedDate.Value))
+            {
+                MessageBox.Show("Selected date is unavaiable.\nPlease reschedule task.", "Selected date is unavaiable", MessageBoxButton.OK, MessageBoxImage.Warning);
+                _DatePickerDeadline.SelectedDate = null;
+            }
+        }
     }    
 }

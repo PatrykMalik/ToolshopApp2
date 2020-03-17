@@ -15,6 +15,7 @@ using System.Windows.Shapes;
 using ToolshopApp2.View;
 using ToolshopApp2.Controllers;
 
+using System.Data;
 
 namespace ToolshopApp2
 {
@@ -27,7 +28,7 @@ namespace ToolshopApp2
         {
             InitializeComponent();
             InitializeWelcomeWindow();
-            if (!TaskWindowController.UserExistInDatabase())
+            if (!UserController.UserExistInDatabase())
             {
                 this.Close();
             }
@@ -38,8 +39,11 @@ namespace ToolshopApp2
             else
             {
                 InitializeAdministratorTab();
-            }
-            
+            } 
+
+            _DataGridAllRequests.ItemsSource = RequestController.GetRequests();
+
+
         }
         private void InitializeAdministratorTab()
         {
@@ -48,9 +52,9 @@ namespace ToolshopApp2
         }
         private void _ButtonNewTaskClick(object sender, RoutedEventArgs e)
         {
-            var taskWindow = new TaskWindow();
+            TaskWindowController.InitializeTaskWindow();
         }
-
+        
         private void InitializeWelcomeWindow()
         {
             var welcomeWindow = new WelcomeWindow();
@@ -66,6 +70,16 @@ namespace ToolshopApp2
         {
             InitializeAdministratorTab();
             _AdministratorDataViewUserControl.Visibility = Visibility.Visible;
+        }
+
+        private void _DataGridAllRequestsMouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            DataGrid dg = (DataGrid)sender;
+            var row = dg.SelectedItem;
+            if (row != null)
+            {
+                TaskWindowController.InitializeTaskWindow(row);
+            }
         }
     }
 }

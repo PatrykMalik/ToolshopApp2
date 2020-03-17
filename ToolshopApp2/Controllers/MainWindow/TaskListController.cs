@@ -8,7 +8,7 @@ using ToolshopApp2.Model;
 
 namespace ToolshopApp2.Controllers
 {
-    public static class TaskController
+    public static class TaskListController
     {
         public static void AddTask(string s)
         {
@@ -19,6 +19,7 @@ namespace ToolshopApp2.Controllers
             };
             context.Add(taskList);
         }
+
         public static IEnumerable<TaskList> GetTaskLists()
         {
             var context = new DatabaseConnectionContext();
@@ -29,5 +30,6 @@ namespace ToolshopApp2.Controllers
             }
             return taskList;
         }
+
     }
 }

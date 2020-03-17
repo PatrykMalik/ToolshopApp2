@@ -42,7 +42,7 @@
         <Button x:Name="_ButtonAddProject" Content="Add Project" HorizontalAlignment="Right" Margin="0,41,10,0" VerticalAlignment="Top" Width="104" Height="26" Grid.Column="1"/>
         <Button x:Name="_ButtonAddCostCenter" Content="Add CC" HorizontalAlignment="Right" Margin="0,103,10,0" VerticalAlignment="Top" Width="104" Height="26" Grid.Column="1"/>
 
-        <DatePicker x:Name="_DatePickerDeadline" Margin="153,134,10,0" VerticalAlignment="Top" Height="26" FirstDayOfWeek="Monday" SelectedDateFormat="Short" Grid.ColumnSpan="2"/>
+        <DatePicker x:Name="_DatePickerDeadline" Margin="153,134,10,0" VerticalAlignment="Top" Height="26" FirstDayOfWeek="Monday" SelectedDateFormat="Short" Grid.ColumnSpan="2" SelectedDateChanged="_DatePickerDeadlineSelectedDateChanged"/>
 
         <TextBox x:Name="_TextBoxDescription" Margin="10,196,9.8,10" TextWrapping="Wrap" SpellCheck.IsEnabled="True" AcceptsReturn="True" Background="#FFECECEC" Text="Task description" MaxLines="50" MaxLength="2000" VerticalScrollBarVisibility="Auto"/>
         <TextBox x:Name="_TextBoxId" Grid.Column="1" Height="22" Margin="0,14,10,0" TextWrapping="Wrap" Text="ID" VerticalAlignment="Top" IsEnabled="False" HorizontalAlignment="Right" Width="104"/>

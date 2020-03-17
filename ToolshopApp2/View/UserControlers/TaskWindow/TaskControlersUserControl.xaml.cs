@@ -28,8 +28,14 @@ namespace ToolshopApp2.View.UserControlers
 
         private void _AddRequestClick(object sender, RoutedEventArgs e)
         {
-            TaskWindowController.AddRequest();
-            TaskWindow.task.Close();
+            if (TaskWindowController.AddRequest())
+            {
+                TaskWindow.task.Close();
+            }
+            else
+            {
+               
+            }
         }
     }
 }

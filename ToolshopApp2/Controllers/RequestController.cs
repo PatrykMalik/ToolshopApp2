@@ -3,18 +3,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using ToolshopApp2.View;
 using ToolshopApp2.Model;
+using ToolshopApp2.View;
 using ToolshopApp2.Data;
 
 namespace ToolshopApp2.Controllers
 {
-    public static class TaskWindowController
+    public class RequestController
     {
-        public static void AddRequest()
+        public static Request CreateRequest()
         {
-            var context = new DatabaseConnectionContext();
-
             var request = new Request()
             {
                 User = Environment.UserName,
@@ -39,36 +37,31 @@ namespace ToolshopApp2.Controllers
                 request.Insurance = TaskWindow.task._ShipmentTaskUserControl._ComboBoxInsurance.IsChecked.Value;
                 request.InsuranceCost = TaskWindow.task._ShipmentTaskUserControl._TextBoxInsuranceCost.Text;
             }
-            context.Add(request);
-            context.SaveChanges();
-        }
-
-        public static bool AddUser()
-        {
-            if (!UserExistInDatabase())
+            if (UserController.IsUserToolshopMember() || UserController.IsUserAdministartor())
             {
-                var context = new DatabaseConnectionContext();
-                var user = new User
-                {
-                    Name = Environment.UserName,
-                    Emial = WelcomeWindow.welcomeWindow._NewUserEmailUserControl._TextboxEmail.Text,
-                    KindOfUserId = 1
-                };
-                context.Add(user);
-                context.SaveChanges();
-                return true;
+                request.Srz1 = TaskWindow.task._ToolshopPartUserControl._TextBoxSrz_1.Text;
+                request.Srz2 = TaskWindow.task._ToolshopPartUserControl._TextBoxSrz_2.Text;
+                request.Srz3 = TaskWindow.task._ToolshopPartUserControl._TextBoxSrz_3.Text;
+                request.Srz4 = TaskWindow.task._ToolshopPartUserControl._TextBoxSrz_4.Text;
+                request.Srz5 = TaskWindow.task._ToolshopPartUserControl._TextBoxSrz_5.Text;
+                request.Swz1 = TaskWindow.task._ToolshopPartUserControl._TextBoxSwz_1.Text;
+                request.Swz2 = TaskWindow.task._ToolshopPartUserControl._TextBoxSwz_2.Text;
+                request.Swz3 = TaskWindow.task._ToolshopPartUserControl._TextBoxSwz_3.Text;
+                request.Swz4 = TaskWindow.task._ToolshopPartUserControl._TextBoxSwz_4.Text;
+                request.Swz5 = TaskWindow.task._ToolshopPartUserControl._TextBoxSwz_5.Text;
+                request.DescpriptionToolshop = TaskWindow.task._ToolshopPartUserControl._TextBoxDescription.Text;
             }
-            return false;
+            return request;
         }
-
-        public static bool UserExistInDatabase()
+        public static IEnumerable<Request> GetRequests()
         {
             var context = new DatabaseConnectionContext();
-            var user = UserController.GetUser();
-                
-            if (user != null)
-                return true;
-            return false;
+            List<Request> requests = new List<Request>();
+            foreach (Request request in context.Requests)
+            {
+                requests.Add(request);
+            }
+            return requests;
         }
     }
 }

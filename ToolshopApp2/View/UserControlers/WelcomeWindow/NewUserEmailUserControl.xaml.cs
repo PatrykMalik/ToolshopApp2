@@ -27,7 +27,7 @@ namespace ToolshopApp2.View.UserControlers
         }
         private void _ButtonAddEmailClick(object sender, RoutedEventArgs e)
         {
-            if (TaskWindowController.AddUser())
+            if (UserController.AddUser(WelcomeWindow.welcomeWindow._NewUserEmailUserControl._TextboxEmail.Text))
             {
                 MessageBox.Show("Email has been correcly added to database","Add Email",MessageBoxButton.OK,MessageBoxImage.Information);
                 WelcomeWindow.welcomeWindow.Close();

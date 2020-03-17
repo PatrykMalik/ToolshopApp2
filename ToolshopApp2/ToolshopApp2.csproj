@@ -156,8 +156,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Controllers\TaskController.cs" />
-    <Compile Include="Controllers\TaskWindowController.cs" />
+    <Compile Include="Controllers\DateManagingController.cs" />
+    <Compile Include="Controllers\MainWindow\TaskListController.cs" />
+    <Compile Include="Controllers\RequestController.cs" />
+    <Compile Include="Controllers\TaskWindow\TaskWindowController.cs" />
     <Compile Include="Connection\ConnectionString.cs" />
     <Compile Include="Data\DatabaseConnectionContext.cs" />
     <Compile Include="Migrations\20200229101803_InitialMigration.cs" />
@@ -192,7 +194,12 @@
     <Compile Include="Migrations\20200304153457_CrationTimeTabAdd.designer.cs">
       <DependentUpon>20200304153457_CrationTimeTabAdd.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\20200306142620_BlockedDateByToolshop.cs" />
+    <Compile Include="Migrations\20200306142620_BlockedDateByToolshop.designer.cs">
+      <DependentUpon>20200306142620_BlockedDateByToolshop.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\DatabaseConnectionContextModelSnapshot.cs" />
+    <Compile Include="Model\BlockedDay.cs" />
     <Compile Include="Model\ClassyfyList.cs" />
     <Compile Include="Model\CostCenterList.cs" />
     <Compile Include="Model\KindOfUser.cs" />
@@ -203,25 +210,25 @@
     <Compile Include="View\TaskWindow.xaml.cs">
       <DependentUpon>TaskWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\UserControlers\AdministratorAddValuesToDatabaseUserControl.xaml.cs">
+    <Compile Include="View\UserControlers\MainWindow\AdministratorAddValuesToDatabaseUserControl.xaml.cs">
       <DependentUpon>AdministratorAddValuesToDatabaseUserControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\UserControlers\AdministratorDataViewUserControl.xaml.cs">
+    <Compile Include="View\UserControlers\MainWindow\AdministratorDataViewUserControl.xaml.cs">
       <DependentUpon>AdministratorDataViewUserControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\UserControlers\NewUserEmailUserControl.xaml.cs">
+    <Compile Include="View\UserControlers\WelcomeWindow\NewUserEmailUserControl.xaml.cs">
       <DependentUpon>NewUserEmailUserControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\UserControlers\ShipmentTaskUserControl.xaml.cs">
+    <Compile Include="View\UserControlers\TaskWindow\ShipmentTaskUserControl.xaml.cs">
       <DependentUpon>ShipmentTaskUserControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\UserControlers\SimpleTaskUserControl.xaml.cs">
+    <Compile Include="View\UserControlers\TaskWindow\SimpleTaskUserControl.xaml.cs">
       <DependentUpon>SimpleTaskUserControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\UserControlers\TaskControlersUserControl.xaml.cs">
+    <Compile Include="View\UserControlers\TaskWindow\TaskControlersUserControl.xaml.cs">
       <DependentUpon>TaskControlersUserControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\UserControlers\ToolshopPartUserControl.xaml.cs">
+    <Compile Include="View\UserControlers\TaskWindow\ToolshopPartUserControl.xaml.cs">
       <DependentUpon>ToolshopPartUserControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controllers\UserController.cs" />
@@ -245,31 +252,31 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\UserControlers\AdministratorAddValuesToDatabaseUserControl.xaml">
+    <Page Include="View\UserControlers\MainWindow\AdministratorAddValuesToDatabaseUserControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\UserControlers\AdministratorDataViewUserControl.xaml">
+    <Page Include="View\UserControlers\MainWindow\AdministratorDataViewUserControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\UserControlers\NewUserEmailUserControl.xaml">
+    <Page Include="View\UserControlers\WelcomeWindow\NewUserEmailUserControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\UserControlers\ShipmentTaskUserControl.xaml">
+    <Page Include="View\UserControlers\TaskWindow\ShipmentTaskUserControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\UserControlers\SimpleTaskUserControl.xaml">
+    <Page Include="View\UserControlers\TaskWindow\SimpleTaskUserControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\UserControlers\TaskControlersUserControl.xaml">
+    <Page Include="View\UserControlers\TaskWindow\TaskControlersUserControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\UserControlers\ToolshopPartUserControl.xaml">
+    <Page Include="View\UserControlers\TaskWindow\ToolshopPartUserControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -304,6 +311,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Controllers\WelcomeWindow\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
