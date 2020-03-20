@@ -19,7 +19,7 @@ namespace ToolshopApp2.Controllers
             {
                 foreach (var user in users)
                 {
-                    if (user.Name == Environment.UserName)
+                    if (user.Name == Environment.UserName.ToLower())
                     {
                         return user;
                     }
@@ -35,7 +35,7 @@ namespace ToolshopApp2.Controllers
             if (GetUser() != null)
             {
                 return _context.Users
-                    .Where(u => u.Name == Environment.UserName)
+                    .Where(u => u.Name == Environment.UserName.ToLower())
                     .FirstOrDefault().KindOfUserId
                     == _context.KindOfUsers
                     .Where(k => k.Id == 2)
@@ -49,7 +49,7 @@ namespace ToolshopApp2.Controllers
             if (GetUser() != null)
             {
                 return _context.Users
-               .Where(u => u.Name == Environment.UserName)
+               .Where(u => u.Name == Environment.UserName.ToLower())
                .FirstOrDefault().KindOfUserId
                == _context.KindOfUsers
                .Where(k => k.Id == 3)
@@ -74,7 +74,7 @@ namespace ToolshopApp2.Controllers
                 var context = new DatabaseConnectionContext();
                 var user = new User
                 {
-                    Name = Environment.UserName,
+                    Name = Environment.UserName.ToLower(),
                     Emial = email,
                     KindOfUserId = 1
                 };

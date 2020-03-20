@@ -20,6 +20,7 @@ namespace ToolshopApp2.Data
         public DbSet<ProjectList> ProjectLists { get; set; }
         public DbSet<TaskList> TaskLists { get; set; }
         public DbSet<BlockedDay> BlockedDays { get; set; }
+        public DbSet<Address> Addresses { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

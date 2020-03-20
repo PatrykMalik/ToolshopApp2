@@ -13,26 +13,29 @@ namespace ToolshopApp2.Controllers
 {
     public static class TaskWindowController
     {
-        static Request _request;
+        static Request _request = null;
         public static void InitializeTaskWindow()
         {
             var taskWindow = new TaskWindow();
+            LoadComboboxItems(taskWindow);
             SetTaskWindowView(taskWindow);
-        }
 
+        }        
         public static void InitializeTaskWindow(Object row)
         {
             _request = row as Request;
             var taskWindow = new TaskWindow();
 
+            LoadComboboxItems(taskWindow);
+
             taskWindow._TaskControlersUserControl._AddRequest.Content = "Update Request";
 
-            taskWindow._SimpleTaskUserControl._TextBoxId.Text = _request.Id.ToString();
+            taskWindow._SimpleTaskUserControl._TextBoxId.Text = _request.Id.ToString() + " - " + (RequestController.GetStatus(_request.RequestStatusesId) == null ? "" : RequestController.GetStatus(_request.RequestStatusesId).Status);
             taskWindow._SimpleTaskUserControl._ComboBoxClassyfy.Text = _request.Classyfy;
             taskWindow._SimpleTaskUserControl._ComboBoxProject.Text = _request.Project;
             taskWindow._SimpleTaskUserControl._ComboboxTask.Text = _request.Order;
             taskWindow._SimpleTaskUserControl._ComboBoxCostCenter.Text = _request.CostCenter;
-            taskWindow._SimpleTaskUserControl._DatePickerDeadline.SelectedDate = _request.Date;
+            taskWindow._SimpleTaskUserControl._DatePickerDeadline.Text = _request.Date.ToShortDateString();
             taskWindow._SimpleTaskUserControl._TextBoxDescription.Text = _request.Description;
 
             taskWindow._TaskControlersUserControl._CheckBoxAttachement.IsChecked = _request.Attachment;
@@ -59,36 +62,21 @@ namespace ToolshopApp2.Controllers
 
             SetTaskWindowView(taskWindow);
         }
-
-        private static void SetTaskWindowView(TaskWindow taskWindow)
-        {
-            if (taskWindow._ShipmentTaskUserControl.IsInitialized)
-            {
-                taskWindow._ShipmentTaskUserControl.Visibility = Visibility.Hidden;
-                taskWindow._ShipmentTaskUserControl.Width = 0;
-            }
-            if (!(UserController.IsUserToolshopMember() || UserController.IsUserAdministartor()))
-            {
-                taskWindow._ToolshopPartUserControl.Visibility = Visibility.Hidden;
-                taskWindow._ToolshopPartUserControl.Height = 0;
-            }
-            taskWindow.ShowDialog();
-        }
         public static bool AddRequest()
         {
             var context = new DatabaseConnectionContext();
             if (DateManagingController.IsDateAvaiable(TaskWindow.task._SimpleTaskUserControl._DatePickerDeadline.SelectedDate.Value) && context != null)
             {
-                if (TaskWindow.task._SimpleTaskUserControl._TextBoxId.Text == "ID")
+                if (_request == null)
                 {
                     context.Add(RequestController.CreateRequest());
                     context.SaveChanges();
                     return true;
                 }
-                else
+                else if (_request.User == Environment.UserName.ToLower() || UserController.IsUserToolshopMember() || UserController.IsUserAdministartor())
                 {
                     var request = RequestController.CreateRequest();
-                    request.Id = int.Parse(TaskWindow.task._SimpleTaskUserControl._TextBoxId.Text);
+                    request.Id = _request.Id;
                     context.Update(request);
                     context.SaveChanges();
                     return true;
@@ -96,10 +84,56 @@ namespace ToolshopApp2.Controllers
             }
             return false;
         }
-
-        public static void FillForms(DataRow row)
+        public static bool AddAddress()
         {
-            TaskWindow.task._SimpleTaskUserControl._TextBoxId.Text = row["Id"].ToString();
+            var context = new DatabaseConnectionContext();
+            var address = new Address()
+            {
+                ContactPerson = TaskWindow.task._ShipmentTaskUserControl._ComboBoxContactPerson.Text,
+                Email = TaskWindow.task._ShipmentTaskUserControl._TextBoxEmail.Text,
+                Adress = TaskWindow.task._ShipmentTaskUserControl._TextBoxAdress.Text
+            };
+            if (context != null)
+            {
+                context.Add(address);
+                context.SaveChanges();
+                return true;
+            }
+            return false;
         }
+
+        private static void SetTaskWindowView(TaskWindow taskWindow)
+        {
+            if (!(UserController.IsUserToolshopMember() || UserController.IsUserAdministartor()))
+            {
+                taskWindow._ToolshopPartUserControl.Visibility = Visibility.Hidden;
+                taskWindow._ToolshopPartUserControl.Height = 0;
+            }
+            taskWindow.ShowDialog();
+        }
+        private static void LoadComboboxItems(TaskWindow taskWindow)
+        {
+            foreach (var item in ComboboxListController.GetTaskLists())
+            {
+                taskWindow._SimpleTaskUserControl._ComboboxTask.Items.Add(item.Name);
+            }
+            foreach (var item in ComboboxListController.GetClassyfyLists())
+            {
+                taskWindow._SimpleTaskUserControl._ComboBoxClassyfy.Items.Add(item.Name);
+            }
+            foreach (var item in ComboboxListController.GetProjectLists())
+            {
+                taskWindow._SimpleTaskUserControl._ComboBoxProject.Items.Add(item.Name);
+            }
+            foreach (var item in ComboboxListController.GetCostCenterLists())
+            {
+                taskWindow._SimpleTaskUserControl._ComboBoxCostCenter.Items.Add(item.Name);
+            }
+            foreach (var item in ComboboxListController.GetAddresses())
+            {
+                taskWindow._ShipmentTaskUserControl._ComboBoxContactPerson.Items.Add(item.ContactPerson);
+            }
+        }
+
     }
 }

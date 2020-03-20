@@ -27,7 +27,14 @@ namespace ToolshopApp2.View.UserControlers
 
         private void _ButtonAddTaskClick(object sender, RoutedEventArgs e)
         {
-            TaskListController.AddTask(_TextBoxAddTask.Text);
+            ComboboxListController.AddTask(_TextBoxAddTask.Text);
+            _TextBoxAddTask.Text = String.Empty;
+        }
+
+        private void _ButtonAddClassyfyClick(object sender, RoutedEventArgs e)
+        {
+            ComboboxListController.AddClassyfy(_TextBoxAddClassyfy.Text);
+            _TextBoxAddClassyfy.Text = String.Empty;
         }
     }
 }

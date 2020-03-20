@@ -15,7 +15,7 @@ namespace ToolshopApp2.Controllers
         {
             var request = new Request()
             {
-                User = Environment.UserName,
+                User = Environment.UserName.ToLower(),
                 Classyfy = TaskWindow.task._SimpleTaskUserControl._ComboBoxClassyfy.Text,
                 Project = TaskWindow.task._SimpleTaskUserControl._ComboBoxProject.Text,
                 Order = TaskWindow.task._SimpleTaskUserControl._ComboboxTask.Text,
@@ -62,6 +62,16 @@ namespace ToolshopApp2.Controllers
                 requests.Add(request);
             }
             return requests;
+        }
+        public static RequestStatus GetStatus(int id)
+        {
+            var context = new DatabaseConnectionContext();
+            var status = context.RequestStatuses.Where(i => i.StatusId == id).ToArray();
+            if (status.Length > 0)
+            {
+                return status[0];                
+            }
+            return null;
         }
     }
 }

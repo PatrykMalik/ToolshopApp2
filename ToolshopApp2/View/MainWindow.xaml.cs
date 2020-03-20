@@ -50,6 +50,7 @@ namespace ToolshopApp2
             _AdministratorAddValuesToDatabaseUserControl.Visibility = Visibility.Hidden;
             _AdministratorDataViewUserControl.Visibility = Visibility.Hidden;
         }
+
         private void _ButtonNewTaskClick(object sender, RoutedEventArgs e)
         {
             TaskWindowController.InitializeTaskWindow();

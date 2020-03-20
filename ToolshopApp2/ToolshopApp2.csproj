@@ -157,7 +157,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Controllers\DateManagingController.cs" />
-    <Compile Include="Controllers\MainWindow\TaskListController.cs" />
+    <Compile Include="Controllers\MainWindow\ComboboxListController.cs" />
     <Compile Include="Controllers\RequestController.cs" />
     <Compile Include="Controllers\TaskWindow\TaskWindowController.cs" />
     <Compile Include="Connection\ConnectionString.cs" />
@@ -198,7 +198,12 @@
     <Compile Include="Migrations\20200306142620_BlockedDateByToolshop.designer.cs">
       <DependentUpon>20200306142620_BlockedDateByToolshop.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\20200320134205_AddAddressTabToDB.cs" />
+    <Compile Include="Migrations\20200320134205_AddAddressTabToDB.designer.cs">
+      <DependentUpon>20200320134205_AddAddressTabToDB.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\DatabaseConnectionContextModelSnapshot.cs" />
+    <Compile Include="Model\Address.cs" />
     <Compile Include="Model\BlockedDay.cs" />
     <Compile Include="Model\ClassyfyList.cs" />
     <Compile Include="Model\CostCenterList.cs" />

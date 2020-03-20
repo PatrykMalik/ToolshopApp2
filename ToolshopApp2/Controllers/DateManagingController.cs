@@ -13,18 +13,6 @@ namespace ToolshopApp2.Controllers
     {
         public static bool IsDateAvaiable(DateTime dateToCheck)
         {
-            if (IsSeletedDateOnWeekend(dateToCheck))
-            {
-                MessageBoxResult result = MessageBox.Show("Do you really want to add task to weekend", "Seleded date is for weekend", MessageBoxButton.YesNo, MessageBoxImage.Question, MessageBoxResult.No);
-                if (result == MessageBoxResult.No)
-                {
-                    return false;
-                }
-                else
-                {
-                    return true;
-                }                    
-            }
             if (IsBlockedDateByToolshop(dateToCheck))
             {
                 MessageBox.Show("Please reschedule task.\nSelected date is blocked by toolshop.", "Blocked day", MessageBoxButton.OK, MessageBoxImage.Information);
@@ -37,11 +25,19 @@ namespace ToolshopApp2.Controllers
             }
             return true;
         }
-        private static bool IsSeletedDateOnWeekend(DateTime dateToCheck)
+        public static bool IsSeletedDateOnWeekend(DateTime dateToCheck)
         {
             if (dateToCheck.DayOfWeek == DayOfWeek.Saturday || dateToCheck.DayOfWeek == DayOfWeek.Sunday)
             {
-                return true;
+                MessageBoxResult result = MessageBox.Show("Do you really want to add task to weekend", "Seleded date is for weekend", MessageBoxButton.YesNo, MessageBoxImage.Question, MessageBoxResult.No);
+                if (result == MessageBoxResult.No)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
             }
             return false;
         }
