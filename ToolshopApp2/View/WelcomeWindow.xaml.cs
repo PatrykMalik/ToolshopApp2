@@ -30,7 +30,7 @@ namespace ToolshopApp2.View
         private void SetupLabel()
         {            
             welcomeWindow._LabelWelcome.Content = "Welcome " + Environment.UserName;
-            if (!TaskWindowController.UserExistInDatabase())
+            if (!UserController.UserExistInDatabase())
             {
                 this._NewUserEmailUserControl._LabelInfo.Content = "You are new user of ToolshopApp. \nPlease add you email to get notifications.";
                 this.ShowDialog();

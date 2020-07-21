@@ -13,14 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace ToolshopApp2.View.UserControlers
+namespace ToolshopApp2.View.UserControlers.WelcomeWindow
 {
     /// <summary>
-    /// Interaction logic for ToolshopPartUserControl.xaml
+    /// Interaction logic for LoginUserWelcomWindowUserControl.xaml
     /// </summary>
-    public partial class ToolshopPartUserControl : UserControl
+    public partial class LoginUserWelcomWindowUserControl : UserControl
     {
-        public ToolshopPartUserControl()
+        public LoginUserWelcomWindowUserControl()
         {
             InitializeComponent();
         }

@@ -24,17 +24,20 @@ namespace ToolshopApp2.View.UserControlers
         public SimpleTaskUserControl()
         {
             InitializeComponent();
+            _DatePickerDeadline.SelectedDate = DateTime.Today.AddDays(7);
+            //ResizeWindowBasedOnTask();
         }
 
         private void _ComboboxTask_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             ResizeWindowBasedOnTask();
         }
+        
         private void ResizeWindowBasedOnTask()
         {
             if (_ComboboxTask.IsInitialized)
             {
-                if (_ComboboxTask.SelectedIndex.Equals(5) || _ComboboxTask.SelectedIndex.Equals(6))
+                if (_ComboboxTask.SelectedIndex == 5 || _ComboboxTask.SelectedIndex == 6)
                 {
                     TaskWindow.task._ShipmentTaskUserControl.Visibility = Visibility.Visible;
                     TaskWindow.task._ShipmentTaskUserControl.Width = TaskWindow.task._SimpleTaskUserControl.Width;
@@ -46,5 +49,28 @@ namespace ToolshopApp2.View.UserControlers
                 }
             }
         }
-    }    
+        
+        private void _DatePickerDeadlineSelectedDateChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (DateManagingController.IsSelectedDateOnWeekend(_DatePickerDeadline.SelectedDate.Value))
+            {
+                _DatePickerDeadline.IsDropDownOpen = true;
+            }
+            else if (!DateManagingController.IsDateAvaiable(_DatePickerDeadline.SelectedDate.Value))
+            {
+                MessageBox.Show("Selected date is unavaiable.\nPlease reschedule task.", "Selected date is unavaiable", MessageBoxButton.OK, MessageBoxImage.Warning);
+                _DatePickerDeadline.IsDropDownOpen = true;
+            }
+        }
+
+        private void _ButtonAddProjectClick(object sender, RoutedEventArgs e)
+        {
+            TaskWindowController.AddProject(_ComboBoxProject.Text);
+        }
+
+        private void _ButtonAddCostCenterClick(object sender, RoutedEventArgs e)
+        {
+            TaskWindowController.AddCostCenter(_ComboBoxCostCenter.Text);
+        }
+    }
 }

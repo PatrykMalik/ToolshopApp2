@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ToolshopApp2.Data;
 
 namespace ToolshopApp2.Migrations
 {
     [DbContext(typeof(DatabaseConnectionContext))]
-    partial class DatabaseConnectionContextModelSnapshot : ModelSnapshot
+    [Migration("20200709093511_status")]
+    partial class status
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -185,8 +187,8 @@ namespace ToolshopApp2.Migrations
                     b.Property<string>("Srz5")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Status")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int?>("StatusId")
+                        .HasColumnType("int");
 
                     b.Property<string>("Swz1")
                         .HasColumnType("nvarchar(max)");
@@ -214,7 +216,27 @@ namespace ToolshopApp2.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("StatusId");
+
                     b.ToTable("Requests");
+                });
+
+            modelBuilder.Entity("ToolshopApp2.Model.RequestStatus", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Status")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("StatusId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("RequestStatuses");
                 });
 
             modelBuilder.Entity("ToolshopApp2.Model.TaskList", b =>
@@ -253,6 +275,13 @@ namespace ToolshopApp2.Migrations
                     b.HasIndex("KindOfUserId");
 
                     b.ToTable("Users");
+                });
+
+            modelBuilder.Entity("ToolshopApp2.Model.Request", b =>
+                {
+                    b.HasOne("ToolshopApp2.Model.RequestStatus", "Status")
+                        .WithMany()
+                        .HasForeignKey("StatusId");
                 });
 
             modelBuilder.Entity("ToolshopApp2.Model.User", b =>

@@ -15,7 +15,7 @@
         </Grid.ColumnDefinitions>
         <TextBox x:Name="_TextBoxAddClassyfy" Height="23" Margin="10,10,10,0" TextWrapping="Wrap" Text="Add Classyfy" VerticalAlignment="Top"/>
         <TextBox x:Name="_TextBoxAddTask" Height="23" Margin="10,43,10,0" TextWrapping="Wrap" Text="Add Task" VerticalAlignment="Top"/>
-        <Button x:Name="_ButtonAddClassyfy" Content="Add Classyfy" Grid.Column="1" Margin="10,10,10,0" VerticalAlignment="Top" Height="23"/>
+        <Button x:Name="_ButtonAddClassyfy" Content="Add Classyfy" Click="_ButtonAddClassyfyClick" Grid.Column="1" Margin="10,10,10,0" VerticalAlignment="Top" Height="23" />
         <Button x:Name="_ButtonAddTask" Content="Add Task" Click="_ButtonAddTaskClick" Grid.Column="1" Margin="10,43,10,0" VerticalAlignment="Top" Height="23"/>
     </Grid>
 </UserControl>

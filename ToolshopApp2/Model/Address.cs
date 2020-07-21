@@ -6,9 +6,11 @@ using System.Threading.Tasks;
 
 namespace ToolshopApp2.Model
 {
-    public class ClassyfyList
+    public class Address
     {
         public int Id { get; set; }
-        public string Name { get; set; }
+        public string ContactPerson { get; set; }
+        public string Email { get; set; }
+        public string Adress { get; set; }
     }
 }
