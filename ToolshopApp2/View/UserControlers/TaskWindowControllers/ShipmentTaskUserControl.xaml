@@ -25,8 +25,8 @@
         <TextBox x:Name="_TextBoxAdress" Margin="10,134,25,51" TextWrapping="Wrap" Text="Address" AcceptsReturn="True" MaxLines="20" MaxLength="5000"/>
         <Button x:Name="_ButtonAddAdress" Content="Add Adress" HorizontalAlignment="Left" Margin="10,0,0,10" Width="101"  Height="26" VerticalAlignment="Bottom" Click="_ButtonAddAdress_Click"/>
         <Button x:Name="_ButtonClearAdress" Content="Clear Adress" HorizontalAlignment="Left" Margin="116,0,0,10" Width="101"  Height="26" VerticalAlignment="Bottom" Click="_ButtonClearAdress_Click"/>
-        <TextBox x:Name="_TextBoxSrzBegin" Height="26" Margin="109,37,10,0" TextWrapping="Wrap" VerticalAlignment="Top" Grid.Column="1" MaxLines="1" MaxLength="5" TextChanged="_TextBox_TextChanged" />
-        <TextBox x:Name="_TextBoxSrzEnd" Height="26" Margin="109,68,10,0" TextWrapping="Wrap" VerticalAlignment="Top" Grid.Column="1" MaxLines="1" MaxLength="5" />        
+        <TextBox x:Name="_TextBoxSrzBegin" Height="26" Margin="109,37,10,0" TextWrapping="Wrap" VerticalAlignment="Top" Grid.Column="1" MaxLines="1" MaxLength="5" TextChanged="_TextBoxSrzBegin_TextChanged"/>
+        <TextBox x:Name="_TextBoxSrzEnd" Height="26" Margin="109,68,10,0" TextWrapping="Wrap" VerticalAlignment="Top" Grid.Column="1" MaxLines="1" MaxLength="5" TextChanged="_TextBoxSrzEnd_TextChanged"/>        
         <ComboBox x:Name="_ComboBoxTransport" Margin="109,99,10,0" VerticalAlignment="Top" Height="26" SelectedIndex="1" Grid.Column="1">
             <ComboBoxItem Content="Ekspress" HorizontalAlignment="Left" Width="108"/>
             <ComboBoxItem Content="Standard" HorizontalAlignment="Left" Width="108"/>

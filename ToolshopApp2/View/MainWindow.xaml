@@ -4,41 +4,103 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ToolshopApp2"
-        xmlns:UserControlers="clr-namespace:ToolshopApp2.View.UserControlers" x:Class="ToolshopApp2.MainWindow"
+        xmlns:UserControlers="clr-namespace:ToolshopApp2.View.UserControlers" xmlns:MainWindowControllers="clr-namespace:ToolshopApp2.View.UserControlers.MainWindowControllers" x:Class="ToolshopApp2.MainWindow"
         mc:Ignorable="d"
-        Name="_MainWindow"  Title="ToolshopApp2" Height="726" Width="800">
+        x:Name="_MainWindow"  Title="ToolshopApp2" Height="856.5" Width="1269.5">
     <Grid Background="Black">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="71*"/>
             <ColumnDefinition Width="325*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="21*"/>
-            <RowDefinition Height="22*"/>
-            <RowDefinition Height="305*"/>
+            <RowDefinition Height="50*"/>
+            <RowDefinition Height="52*"/>
+            <RowDefinition Height="699*"/>
+            <RowDefinition Height="24*"/>
         </Grid.RowDefinitions>
         <Button x:Name="_ButtonNewTask" Content="New Task" Grid.Row="1" Click="_ButtonNewTaskClick"/>
-        
+
         <TabControl Grid.Row="2" Grid.ColumnSpan="2">
-            
+
             <TabItem x:Name="_TabItemCalendarView" Header="Calendar View">
-                <Grid x:Name="_GridCalendarView" Background="Black"/>
+                <Grid x:Name="_GridCalendarView" Background="Black">
+
+                    <MainWindowControllers:CalendarViewUserControl x:Name="_CalendarViewUserControl" />
+
+                </Grid>
             </TabItem>
-            
+
             <TabItem x:Name="_TabItemAllTasks" Header="All Tasks">
                 <Grid x:Name="_GridAllTasks" Background="Black" >
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="27*"/>
-                        <RowDefinition Height="556*"/>
+                        <RowDefinition Height="49*"/>
+                        <RowDefinition Height="646*"/>
                     </Grid.RowDefinitions>
-                    <DataGrid x:Name="_DataGridAllRequests" Height="556" VerticalAlignment="Top" Grid.Row="1" MouseDoubleClick="_DataGridAllRequestsMouseDoubleClick"/>
+                    <DataGrid x:Name="_DataGridAllRequests"
+                              MouseDoubleClick="_DataGridAllRequestsMouseDoubleClick" CanUserAddRows="False" 
+                              Height="556" VerticalAlignment="Top" Grid.Row="1" 
+                              AutoGenerateColumns="False">
+                        <DataGrid.RowStyle>
+                            <Style TargetType="DataGridRow">
+                                <Style.Triggers>
+                                    <DataTrigger  Binding="{Binding Status}" Value="Accepted">
+                                        <Setter Property="Background" Value="Orange"/>
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding Status}" Value="Closed">
+                                        <Setter Property="Background" Value="LightGreen"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </DataGrid.RowStyle>
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Id" Binding="{Binding Path=Id}"/>
+                            <DataGridTextColumn Header="User" Binding="{Binding Path=User}"/>
+                            <DataGridTextColumn Header="Classyfy" Binding="{Binding Path=Classyfy}" />
+                            <DataGridTextColumn Header="Order" Binding="{Binding Path=Order}" />
+                            <DataGridTextColumn Header="Project" Binding="{Binding Path=Project}" />
+                            <DataGridTextColumn Header="Description" Binding="{Binding Path=Description}">
+                                <DataGridTextColumn.EditingElementStyle>
+                                    <Style TargetType="TextBox">
+                                        <Setter Property="MaxLength" Value="10"/>
+                                    </Style>
+                                </DataGridTextColumn.EditingElementStyle>
+                            </DataGridTextColumn>
+                            <DataGridTextColumn Header="Status" Binding="{Binding Path=Status}" />
+                            <DataGridTextColumn Header="Deadline" Binding="{Binding Path=Date, StringFormat=d}" SortDirection="Ascending"/>
+                            <DataGridTextColumn Header="Created" Binding="{Binding Path=CreationTime, StringFormat=d}"/>
+                            <DataGridCheckBoxColumn Header="Attach" Binding="{Binding Path=Attachment}"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+
+                    <Button x:Name="_ButtonRefresh" Click="_ButtonRefresh_Click" Content="Refresh" HorizontalAlignment="Left" VerticalAlignment="Top" Width="76" Height="26"/>
+                    <Button x:Name="_ButtonClear" Click="_ButtonClear_Click" Content="Clear Filers" HorizontalAlignment="Left" VerticalAlignment="Top" Width="76" Height="23" Margin="0,26,0,0"/>
+
+                    <TextBox x:Name="_TextboxId"  HorizontalAlignment="Left" Height="22" Margin="81,26,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="33"/>
+
+                    <ComboBox x:Name="_ComboboxUser" HorizontalAlignment="Left" VerticalAlignment="Top" Width="77" Margin="119,26,0,0"/>
+                    <ComboBox x:Name="_ComboboxClassyfy" HorizontalAlignment="Left" Margin="201,26,0,0" VerticalAlignment="Top" Width="77"/>
+                    <ComboBox x:Name="_ComboboxOrder" HorizontalAlignment="Left" Margin="283,26,0,0" VerticalAlignment="Top" Width="77"/>
+                    <ComboBox x:Name="_ComboboxProject" HorizontalAlignment="Left" Margin="365,26,0,0" VerticalAlignment="Top" Width="77"/>
+                    <ComboBox x:Name="_ComboboxCostcenter" HorizontalAlignment="Left" Margin="447,26,0,0" VerticalAlignment="Top" Width="77"/>
+                    <ComboBox x:Name="_ComboboxStatus" HorizontalAlignment="Left" Margin="529,26,0,0" VerticalAlignment="Top" Width="77"/>
+                    <Label Content="Id:" Foreground="White" HorizontalAlignment="Left" Margin="81,0,0,0" VerticalAlignment="Top" Height="26" Width="23"/>
+                    <Label Content="User:" Foreground="White" HorizontalAlignment="Left" Margin="119,0,0,0" VerticalAlignment="Top"/>
+                    <Label Content="Classyfy:" Foreground="White" HorizontalAlignment="Left" Margin="201,0,0,0" VerticalAlignment="Top"/>
+                    <Label Content="Order:" Foreground="White" HorizontalAlignment="Left" Margin="283,0,0,0" VerticalAlignment="Top"/>
+                    <Label Content="Project:" Foreground="White" HorizontalAlignment="Left" Margin="365,0,0,0" VerticalAlignment="Top"/>
+                    <Label Content="Cost Center:" Foreground="White" HorizontalAlignment="Left" Margin="449,0,0,0" VerticalAlignment="Top"/>
+                    <Label Content="Status:" Foreground="White" HorizontalAlignment="Left" Margin="529,0,0,0" VerticalAlignment="Top"/>
+                    <Label Content="From date:" Foreground="White" HorizontalAlignment="Left" Margin="611,0,0,0" VerticalAlignment="Top"/>
+                    <Label Content="To date:" Foreground="White" HorizontalAlignment="Left" Margin="718,0,0,0" VerticalAlignment="Top"/>
+                    <DatePicker x:Name="_DatepickerFrom" HorizontalAlignment="Left" Margin="611,25,0,0" VerticalAlignment="Top"/>
+                    <DatePicker x:Name="_DatepickerTo" HorizontalAlignment="Left" Margin="718,25,0,0" VerticalAlignment="Top"/>
                 </Grid>
             </TabItem>
-            
+
             <TabItem x:Name="_TabItemListOfPCDishwashers" Header="List of PC Dishwashers">
                 <Grid x:Name="_GridListOfPCDishwashers" Background="Black"/>
             </TabItem>
-            
+
             <TabItem x:Name="_TabItemAdministrator" Header="Administrator">
                 <Grid x:Name="_GridAdministartor" Background="Black">
                     <Grid.RowDefinitions>
@@ -59,7 +121,9 @@
                     <Button x:Name="_ButtonDataView" Content="Data View" HorizontalAlignment="Left" Margin="90,10,0,0" VerticalAlignment="Top" Width="75" Click="_ButtonDataViewClick"/>
                 </Grid>
             </TabItem>
-            
+
         </TabControl>
+        <Label x:Name="_LabelVersionName" Content="Version:" HorizontalAlignment="Left" Grid.Row="3" VerticalAlignment="Top" Height="24" Width="56" Foreground="White"/>
+        <Label x:Name="_LabelVersionNumber" Content="0.0.0.1" HorizontalAlignment="Left" Grid.Row="3" VerticalAlignment="Top" Height="24" Width="86" Foreground="White" Margin="56,0,0,0"/>
     </Grid>
 </Window>

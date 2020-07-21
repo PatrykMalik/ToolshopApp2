@@ -39,7 +39,7 @@ namespace ToolshopApp2.View.UserControlers
         {
             if (TaskWindowController.AddAddress())
             {
-                MessageBox.Show("Address has been added successfully","Address Added",MessageBoxButton.OK,MessageBoxImage.Information);
+                MessageBox.Show("Address has been added successfully", "Address Added", MessageBoxButton.OK, MessageBoxImage.Information);
             }
         }
 
@@ -82,13 +82,18 @@ namespace ToolshopApp2.View.UserControlers
                 var addres = ComboboxListController.GetAddress(_ComboBoxContactPerson.SelectedItem.ToString());
                 _TextBoxEmail.Text = addres.Email;
                 _TextBoxAdress.Text = addres.Adress;
-                
+
             }
         }
-
-        private void _TextBox_TextChanged(object sender, TextChangedEventArgs e)
+        private void _TextBoxSrzBegin_TextChanged(object sender, TextChangedEventArgs e)
         {
-
+            TaskWindowController.TextboxOnlyNumeric(_TextBoxSrzBegin);
         }
+
+        private void _TextBoxSrzEnd_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            TaskWindowController.TextboxOnlyNumeric(_TextBoxSrzEnd);
+        }
+        
     }
 }

@@ -24,6 +24,7 @@ namespace ToolshopApp2.View.UserControlers
         public SimpleTaskUserControl()
         {
             InitializeComponent();
+            _DatePickerDeadline.SelectedDate = DateTime.Today.AddDays(7);
             //ResizeWindowBasedOnTask();
         }
 
@@ -31,6 +32,7 @@ namespace ToolshopApp2.View.UserControlers
         {
             ResizeWindowBasedOnTask();
         }
+        
         private void ResizeWindowBasedOnTask()
         {
             if (_ComboboxTask.IsInitialized)
@@ -47,10 +49,10 @@ namespace ToolshopApp2.View.UserControlers
                 }
             }
         }
-
+        
         private void _DatePickerDeadlineSelectedDateChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (DateManagingController.IsSeletedDateOnWeekend(_DatePickerDeadline.SelectedDate.Value))
+            if (DateManagingController.IsSelectedDateOnWeekend(_DatePickerDeadline.SelectedDate.Value))
             {
                 _DatePickerDeadline.IsDropDownOpen = true;
             }
@@ -63,12 +65,12 @@ namespace ToolshopApp2.View.UserControlers
 
         private void _ButtonAddProjectClick(object sender, RoutedEventArgs e)
         {
-            ComboboxListController.AddProject(_ComboBoxProject.Text);
+            TaskWindowController.AddProject(_ComboBoxProject.Text);
         }
 
         private void _ButtonAddCostCenterClick(object sender, RoutedEventArgs e)
         {
-            ComboboxListController.AddCostCenter(_ComboBoxCostCenter.Text);
+            TaskWindowController.AddCostCenter(_ComboBoxCostCenter.Text);
         }
     }
 }

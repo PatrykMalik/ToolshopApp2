@@ -12,11 +12,11 @@
         </Grid.ColumnDefinitions>
 
         <Label x:Name="_LabelTime" Content="Time:" HorizontalAlignment="Left" Margin="10,108,0,0" VerticalAlignment="Top" Foreground="White"/>
-        <Label Content="SWZ:" HorizontalAlignment="Left" Margin="10,54,0,0" VerticalAlignment="Top" Foreground="White"/>
-        <Label Content="SRZ:" HorizontalAlignment="Left" Margin="10,5,0,0" VerticalAlignment="Top" Foreground="White"/>
+        <!--<Label Content="SWZ:" HorizontalAlignment="Left" Margin="10,54,0,0" VerticalAlignment="Top" Foreground="White"/>
+        <Label Content="SRZ:" HorizontalAlignment="Left" Margin="10,5,0,0" VerticalAlignment="Top" Foreground="White"/>-->
 
         <TextBox x:Name="_TextBoxDescription" Margin="10,10,10,14" TextWrapping="Wrap" Text="Description" Grid.Column="1" AcceptsReturn="True"/>
-        <TextBox x:Name="_TextBoxSrz_1" HorizontalAlignment="Left" Height="23" Margin="61,31,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="40" MaxLines="1" MaxLength="5"/>
+        <!--<TextBox x:Name="_TextBoxSrz_1" HorizontalAlignment="Left" Height="23" Margin="61,31,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="40" MaxLines="1" MaxLength="5"/>
         <TextBox x:Name="_TextBoxSrz_2" HorizontalAlignment="Left" Height="23" Margin="106,31,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="40" MaxLines="1" MaxLength="5"/>
         <TextBox x:Name="_TextBoxSrz_3" HorizontalAlignment="Left" Height="23" Margin="151,31,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="40" MaxLines="1" MaxLength="5"/>
         <TextBox x:Name="_TextBoxSrz_4" HorizontalAlignment="Left" Height="23" Margin="196,31,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="40" MaxLines="1" MaxLength="5"/>
@@ -25,14 +25,15 @@
         <TextBox x:Name="_TextBoxSwz_2" HorizontalAlignment="Left" Height="23" Margin="106,80,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="40" MaxLines="1" MaxLength="5"/>
         <TextBox x:Name="_TextBoxSwz_3" HorizontalAlignment="Left" Height="23" Margin="151,80,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="40" MaxLines="1" MaxLength="5"/>
         <TextBox x:Name="_TextBoxSwz_4" HorizontalAlignment="Left" Height="23" Margin="196,80,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="40" MaxLines="1" MaxLength="5"/>
-        <TextBox x:Name="_TextBoxSwz_5" HorizontalAlignment="Left" Height="23" Margin="241,80,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="40" MaxLines="1" MaxLength="5"/>
+        <TextBox x:Name="_TextBoxSwz_5" HorizontalAlignment="Left" Height="23" Margin="241,80,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="40" MaxLines="1" MaxLength="5"/>-->
         <TextBox x:Name="_TextBoxTime" HorizontalAlignment="Left" Height="23" Margin="72,111,0,0" TextWrapping="Wrap" Text="minutes" VerticalAlignment="Top" Width="74" MaxLength="4" MaxLines="1"/>
 
-        <Button x:Name="_ButtonSrzPlus" Content="+" HorizontalAlignment="Left" Margin="10,31,0,0" VerticalAlignment="Top" Width="23" Height="23" />
-        <Button x:Name="_ButtonSrzMinus" Content="-" HorizontalAlignment="Left" Margin="33,31,0,0" VerticalAlignment="Top" Width="23" Height="23" />
-        <Button x:Name="_ButtonSwzPlus" Content="+" HorizontalAlignment="Left" Margin="10,80,0,0" VerticalAlignment="Top" Width="23" Height="23" />
-        <Button x:Name="_ButtonSwzMinus" Content="-" HorizontalAlignment="Left" Margin="33,80,0,0" VerticalAlignment="Top" Width="23" Height="23" />
-        <Button x:Name="_ButtonAccept" Content="Accept task" HorizontalAlignment="Left" Margin="10,139,0,0" Width="75" Height="20" VerticalAlignment="Top"/>
-        <Button x:Name="_ButtonClose" Content="Close Task" HorizontalAlignment="Left" Margin="90,139,0,0" VerticalAlignment="Top" Width="75" />
+        <!--<Button x:Name="_ButtonSrzPlus" Content="+" Click="_ButtonSrzPlus_Click" HorizontalAlignment="Left" Margin="10,31,0,0" VerticalAlignment="Top" Width="23" Height="23" />
+        <Button x:Name="_ButtonSrzMinus" Content="-" Click="_ButtonSrzMinus_Click" HorizontalAlignment="Left" Margin="33,31,0,0" VerticalAlignment="Top" Width="23" Height="23" />
+        <Button x:Name="_ButtonSwzPlus" Content="+" Click="_ButtonSwzPlus_Click" HorizontalAlignment="Left" Margin="10,80,0,0" VerticalAlignment="Top" Width="23" Height="23" />
+        <Button x:Name="_ButtonSwzMinus" Content="-" Click="_ButtonSwzMinus_Click" HorizontalAlignment="Left" Margin="33,80,0,0" VerticalAlignment="Top" Width="23" Height="23" />-->
+        <Button x:Name="_ButtonAccept" Content="Accept task" Click="_ButtonAccept_Click" HorizontalAlignment="Left" Margin="10,139,0,0" Width="75" Height="20" VerticalAlignment="Top"/>
+        <Button x:Name="_ButtonClose" Content="Close Task" Click="_ButtonClose_Click" HorizontalAlignment="Left" Margin="90,139,0,0" VerticalAlignment="Top" Width="75" />
+        <Button x:Name="_ButtonReopen" Content="Reopen task" Click="_ButtonReopen_Click" HorizontalAlignment="Left" Margin="170,139,0,0" VerticalAlignment="Top" Width="75"/>
     </Grid>
 </UserControl>

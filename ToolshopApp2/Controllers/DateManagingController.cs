@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using ToolshopApp2.Data;
 using ToolshopApp2.Model;
@@ -25,7 +22,8 @@ namespace ToolshopApp2.Controllers
             }
             return true;
         }
-        public static bool IsSeletedDateOnWeekend(DateTime dateToCheck)
+
+        public static bool IsSelectedDateOnWeekend(DateTime dateToCheck)
         {
             if (dateToCheck.DayOfWeek == DayOfWeek.Saturday || dateToCheck.DayOfWeek == DayOfWeek.Sunday)
             {
@@ -42,7 +40,27 @@ namespace ToolshopApp2.Controllers
             return false;
         }
 
-        private static bool IsBlockedDateByToolshop(DateTime dateToCheck)
+        public static void BlockSelectedDate(DateTime dateToBlock)
+        {
+            BlockedDay blockedDay = new BlockedDay { blockedDate = dateToBlock };
+            var context = new DatabaseConnectionContext();
+            context.BlockedDays.Add(blockedDay);
+            context.SaveChanges();
+        }
+
+        public static void UnblockSelectedDate(DateTime date)
+        {
+            var context = new DatabaseConnectionContext();
+            var unblockedDate = context.BlockedDays.Where(x => x.blockedDate == date).FirstOrDefault();
+            if (unblockedDate != null)
+            {
+                context.BlockedDays.Attach(unblockedDate);
+                context.BlockedDays.Remove(unblockedDate);
+                context.SaveChanges();
+            }
+        }
+
+        public static bool IsBlockedDateByToolshop(DateTime dateToCheck)
         {
             var context = new DatabaseConnectionContext();
             foreach (var date in context.BlockedDays)
@@ -70,6 +88,8 @@ namespace ToolshopApp2.Controllers
             else
                 return false;
         }
+
+
     }
 }
 
