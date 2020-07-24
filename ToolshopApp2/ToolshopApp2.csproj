@@ -73,6 +73,12 @@
   <PropertyGroup>
     <ApplicationIcon>toolshopApp2.ico</ApplicationIcon>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationManifest>Properties\app.manifest</ApplicationManifest>
+  </PropertyGroup>
+  <PropertyGroup>
+    <TargetZone>LocalIntranet</TargetZone>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=1.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Bcl.AsyncInterfaces.1.1.0\lib\net461\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
@@ -195,6 +201,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Controllers\AutomaticAcceptanceController.cs" />
     <Compile Include="Controllers\DateManagingController.cs" />
     <Compile Include="Controllers\LogSingleton.cs" />
     <Compile Include="Controllers\MailController.cs" />
@@ -271,7 +278,12 @@
     <Compile Include="Migrations\20200710091132_fixing.designer.cs">
       <DependentUpon>20200710091132_fixing.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\20200724100017_acceptanceDate.cs" />
+    <Compile Include="Migrations\20200724100017_acceptanceDate.designer.cs">
+      <DependentUpon>20200724100017_acceptanceDate.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\DatabaseConnectionContextModelSnapshot.cs" />
+    <Compile Include="Model\AcceptanceDate.cs" />
     <Compile Include="Model\Address.cs" />
     <Compile Include="Model\BlockedDay.cs" />
     <Compile Include="Model\ClassyfyList.cs" />
@@ -393,6 +405,7 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <None Include="packages.config" />
+    <None Include="Properties\app.manifest" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -420,22 +433,22 @@
   <ItemGroup>
     <PublishFile Include="Microsoft.Data.SqlClient.pdb">
       <Visible>False</Visible>
-      <PublishState>Include</PublishState>
-      <IncludeHash>True</IncludeHash>
       <Group>
       </Group>
       <TargetPath>
       </TargetPath>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
       <FileType>File</FileType>
     </PublishFile>
     <PublishFile Include="ToolshopApp2.pdb">
       <Visible>False</Visible>
-      <PublishState>Include</PublishState>
-      <IncludeHash>True</IncludeHash>
       <Group>
       </Group>
       <TargetPath>
       </TargetPath>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
       <FileType>File</FileType>
     </PublishFile>
   </ItemGroup>

@@ -26,6 +26,7 @@ namespace ToolshopApp2
         {
             try
             {
+                AutomaticAcceptanceController.CheckTasks();
                 mainWindow = this;
                 InitializeComponent();
                 if (!UserController.UserExistInDatabase())
@@ -44,6 +45,7 @@ namespace ToolshopApp2
                     _TabItemListOfPCDishwashers.Visibility = Visibility.Hidden;
                     _TabItemAdministrator.Visibility = Visibility.Hidden;
                 }
+                
                 SetComboboxes();
                 RefrashDataGrid();
                 if (System.Deployment.Application.ApplicationDeployment.IsNetworkDeployed)
@@ -201,6 +203,12 @@ namespace ToolshopApp2
             _ComboboxProject.SelectedIndex = 0;
             _ComboboxCostcenter.SelectedIndex = 0;
             _ComboboxStatus.SelectedIndex = 1;
+        }
+
+        private void _ButtonDuplicate_Click(object sender, RoutedEventArgs e)
+        {
+            var row = _DataGridAllRequests.SelectedItem;
+            TaskWindowController.DuplicateTask(row);
         }
     }
 }
