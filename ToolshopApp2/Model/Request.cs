@@ -28,9 +28,17 @@ namespace ToolshopApp2.Model
         public string DescpriptionToolshop { get; set; }
         public DateTime CreationTime { get; set; }
         public string Status { get; set; }
-
-        
-
+        public string Srz1 { get; set; }
+        public string Srz2 { get; set; }
+        public string Srz3 { get; set; }
+        public string Srz4 { get; set; }
+        public string Srz5 { get; set; }
+        public string Swz1 { get; set; }
+        public string Swz2 { get; set; }
+        public string Swz3 { get; set; }
+        public string Swz4 { get; set; }
+        public string Swz5 { get; set; }
+        public string Time { get; set; }
     }
 }
 //public event PropertyChangedEventHandler PropertyChanged;

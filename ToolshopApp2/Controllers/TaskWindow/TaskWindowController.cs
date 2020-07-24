@@ -67,6 +67,37 @@ namespace ToolshopApp2.Controllers
 
             SetTaskWindowView(taskWindow);
         }
+
+        public static void DuplicateTask(Object row)
+        {
+            var request = row as Request;
+            int id = request.Id;
+            request = RequestController.GetRequest(id);
+            _request = null;
+            taskWindow = new TaskWindow();
+
+            LoadComboboxItems(taskWindow);
+
+            taskWindow._SimpleTaskUserControl._ComboBoxClassyfy.Text = request.Classyfy;
+            taskWindow._SimpleTaskUserControl._ComboBoxProject.Text = request.Project;
+            taskWindow._SimpleTaskUserControl._ComboboxTask.Text = request.Order;
+            taskWindow._SimpleTaskUserControl._ComboBoxCostCenter.Text = request.CostCenter;
+            taskWindow._SimpleTaskUserControl._DatePickerDeadline.Text = request.Date.ToShortDateString();
+            taskWindow._SimpleTaskUserControl._TextBoxDescription.Text = request.Description;
+
+            taskWindow._TaskControlersUserControl._CheckBoxAttachement.IsChecked = request.Attachment;
+
+            taskWindow._ShipmentTaskUserControl._ComboBoxContactPerson.Text = request.ContactPerson;
+            taskWindow._ShipmentTaskUserControl._TextBoxEmail.Text = request.Email;
+            taskWindow._ShipmentTaskUserControl._TextBoxAdress.Text = request.Address;
+            taskWindow._ShipmentTaskUserControl._TextBoxSrzBegin.Text = request.BeginigSrz;
+            taskWindow._ShipmentTaskUserControl._TextBoxSrzEnd.Text = request.EndingSrz;
+            taskWindow._ShipmentTaskUserControl._ComboBoxTransport.Text = request.Transpot;
+            taskWindow._ShipmentTaskUserControl._ComboBoxInsurance.IsChecked = request.Insurance;
+            taskWindow._ShipmentTaskUserControl._TextBoxInsuranceCost.Text = request.InsuranceCost;
+            SetTaskWindowView(taskWindow);
+        }
+
         public static bool AddRequest(List<string> filePaths)
         {
             var context = new DatabaseConnectionContext();
@@ -82,7 +113,7 @@ namespace ToolshopApp2.Controllers
                         foreach(var filePath in filePaths)
                             SendAttachments(filePath);
                     }
-                    //MailController.SendConfirmation(_request);
+                    MailController.SendConfirmation(_request);
                     _request = null;
                     return true;
                 }
@@ -93,7 +124,7 @@ namespace ToolshopApp2.Controllers
                     _request = RequestController.UpdateRequest(_request.Id);
                     context.Update(_request);
                     context.SaveChanges();
-                    //MailController.SendUpdateNotification(_request, oldRequest);
+                    MailController.SendUpdateNotification(_request, oldRequest);
                     _request = null;
                     return true;
                 }
@@ -128,12 +159,15 @@ namespace ToolshopApp2.Controllers
         }
         public static void AddProject(string s)
         {
-            ComboboxListController.AddProject(s);
-            TaskWindow.task._SimpleTaskUserControl._ComboBoxProject.Items.Clear();
-            foreach (var item in ComboboxListController.GetProjectLists())
+            if (!IsProjectEmptyOrDuplicated(s))
             {
-                TaskWindow.task._SimpleTaskUserControl._ComboBoxProject.Items.Add(item.Name);
-            }
+                ComboboxListController.AddProject(s);
+                TaskWindow.task._SimpleTaskUserControl._ComboBoxProject.Items.Clear();
+                foreach (var item in ComboboxListController.GetProjectLists())
+                {
+                    TaskWindow.task._SimpleTaskUserControl._ComboBoxProject.Items.Add(item.Name);
+                }
+            }                        
         }
         public static void AcceptTask()
         {
@@ -194,12 +228,15 @@ namespace ToolshopApp2.Controllers
         }
         public static void AddCostCenter(string s)
         {
-            ComboboxListController.AddCostCenter(s);
-            TaskWindow.task._SimpleTaskUserControl._ComboBoxCostCenter.Items.Clear();
-            foreach (var item in ComboboxListController.GetCostCenterLists())
+            if (IsCostCenterEmptyOrDuplicated(s))
             {
-                TaskWindow.task._SimpleTaskUserControl._ComboBoxCostCenter.Items.Add(item.Name);
-            }
+                ComboboxListController.AddCostCenter(s);
+                TaskWindow.task._SimpleTaskUserControl._ComboBoxCostCenter.Items.Clear();
+                foreach (var item in ComboboxListController.GetCostCenterLists())
+                {
+                    TaskWindow.task._SimpleTaskUserControl._ComboBoxCostCenter.Items.Add(item.Name);
+                }
+            }            
         }
         public static void OpenAttachments()
         {
@@ -297,6 +334,32 @@ namespace ToolshopApp2.Controllers
                 i++;
             }
             return Tuple.Create(text, caretIndex < 0 ? 0 : caretIndex);
+        }
+        private static bool IsProjectEmptyOrDuplicated(string project)
+        {
+            if(project.Trim() == String.Empty)
+            {
+                return true;
+            }
+            foreach (var item in ComboboxListController.GetProjectLists())
+            {
+                if (project == item.Name)
+                    return true;
+            }
+            return false;
+        }
+        private static bool IsCostCenterEmptyOrDuplicated(string project)
+        {
+            if (project.Trim() == String.Empty)
+            {
+                return true;
+            }
+            foreach (var item in ComboboxListController.GetCostCenterLists())
+            {
+                if (project == item.Name)
+                    return true;
+            }
+            return false;
         }
     }
 }

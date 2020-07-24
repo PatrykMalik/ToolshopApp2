@@ -37,8 +37,7 @@
                         <RowDefinition Height="646*"/>
                     </Grid.RowDefinitions>
                     <DataGrid x:Name="_DataGridAllRequests"
-                              MouseDoubleClick="_DataGridAllRequestsMouseDoubleClick" CanUserAddRows="False" 
-                              Height="556" VerticalAlignment="Top" Grid.Row="1" 
+                              MouseDoubleClick="_DataGridAllRequestsMouseDoubleClick" CanUserAddRows="False" Grid.Row="1" 
                               AutoGenerateColumns="False">
                         <DataGrid.RowStyle>
                             <Style TargetType="DataGridRow">
@@ -94,6 +93,7 @@
                     <Label Content="To date:" Foreground="White" HorizontalAlignment="Left" Margin="718,0,0,0" VerticalAlignment="Top"/>
                     <DatePicker x:Name="_DatepickerFrom" HorizontalAlignment="Left" Margin="611,25,0,0" VerticalAlignment="Top"/>
                     <DatePicker x:Name="_DatepickerTo" HorizontalAlignment="Left" Margin="718,25,0,0" VerticalAlignment="Top"/>
+                    <Button x:Name="_ButtonDuplicate" Click="_ButtonDuplicate_Click"  Content="Duplicate" HorizontalAlignment="Left" Margin="820,26,0,0" VerticalAlignment="Top" Width="75" Grid.RowSpan="2" Height="22"/>
                 </Grid>
             </TabItem>
 
