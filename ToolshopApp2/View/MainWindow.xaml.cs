@@ -45,7 +45,7 @@ namespace ToolshopApp2
                     _TabItemListOfPCDishwashers.Visibility = Visibility.Hidden;
                     _TabItemAdministrator.Visibility = Visibility.Hidden;
                 }
-                
+
                 SetComboboxes();
                 RefrashDataGrid();
                 if (System.Deployment.Application.ApplicationDeployment.IsNetworkDeployed)
@@ -55,10 +55,10 @@ namespace ToolshopApp2
             }
             catch (Exception ex)
             {
-                LogSingleton.Instance.SaveLog(ex.Message); 
+                LogSingleton.Instance.SaveLog(ex.Message);
                 LogSingleton.Instance.SaveLog(ex.ToString());
                 LogSingleton.Instance.SaveLog(ex.Source);
-            }            
+            }
         }
 
         private void SetComboboxes()
@@ -74,7 +74,10 @@ namespace ToolshopApp2
             _ComboboxStatus.Items.Add("Accepted");
             _ComboboxStatus.Items.Add("Closed");
             DownloadDataToComboboxes();
-            _ComboboxUser.SelectedItem = Environment.UserName.ToLower();
+            if (UserController.IsUserToolshopMemberOrAdministator())
+                _ComboboxUser.SelectedIndex = 0;
+            else
+                _ComboboxUser.SelectedItem = Environment.UserName.ToLower();
             _ComboboxClassyfy.SelectedIndex = 0;
             _ComboboxOrder.SelectedIndex = 0;
             _ComboboxProject.SelectedIndex = 0;
@@ -189,6 +192,7 @@ namespace ToolshopApp2
         {
 
         }
+
         private void _ButtonRefresh_Click(object sender, RoutedEventArgs e)
         {
             RefrashDataGrid();

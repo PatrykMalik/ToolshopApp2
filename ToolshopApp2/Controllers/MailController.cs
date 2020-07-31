@@ -45,22 +45,40 @@ namespace ToolshopApp2.Controllers
             }
         }
 
+        public static void SendCommentNotification(string comment, string username, Request request)
+        {
+            User user = UserController.GetUser(username);
+            User owner = UserController.GetUser(request.User);
+            if(user != null)
+            {
+                sendmail(user.Emial,
+                    "New comment added by " + user.Name + " to task: " + request.Id,
+                    comment);
+                if(user != owner)
+                {
+                    sendmail(owner.Emial,
+                        "New comment added by " + user.Name + " to task: " + request.Id,
+                        comment);
+                }
+                sendmail("konrad.szwech@electrolux.com",
+                    "New comment added by " + user.Name + " to task: " + request.Id,
+                    comment);
+
+            }
+        }
+
         public static void SendNotification(Request request)
         {
             User user = UserController.GetUser(request.User);
             if (user != null)
             {
                 sendmail(user.Emial,
-
                     "Task " + request.Id + " has changed status to: " + request.Status,
-
                     "Your task " + request.Project + " for " + request.Order + " has changed status to: " + request.Status
                     + Environment.NewLine + Environment.NewLine + request.Description);
 
                 sendmail("konrad.szwech@electrolux.com",
-
                     "User" + request.User + "  task " + request.Id + "" + " has changed status to: " + request.Status,
-
                     "Task " + request.Project + "  for " + request.Order + " has changed status to: " + request.Status
                     + Environment.NewLine + Environment.NewLine + request.Description);
             }

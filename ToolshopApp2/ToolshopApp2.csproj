@@ -19,7 +19,7 @@
     </NuGetPackageImportStamp>
     <IsWebBootstrapper>false</IsWebBootstrapper>
     <PublishUrl>\\PLWS4031\Project\CAD\Work\ToolshopApp2\Application\Install\</PublishUrl>
-    <Install>true</Install>
+    <Install>false</Install>
     <InstallFrom>Unc</InstallFrom>
     <UpdateEnabled>true</UpdateEnabled>
     <UpdateMode>Foreground</UpdateMode>
@@ -29,9 +29,10 @@
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
     <UpdateUrl>\\PLWS4031\Project\CAD\Work\ToolshopApp2\Application\Install\</UpdateUrl>
+    <ProductName>ToolshopApp2</ProductName>
     <PublisherName>Patryk Malik</PublisherName>
-    <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>publish.htm</WebPage>
+    <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
     <ApplicationRevision>5</ApplicationRevision>
     <ApplicationVersion>0.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
@@ -71,7 +72,7 @@
     <SignManifests>true</SignManifests>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>toolshopApp2.ico</ApplicationIcon>
+    <ApplicationIcon>toolshopApp222.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup>
     <ApplicationManifest>Properties\app.manifest</ApplicationManifest>
@@ -306,6 +307,9 @@
     <Compile Include="View\UserControlers\MainWindowControllers\CalendarViewUserControl.xaml.cs">
       <DependentUpon>CalendarViewUserControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\UserControlers\TaskWindowControllers\CommentsUserControl.xaml.cs">
+      <DependentUpon>CommentsUserControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\UserControlers\WelcomeWindowControllers\LoginUserWelcomWindowUserControl.xaml.cs">
       <DependentUpon>LoginUserWelcomWindowUserControl.xaml</DependentUpon>
     </Compile>
@@ -354,6 +358,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\UserControlers\MainWindowControllers\CalendarViewUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\UserControlers\TaskWindowControllers\CommentsUserControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -454,6 +462,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="toolshopApp2.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="toolshopApp222.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
