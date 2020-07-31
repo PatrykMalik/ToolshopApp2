@@ -4,7 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:ToolshopApp2.View.UserControlers"
-             mc:Ignorable="d" Width="564.603" Height="452">
+             mc:Ignorable="d" Width="400" Height="500">
     <Grid>
         <Label Content="Classyfy:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="138" Foreground="White"/>
         <Label Content="Name of Project/Action:" HorizontalAlignment="Left" Margin="10,41,0,0" VerticalAlignment="Top" Width="138" Foreground="White"/>
@@ -21,7 +21,7 @@
         <ComboBox x:Name="_ComboBoxCostCenter" Margin="153,103,119,0" VerticalAlignment="Top" Height="26" IsEditable="True" Grid.ColumnSpan="2"/>
         <Button x:Name="_ButtonAddCostCenter" Content="Add CC" Click="_ButtonAddCostCenterClick" HorizontalAlignment="Right" Margin="0,103,10,0" VerticalAlignment="Top" Width="104" Height="26" Grid.Column="1"/>
         <DatePicker x:Name="_DatePickerDeadline" Margin="153,134,10,0" VerticalAlignment="Top" Height="26" FirstDayOfWeek="Monday" SelectedDateFormat="Short" Grid.ColumnSpan="2" SelectedDateChanged="_DatePickerDeadlineSelectedDateChanged" />
-        <TextBox x:Name="_TextBoxDescription" Margin="10,196,9.8,10" TextWrapping="Wrap" SpellCheck.IsEnabled="True" AcceptsReturn="True" Background="#FFECECEC" Text="Task description" MaxLines="50" MaxLength="2000" VerticalScrollBarVisibility="Auto"/>
+        <TextBox x:Name="_TextBoxDescription" Height="Auto" Margin="10,196,10,10" TextWrapping="Wrap" SpellCheck.IsEnabled="True" AcceptsReturn="True" Background="#FFECECEC" Text="Task description" MaxLines="50" MaxLength="2000" VerticalScrollBarVisibility="Auto"/>
         
     </Grid>
 </UserControl>

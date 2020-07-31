@@ -116,21 +116,29 @@ namespace ToolshopApp2.Controllers
             context.SaveChanges();
         }
 
+        public static void AddComment(string comment)
+        {
+
+        }
+
         public static IEnumerable<Request> GetRequests()
         {
             var context = new DatabaseConnectionContext();
             return context.Requests.ToArray<Request>();
         }
+        
         public static IEnumerable<Request> GetOpenRequests()
         {
             var context = new DatabaseConnectionContext();
             return context.Requests.Where<Request>(x => x.Status == "Open").ToList();
         }
+        
         public static IEnumerable<Request> GetRequests(DateTime date)
         {
             DatabaseConnectionContext context = new DatabaseConnectionContext();
             return context.Requests.Where(p => p.Date == date).ToArray<Request>();
         }
+        
         public static RequestStatus GetStatus(int id)
         {
             //return _context.RequestStatuses.Where(i => i.StatusId == id).FirstOrDefault<RequestStatus>();

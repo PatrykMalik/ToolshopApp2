@@ -38,13 +38,13 @@
                 </Style>
             </DataGrid.RowStyle>-->
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Id" Binding="{Binding Path=Id}"/>
-                <DataGridTextColumn Header="User" Binding="{Binding Path=User}"/>
-                <DataGridTextColumn Header="Status" Binding="{Binding Path=Status}" />
-                <DataGridTextColumn Header="Project" Binding="{Binding Path=Project}" />
-                <DataGridTextColumn Header="Description" Binding="{Binding Path=Description}" />
-                <DataGridTextColumn Header="Deadline" Binding="{Binding Path=Date, StringFormat=d}"/>
-                <DataGridTextColumn Header="Created" Binding="{Binding Path=CreationTime, StringFormat=d}"/>
+                <DataGridTextColumn Header="Id" Binding="{Binding Path=Id}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="User" Binding="{Binding Path=User}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Status" Binding="{Binding Path=Status}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Project" Binding="{Binding Path=Project}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Description" Binding="{Binding Path=Description}" IsReadOnly="True" />
+                <DataGridTextColumn Header="Deadline" Binding="{Binding Path=Date, StringFormat=d}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Created" Binding="{Binding Path=CreationTime, StringFormat=d}" IsReadOnly="True"/>
             </DataGrid.Columns>
         </DataGrid>
         <DataGrid x:Name="_DataGridTuesday" Grid.Column="1" AutoGenerateColumns="False" CanUserAddRows="False" Margin="0,28,0,0" Background="#FF3A3A3A" MouseDoubleClick="_DataGridAllRequestsMouseDoubleClick" Grid.Row="1">
@@ -61,13 +61,13 @@
                 </Style>
             </DataGrid.RowStyle>
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Id" Binding="{Binding Path=Id}"/>
-                <DataGridTextColumn Header="User" Binding="{Binding Path=User}"/>
-                <DataGridTextColumn Header="Status" Binding="{Binding Path=Status}" />
-                <DataGridTextColumn Header="Project" Binding="{Binding Path=Project}" />
-                <DataGridTextColumn Header="Description" Binding="{Binding Path=Description}" />
-                <DataGridTextColumn Header="Deadline" Binding="{Binding Path=Date, StringFormat=d}"/>
-                <DataGridTextColumn Header="Created" Binding="{Binding Path=CreationTime, StringFormat=d}"/>
+                <DataGridTextColumn Header="Id" Binding="{Binding Path=Id}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="User" Binding="{Binding Path=User}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Status" Binding="{Binding Path=Status}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Project" Binding="{Binding Path=Project}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Description" Binding="{Binding Path=Description}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Deadline" Binding="{Binding Path=Date, StringFormat=d}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Created" Binding="{Binding Path=CreationTime, StringFormat=d}" IsReadOnly="True"/>
             </DataGrid.Columns>
         </DataGrid>
         <DataGrid x:Name="_DataGridWednesday" Grid.Column="2" AutoGenerateColumns="False" CanUserAddRows="False" Margin="0,28,0,0" Background="#FF3A3A3A" MouseDoubleClick="_DataGridAllRequestsMouseDoubleClick" Grid.Row="1">
@@ -84,13 +84,13 @@
                 </Style>
             </DataGrid.RowStyle>
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Id" Binding="{Binding Path=Id}"/>
-                <DataGridTextColumn Header="User" Binding="{Binding Path=User}"/>
-                <DataGridTextColumn Header="Status" Binding="{Binding Path=Status}" />
-                <DataGridTextColumn Header="Project" Binding="{Binding Path=Project}" />
-                <DataGridTextColumn Header="Description" Binding="{Binding Path=Description}" />
-                <DataGridTextColumn Header="Deadline" Binding="{Binding Path=Date, StringFormat=d}"/>
-                <DataGridTextColumn Header="Created" Binding="{Binding Path=CreationTime, StringFormat=d}"/>
+                <DataGridTextColumn Header="Id" Binding="{Binding Path=Id}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="User" Binding="{Binding Path=User}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Status" Binding="{Binding Path=Status}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Project" Binding="{Binding Path=Project}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Description" Binding="{Binding Path=Description}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Deadline" Binding="{Binding Path=Date, StringFormat=d}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Created" Binding="{Binding Path=CreationTime, StringFormat=d}" IsReadOnly="True"/>
             </DataGrid.Columns>
         </DataGrid>
         <DataGrid x:Name="_DataGridThursday" Grid.Column="3" AutoGenerateColumns="False" CanUserAddRows="False" Margin="0,28,0,0" Background="#FF3A3A3A" MouseDoubleClick="_DataGridAllRequestsMouseDoubleClick" Grid.Row="1">
@@ -107,13 +107,13 @@
                 </Style>
             </DataGrid.RowStyle>
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Id" Binding="{Binding Path=Id}"/>
-                <DataGridTextColumn Header="User" Binding="{Binding Path=User}"/>
-                <DataGridTextColumn Header="Status" Binding="{Binding Path=Status}" />
-                <DataGridTextColumn Header="Project" Binding="{Binding Path=Project}" />
-                <DataGridTextColumn Header="Description" Binding="{Binding Path=Description}" />
-                <DataGridTextColumn Header="Deadline" Binding="{Binding Path=Date, StringFormat=d}"/>
-                <DataGridTextColumn Header="Created" Binding="{Binding Path=CreationTime, StringFormat=d}"/>
+                <DataGridTextColumn Header="Id" Binding="{Binding Path=Id}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="User" Binding="{Binding Path=User}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Status" Binding="{Binding Path=Status}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Project" Binding="{Binding Path=Project}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Description" Binding="{Binding Path=Description}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Deadline" Binding="{Binding Path=Date, StringFormat=d}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Created" Binding="{Binding Path=CreationTime, StringFormat=d}" IsReadOnly="True"/>
             </DataGrid.Columns>
         </DataGrid>
         <DataGrid x:Name="_DataGridFriday" Grid.Column="4" AutoGenerateColumns="False" CanUserAddRows="False" Margin="0,28,0,0" Background="#FF3A3A3A" MouseDoubleClick="_DataGridAllRequestsMouseDoubleClick" Grid.Row="1">
@@ -130,13 +130,13 @@
                 </Style>
             </DataGrid.RowStyle>
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Id" Binding="{Binding Path=Id}"/>
-                <DataGridTextColumn Header="User" Binding="{Binding Path=User}"/>
-                <DataGridTextColumn Header="Status" Binding="{Binding Path=Status}" />
-                <DataGridTextColumn Header="Project" Binding="{Binding Path=Project}" />
-                <DataGridTextColumn Header="Description" Binding="{Binding Path=Description}" />
-                <DataGridTextColumn Header="Deadline" Binding="{Binding Path=Date, StringFormat=d}"/>
-                <DataGridTextColumn Header="Created" Binding="{Binding Path=CreationTime, StringFormat=d}"/>
+                <DataGridTextColumn Header="Id" Binding="{Binding Path=Id}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="User" Binding="{Binding Path=User}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Status" Binding="{Binding Path=Status}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Project" Binding="{Binding Path=Project}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Description" Binding="{Binding Path=Description}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Deadline" Binding="{Binding Path=Date, StringFormat=d}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Created" Binding="{Binding Path=CreationTime, StringFormat=d}" IsReadOnly="True"/>
             </DataGrid.Columns>
         </DataGrid>
         <Grid Height="28" Grid.Row="1" VerticalAlignment="Top" Background="#FFB7E9EC">

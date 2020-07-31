@@ -7,6 +7,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.IO;
 using ToolshopApp2.Connection;
+using System.Threading.Tasks;
 
 namespace ToolshopApp2.Controllers
 {
@@ -20,8 +21,9 @@ namespace ToolshopApp2.Controllers
             _request = null;
             taskWindow = new TaskWindow();
             LoadComboboxItems(taskWindow);
+            HideCommentPart(taskWindow);
             SetTaskWindowView(taskWindow);
-
+            taskWindow.ShowDialog();
         }
         public static void InitializeTaskWindow(Object row)
         {
@@ -42,7 +44,7 @@ namespace ToolshopApp2.Controllers
             taskWindow._SimpleTaskUserControl._ComboBoxCostCenter.Text = _request.CostCenter;
             taskWindow._SimpleTaskUserControl._DatePickerDeadline.Text = _request.Date.ToShortDateString();
             taskWindow._SimpleTaskUserControl._TextBoxDescription.Text = _request.Description;
-
+            taskWindow._SimpleTaskUserControl._TextBoxDescription.IsReadOnly = true;
             taskWindow._TaskControlersUserControl._CheckBoxAttachement.IsChecked = _request.Attachment;
 
             taskWindow._ShipmentTaskUserControl._ComboBoxContactPerson.Text = _request.ContactPerson;
@@ -66,6 +68,7 @@ namespace ToolshopApp2.Controllers
             //taskWindow._ToolshopPartUserControl._TextBoxSwz_5.Text = _request.Swz5;
 
             SetTaskWindowView(taskWindow);
+            taskWindow.ShowDialog();
         }
 
         public static void DuplicateTask(Object row)
@@ -110,14 +113,14 @@ namespace ToolshopApp2.Controllers
                     context.SaveChanges();
                     if (taskWindow._TaskControlersUserControl._CheckBoxAttachement.IsChecked.Value)
                     {
-                        foreach(var filePath in filePaths)
+                        foreach (var filePath in filePaths)
                             SendAttachments(filePath);
                     }
                     MailController.SendConfirmation(_request);
                     _request = null;
                     return true;
                 }
-                else if ((_request.User == Environment.UserName.ToLower() 
+                else if ((_request.User == Environment.UserName.ToLower()
                     || UserController.IsUserToolshopMemberOrAdministator()) && _request.Status != "Closed")
                 {
                     var oldRequest = _request;
@@ -130,7 +133,7 @@ namespace ToolshopApp2.Controllers
                 }
                 else if (_request.Status == "Closed")
                 {
-                    MessageBox.Show("Is imposible to update this task, becouse is in status: " +  _request.Status, "Update Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show("Is imposible to update this task, becouse is in status: " + _request.Status, "Update Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
             return false;
@@ -167,7 +170,7 @@ namespace ToolshopApp2.Controllers
                 {
                     TaskWindow.task._SimpleTaskUserControl._ComboBoxProject.Items.Add(item.Name);
                 }
-            }                        
+            }
         }
         public static void AcceptTask()
         {
@@ -236,7 +239,7 @@ namespace ToolshopApp2.Controllers
                 {
                     TaskWindow.task._SimpleTaskUserControl._ComboBoxCostCenter.Items.Add(item.Name);
                 }
-            }            
+            }
         }
         public static void OpenAttachments()
         {
@@ -273,12 +276,19 @@ namespace ToolshopApp2.Controllers
             }
             return false;
         }
-        
+        public static void AddComment(string s)
+        {
+            _request.Description += Environment.NewLine + Environment.NewLine + " " + DateTime.Now + " " + Environment.UserName + Environment.NewLine + s;
+            var context = new DatabaseConnectionContext();
+            context.Update(_request);
+            context.SaveChangesAsync();
+            taskWindow._SimpleTaskUserControl._TextBoxDescription.Text = _request.Description;
+            MailController.SendCommentNotification(s, Environment.UserName, _request);
+        }
+
         private static void UpdateRequestStatusInWindow()
         {
-            var context = new DatabaseConnectionContext();
-            taskWindow._SimpleTaskUserControl._TextBoxId.Text = _request.Id.ToString()
-                + " - " + _request.Status;//(_request.StatusId == null ? "" : context.RequestStatuses.Where(x => x.StatusId == _request.StatusId).FirstOrDefault().Status);
+            taskWindow._SimpleTaskUserControl._TextBoxId.Text = _request.Id.ToString() + " - " + _request.Status;
         }
         private static void SetTaskWindowView(TaskWindow taskWindow)
         {
@@ -287,7 +297,11 @@ namespace ToolshopApp2.Controllers
                 taskWindow._ToolshopPartUserControl.Visibility = Visibility.Hidden;
                 taskWindow._ToolshopPartUserControl.Height = 0;
             }
-            taskWindow.ShowDialog();
+        }
+        private static void HideCommentPart(TaskWindow taskWindow)
+        {
+            taskWindow._CommentPartUserControl.Visibility = Visibility.Hidden;
+            taskWindow._CommentPartUserControl.Height = 0;
         }
         private static void LoadComboboxItems(TaskWindow taskWindow)
         {
@@ -337,7 +351,7 @@ namespace ToolshopApp2.Controllers
         }
         private static bool IsProjectEmptyOrDuplicated(string project)
         {
-            if(project.Trim() == String.Empty)
+            if (project.Trim() == String.Empty)
             {
                 return true;
             }
