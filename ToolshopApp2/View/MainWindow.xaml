@@ -36,7 +36,7 @@
                         <RowDefinition Height="49*"/>
                         <RowDefinition Height="646*"/>
                     </Grid.RowDefinitions>
-                    <DataGrid x:Name="_DataGridAllRequests"
+                    <DataGrid x:Name="_DataGridAllRequests" IsReadOnly="True"
                               MouseDoubleClick="_DataGridAllRequestsMouseDoubleClick" CanUserAddRows="False" Grid.Row="1" 
                               AutoGenerateColumns="False">
                         <DataGrid.RowStyle>
@@ -50,7 +50,7 @@
                                     </DataTrigger>
                                 </Style.Triggers>
                             </Style>
-                        </DataGrid.RowStyle>
+                        </DataGrid.RowStyle>                            
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="Id" Binding="{Binding Path=Id}"/>
                             <DataGridTextColumn Header="User" Binding="{Binding Path=User}"/>
@@ -68,7 +68,7 @@
                             <DataGridTextColumn Header="Deadline" Binding="{Binding Path=Date, StringFormat=d}" SortDirection="Ascending"/>
                             <DataGridTextColumn Header="Created" Binding="{Binding Path=CreationTime, StringFormat=d}"/>
                             <DataGridCheckBoxColumn Header="Attach" Binding="{Binding Path=Attachment}"/>
-                        </DataGrid.Columns>
+                        </DataGrid.Columns>                        
                     </DataGrid>
 
                     <Button x:Name="_ButtonRefresh" Click="_ButtonRefresh_Click" Content="Refresh" HorizontalAlignment="Left" VerticalAlignment="Top" Width="76" Height="26"/>
