@@ -51,7 +51,7 @@ namespace ToolshopApp2
                 if (System.Deployment.Application.ApplicationDeployment.IsNetworkDeployed)
                     _LabelVersionNumber.Content = System.Deployment.Application.ApplicationDeployment.CurrentDeployment.CurrentVersion.ToString();
                 else
-                    _LabelVersionNumber.Content = "0.0.0.7";
+                    _LabelVersionNumber.Content = "0.0.0.8";
             }
             catch (Exception ex)
             {
