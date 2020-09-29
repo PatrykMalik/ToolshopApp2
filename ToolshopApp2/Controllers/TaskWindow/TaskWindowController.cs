@@ -124,7 +124,7 @@ namespace ToolshopApp2.Controllers
                     || UserController.IsUserToolshopMemberOrAdministator()) && _request.Status != "Closed")
                 {
                     var oldRequest = _request;
-                    _request = RequestController.UpdateRequest(_request.Id);
+                    _request = RequestController.UpdateRequest(_request.Id, oldRequest.User);
                     context.Update(_request);
                     context.SaveChanges();
                     MailController.SendUpdateNotification(_request, oldRequest);

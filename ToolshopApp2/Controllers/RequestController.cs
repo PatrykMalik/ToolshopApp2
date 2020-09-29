@@ -57,13 +57,14 @@ namespace ToolshopApp2.Controllers
             return request;
         }
 
-        public static Request UpdateRequest(int id)
+        public static Request UpdateRequest(int id, string user)
         {
             DatabaseConnectionContext context = new DatabaseConnectionContext();
+            
             var request = new Request()
             {
                 Id = id,
-                User = Environment.UserName.ToLower(),
+                User = user,
                 Classyfy = TaskWindow.task._SimpleTaskUserControl._ComboBoxClassyfy.Text,
                 Project = TaskWindow.task._SimpleTaskUserControl._ComboBoxProject.Text,
                 Order = TaskWindow.task._SimpleTaskUserControl._ComboboxTask.Text,
