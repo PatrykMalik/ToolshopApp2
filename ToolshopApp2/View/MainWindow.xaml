@@ -43,7 +43,7 @@
                             <Style TargetType="DataGridRow">
                                 <Style.Triggers>
                                     <DataTrigger  Binding="{Binding Status}" Value="Accepted">
-                                        <Setter Property="Background" Value="Orange"/>
+                                        <Setter Property="Background" Value="Gold"/>
                                     </DataTrigger>
                                     <DataTrigger Binding="{Binding Status}" Value="Closed">
                                         <Setter Property="Background" Value="LightGreen"/>
@@ -58,11 +58,12 @@
                             <DataGridTextColumn Header="Order" Binding="{Binding Path=Order}" />
                             <DataGridTextColumn Header="Project" Binding="{Binding Path=Project}" />
                             <DataGridTextColumn Header="Description" Binding="{Binding Path=Description}">
-                                <DataGridTextColumn.EditingElementStyle>
-                                    <Style TargetType="TextBox">
-                                        <Setter Property="MaxLength" Value="10"/>
+                                <DataGridTextColumn.ElementStyle>
+                                    <Style TargetType="{x:Type TextBlock}">
+                                        <Setter Property="MaxHeight" Value="100" />
+                                        <Setter Property="TextWrapping" Value="Wrap"/>
                                     </Style>
-                                </DataGridTextColumn.EditingElementStyle>
+                                </DataGridTextColumn.ElementStyle>
                             </DataGridTextColumn>
                             <DataGridTextColumn Header="Status" Binding="{Binding Path=Status}" />
                             <DataGridTextColumn Header="Deadline" Binding="{Binding Path=Date, StringFormat=d}" SortDirection="Ascending"/>

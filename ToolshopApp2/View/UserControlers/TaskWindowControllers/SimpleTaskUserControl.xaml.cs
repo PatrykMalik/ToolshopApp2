@@ -21,10 +21,14 @@ namespace ToolshopApp2.View.UserControlers
     /// </summary>
     public partial class SimpleTaskUserControl : UserControl
     {
+        private bool initiazation;
         public SimpleTaskUserControl()
         {
+            initiazation = true;
             InitializeComponent();
+            initiazation = true;
             _DatePickerDeadline.SelectedDate = DateTime.Today.AddDays(7);
+            
             //ResizeWindowBasedOnTask();
         }
 
@@ -52,15 +56,17 @@ namespace ToolshopApp2.View.UserControlers
         
         private void _DatePickerDeadlineSelectedDateChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (DateManagingController.IsSelectedDateOnWeekend(_DatePickerDeadline.SelectedDate.Value))
-            {
-                _DatePickerDeadline.IsDropDownOpen = true;
-            }
-            else if (!DateManagingController.IsDateAvaiable(_DatePickerDeadline.SelectedDate.Value))
-            {
-                MessageBox.Show("Selected date is unavaiable.\nPlease reschedule task.", "Selected date is unavaiable", MessageBoxButton.OK, MessageBoxImage.Warning);
-                _DatePickerDeadline.IsDropDownOpen = true;
-            }
+            //if (DateManagingController.IsSelectedDateOnWeekend(_DatePickerDeadline.SelectedDate.Value) && !initiazation)
+            //{
+            //    _DatePickerDeadline.IsDropDownOpen = true;
+            //    initiazation = false;
+            //}
+            //else if (!DateManagingController.IsDateAvaiable(_DatePickerDeadline.SelectedDate.Value) && !initiazation)
+            //{
+            //    MessageBox.Show("Selected date is unavaiable.\nPlease reschedule task.", "Selected date is unavaiable", MessageBoxButton.OK, MessageBoxImage.Warning);
+            //    _DatePickerDeadline.IsDropDownOpen = true;
+            //    initiazation = false;
+            //}
         }
 
         private void _ButtonAddProjectClick(object sender, RoutedEventArgs e)

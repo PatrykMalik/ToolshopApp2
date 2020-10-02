@@ -101,6 +101,10 @@ namespace ToolshopApp2.View.UserControlers.MainWindowControllers
                     _MondayCheckbox.IsEnabled = false;
                 }
             }
+            else
+            {
+                _MondayCheckbox.IsChecked = false;
+            }
             if (DateManagingController.IsBlockedDateByToolshop(DateTime.Parse(L_Wto.Content.ToString())))
             {
                 _TuesdayCheckbox.IsChecked = true;
@@ -108,6 +112,10 @@ namespace ToolshopApp2.View.UserControlers.MainWindowControllers
                 {
                     _TuesdayCheckbox.IsEnabled = false;
                 }
+            }
+            else
+            {
+                _TuesdayCheckbox.IsChecked = false;
             }
             if (DateManagingController.IsBlockedDateByToolshop(DateTime.Parse(L_Sro.Content.ToString())))
             {
@@ -117,6 +125,10 @@ namespace ToolshopApp2.View.UserControlers.MainWindowControllers
                     _WednesdayCheckbox.IsEnabled = false;
                 }
             }
+            else
+            {
+                _WednesdayCheckbox.IsChecked = false;
+            }
             if (DateManagingController.IsBlockedDateByToolshop(DateTime.Parse(L_Czw.Content.ToString())))
             {
                 _ThursdayCheckbox.IsChecked = true;
@@ -125,6 +137,10 @@ namespace ToolshopApp2.View.UserControlers.MainWindowControllers
                     _ThursdayCheckbox.IsEnabled = false;
                 }
             }
+            else
+            {
+                _ThursdayCheckbox.IsChecked = false;
+            }
             if (DateManagingController.IsBlockedDateByToolshop(DateTime.Parse(L_Ptk.Content.ToString())))
             {
                 _FridayCheckbox.IsChecked = true;
@@ -132,6 +148,10 @@ namespace ToolshopApp2.View.UserControlers.MainWindowControllers
                 {
                     _FridayCheckbox.IsEnabled = false;
                 }
+            }
+            else
+            {
+                _FridayCheckbox.IsChecked = false;
             }
         }
 
@@ -307,6 +327,15 @@ namespace ToolshopApp2.View.UserControlers.MainWindowControllers
             {
                 _FridayCheckbox.IsEnabled = false;
             }
+        }
+
+        private void _Button_Refresh_Callendar_Click(object sender, RoutedEventArgs e)
+        {
+            _DataGridMonday.ItemsSource = RequestController.GetRequests(DateTime.Parse(L_Pon.Content.ToString()));
+            _DataGridTuesday.ItemsSource = RequestController.GetRequests(DateTime.Parse(L_Wto.Content.ToString()));
+            _DataGridWednesday.ItemsSource = RequestController.GetRequests(DateTime.Parse(L_Sro.Content.ToString()));
+            _DataGridThursday.ItemsSource = RequestController.GetRequests(DateTime.Parse(L_Czw.Content.ToString()));
+            _DataGridFriday.ItemsSource = RequestController.GetRequests(DateTime.Parse(L_Ptk.Content.ToString()));
         }
     }
 }

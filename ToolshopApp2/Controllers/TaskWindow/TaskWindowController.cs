@@ -56,17 +56,6 @@ namespace ToolshopApp2.Controllers
             taskWindow._ShipmentTaskUserControl._ComboBoxInsurance.IsChecked = _request.Insurance;
             taskWindow._ShipmentTaskUserControl._TextBoxInsuranceCost.Text = _request.InsuranceCost;
 
-            //taskWindow._ToolshopPartUserControl._TextBoxSrz_1.Text = _request.Srz1;
-            //taskWindow._ToolshopPartUserControl._TextBoxSrz_2.Text = _request.Srz2;
-            //taskWindow._ToolshopPartUserControl._TextBoxSrz_3.Text = _request.Srz3;
-            //taskWindow._ToolshopPartUserControl._TextBoxSrz_4.Text = _request.Srz4;
-            //taskWindow._ToolshopPartUserControl._TextBoxSrz_5.Text = _request.Srz5;
-            //taskWindow._ToolshopPartUserControl._TextBoxSwz_1.Text = _request.Swz1;
-            //taskWindow._ToolshopPartUserControl._TextBoxSwz_2.Text = _request.Swz2;
-            //taskWindow._ToolshopPartUserControl._TextBoxSwz_3.Text = _request.Swz3;
-            //taskWindow._ToolshopPartUserControl._TextBoxSwz_4.Text = _request.Swz4;
-            //taskWindow._ToolshopPartUserControl._TextBoxSwz_5.Text = _request.Swz5;
-
             SetTaskWindowView(taskWindow);
             taskWindow.ShowDialog();
         }
@@ -99,6 +88,7 @@ namespace ToolshopApp2.Controllers
             taskWindow._ShipmentTaskUserControl._ComboBoxInsurance.IsChecked = request.Insurance;
             taskWindow._ShipmentTaskUserControl._TextBoxInsuranceCost.Text = request.InsuranceCost;
             SetTaskWindowView(taskWindow);
+            taskWindow.ShowDialog();
         }
 
         public static bool AddRequest(List<string> filePaths)
@@ -231,7 +221,7 @@ namespace ToolshopApp2.Controllers
         }
         public static void AddCostCenter(string s)
         {
-            if (IsCostCenterEmptyOrDuplicated(s))
+            if (!IsCostCenterEmptyOrDuplicated(s))
             {
                 ComboboxListController.AddCostCenter(s);
                 TaskWindow.task._SimpleTaskUserControl._ComboBoxCostCenter.Items.Clear();

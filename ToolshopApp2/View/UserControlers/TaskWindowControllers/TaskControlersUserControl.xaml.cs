@@ -12,7 +12,7 @@ namespace ToolshopApp2.View.UserControlers
     public partial class TaskControlersUserControl : UserControl
     {
         //zmienna globalna - przechowuje adresy załączników
-        private List<string> filePath;
+        private List<string> filePath = new List<string>();
 
         public TaskControlersUserControl()
         {
