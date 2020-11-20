@@ -4,10 +4,13 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ToolshopApp2"
-        xmlns:UserControlers="clr-namespace:ToolshopApp2.View.UserControlers" xmlns:MainWindowControllers="clr-namespace:ToolshopApp2.View.UserControlers.MainWindowControllers" x:Class="ToolshopApp2.MainWindow"
+        xmlns:UserControlers="clr-namespace:ToolshopApp2.View.UserControlers" 
+        xmlns:MainWindowControllers="clr-namespace:ToolshopApp2.View.UserControlers.MainWindowControllers" 
+        x:Class="ToolshopApp2.MainWindow"
         mc:Ignorable="d"
         x:Name="_MainWindow"  Title="ToolshopApp2" Height="856.5" Width="1269.5">
     <Grid Background="Black">
+        
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="71*"/>
             <ColumnDefinition Width="325*"/>
@@ -19,7 +22,7 @@
             <RowDefinition Height="24*"/>
         </Grid.RowDefinitions>
         <Button x:Name="_ButtonNewTask" Content="New Task" Grid.Row="1" Click="_ButtonNewTaskClick"/>
-
+        <MainWindowControllers:SpinnerUserControl x:Name="_SpinnerUserControl"/>
         <TabControl Grid.Row="2" Grid.ColumnSpan="2">
 
             <TabItem x:Name="_TabItemCalendarView" Header="Calendar View">
@@ -120,6 +123,11 @@
                         Grid.Row="1" 
                         VerticalAlignment="Stretch"/>
                     <Button x:Name="_ButtonDataView" Content="Data View" HorizontalAlignment="Left" Margin="90,10,0,0" VerticalAlignment="Top" Width="75" Click="_ButtonDataViewClick"/>
+                </Grid>
+            </TabItem>
+            <TabItem Header="User Data" HorizontalAlignment="Left" Height="20" VerticalAlignment="Top" Width="100">
+                <Grid Background="Black">
+                    <MainWindowControllers:UserDataUserControl HorizontalAlignment="Stretch" Margin="10,10,10,10" VerticalAlignment="Stretch"/>
                 </Grid>
             </TabItem>
 

@@ -24,19 +24,22 @@ namespace ToolshopApp2
 
         public MainWindow()
         {
+            mainWindow = this;
+            mainWindow.Show();
             try
             {
                 AutomaticAcceptanceController.CheckTasks();
-                mainWindow = this;
+                
                 InitializeComponent();
-                if (!UserController.UserExistInDatabase())
+                var user = UserController.GetUser(Environment.UserName.ToLower());
+                if (user == null)
                 {
                     InitializeWelcomeWindow();
                     if (!UserController.UserExistInDatabase())
                         this.Close();
                 }
                 SetDateTimeStandard();
-                if (UserController.IsUserAdministartor())
+                if (UserController.IsUserAdministartor(user))
                 {
                     InitializeAdministratorTab();
                 }
@@ -49,9 +52,14 @@ namespace ToolshopApp2
                 SetComboboxes();
                 RefrashDataGrid();
                 if (System.Deployment.Application.ApplicationDeployment.IsNetworkDeployed)
+                {
                     _LabelVersionNumber.Content = System.Deployment.Application.ApplicationDeployment.CurrentDeployment.CurrentVersion.ToString();
+                }
+
                 else
-                    _LabelVersionNumber.Content = "0.0.0.9";
+                {
+                    _LabelVersionNumber.Content = "0.0.0.10";
+                }
             }
             catch (Exception ex)
             {
