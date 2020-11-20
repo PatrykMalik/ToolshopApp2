@@ -5,6 +5,7 @@ using System.Windows.Controls;
 using System.Windows.Documents;
 using System.Windows.Input;
 using ToolshopApp2.Controllers;
+using ToolshopApp2.Model;
 
 namespace ToolshopApp2.View.UserControlers.MainWindowControllers
 {
@@ -13,8 +14,10 @@ namespace ToolshopApp2.View.UserControlers.MainWindowControllers
     /// </summary>
     public partial class CalendarViewUserControl : UserControl
     {
+        private User user;
         public CalendarViewUserControl()
         {
+            user = UserController.GetUser(Environment.UserName.ToLower());
             InitializeComponent();
             InitializeCalendar();
             SetDatesInLabels(int.Parse(_Textbox_Week.Text), int.Parse(_Textbox_Year_Selected.Text));
@@ -96,7 +99,7 @@ namespace ToolshopApp2.View.UserControlers.MainWindowControllers
             if (DateManagingController.IsBlockedDateByToolshop(DateTime.Parse(L_Pon.Content.ToString())))
             {
                 _MondayCheckbox.IsChecked = true;
-                if (!UserController.IsUserAdministartor())
+                if (!UserController.IsUserAdministartor(user))
                 {
                     _MondayCheckbox.IsEnabled = false;
                 }
@@ -104,11 +107,12 @@ namespace ToolshopApp2.View.UserControlers.MainWindowControllers
             else
             {
                 _MondayCheckbox.IsChecked = false;
+                _MondayCheckbox.IsEnabled = true;
             }
             if (DateManagingController.IsBlockedDateByToolshop(DateTime.Parse(L_Wto.Content.ToString())))
             {
                 _TuesdayCheckbox.IsChecked = true;
-                if (!UserController.IsUserAdministartor())
+                if (!UserController.IsUserAdministartor(user))
                 {
                     _TuesdayCheckbox.IsEnabled = false;
                 }
@@ -116,11 +120,12 @@ namespace ToolshopApp2.View.UserControlers.MainWindowControllers
             else
             {
                 _TuesdayCheckbox.IsChecked = false;
+                _TuesdayCheckbox.IsEnabled = true;
             }
             if (DateManagingController.IsBlockedDateByToolshop(DateTime.Parse(L_Sro.Content.ToString())))
             {
                 _WednesdayCheckbox.IsChecked = true;
-                if (!UserController.IsUserAdministartor())
+                if (!UserController.IsUserAdministartor(user))
                 {
                     _WednesdayCheckbox.IsEnabled = false;
                 }
@@ -128,11 +133,12 @@ namespace ToolshopApp2.View.UserControlers.MainWindowControllers
             else
             {
                 _WednesdayCheckbox.IsChecked = false;
+                _WednesdayCheckbox.IsEnabled = true;
             }
             if (DateManagingController.IsBlockedDateByToolshop(DateTime.Parse(L_Czw.Content.ToString())))
             {
                 _ThursdayCheckbox.IsChecked = true;
-                if (!UserController.IsUserAdministartor())
+                if (!UserController.IsUserAdministartor(user))
                 {
                     _ThursdayCheckbox.IsEnabled = false;
                 }
@@ -140,11 +146,12 @@ namespace ToolshopApp2.View.UserControlers.MainWindowControllers
             else
             {
                 _ThursdayCheckbox.IsChecked = false;
+                _ThursdayCheckbox.IsEnabled = true;
             }
             if (DateManagingController.IsBlockedDateByToolshop(DateTime.Parse(L_Ptk.Content.ToString())))
             {
                 _FridayCheckbox.IsChecked = true;
-                if (!UserController.IsUserAdministartor())
+                if (!UserController.IsUserAdministartor(user))
                 {
                     _FridayCheckbox.IsEnabled = false;
                 }
@@ -152,6 +159,7 @@ namespace ToolshopApp2.View.UserControlers.MainWindowControllers
             else
             {
                 _FridayCheckbox.IsChecked = false;
+                _FridayCheckbox.IsEnabled = true;
             }
         }
 
@@ -239,8 +247,7 @@ namespace ToolshopApp2.View.UserControlers.MainWindowControllers
         }
 
         private void _Textbox_Week_TextChanged(object sender, TextChangedEventArgs e)
-        {
-           
+        {           
             _Textbox_Week.SelectionStart = _Textbox_Week.Text.Length;
             _Textbox_Week.SelectionLength = 0;
             if (OnlyNumInString(_Textbox_Week.Text) && OnlyNumInString(_Textbox_Year_Selected.Text) && int.Parse(_Textbox_Week.Text) > 0 && int.Parse(_Textbox_Week.Text) <= How_many_wk_in_year(int.Parse(_Textbox_Year_Selected.Text)) && int.Parse(_Textbox_Year_Selected.Text) > 2018 && int.Parse(_Textbox_Year_Selected.Text) < 2099)
