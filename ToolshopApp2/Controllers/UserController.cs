@@ -30,6 +30,10 @@ namespace ToolshopApp2.Controllers
 
         public static bool IsUserAdministartor(User user)
         {
+            if (user == null)
+            {
+                return false;
+            }
             return user.KindOfUserId == 3;
         }
 

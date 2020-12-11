@@ -28,38 +28,44 @@ namespace ToolshopApp2
             mainWindow.Show();
             try
             {
+                bool proceedInitialazig = true;
                 AutomaticAcceptanceController.CheckTasks();
-                
-                InitializeComponent();
                 var user = UserController.GetUser(Environment.UserName.ToLower());
                 if (user == null)
                 {
                     InitializeWelcomeWindow();
                     if (!UserController.UserExistInDatabase())
+                    {
+                        proceedInitialazig = false;
                         this.Close();
+                    }                        
                 }
-                SetDateTimeStandard();
-                if (UserController.IsUserAdministartor(user))
+                if (proceedInitialazig)
                 {
-                    InitializeAdministratorTab();
-                }
-                else
-                {
-                    _TabItemListOfPCDishwashers.Visibility = Visibility.Hidden;
-                    _TabItemAdministrator.Visibility = Visibility.Hidden;
-                }
+                    InitializeComponent();
+                    SetDateTimeStandard();
+                    if (UserController.IsUserAdministartor(user))
+                    {
+                        InitializeAdministratorTab();
+                    }
+                    else
+                    {
+                        _TabItemListOfPCDishwashers.Visibility = Visibility.Hidden;
+                        _TabItemAdministrator.Visibility = Visibility.Hidden;
+                    }
 
-                SetComboboxes();
-                RefrashDataGrid();
-                if (System.Deployment.Application.ApplicationDeployment.IsNetworkDeployed)
-                {
-                    _LabelVersionNumber.Content = System.Deployment.Application.ApplicationDeployment.CurrentDeployment.CurrentVersion.ToString();
-                }
+                    SetComboboxes();
+                    RefrashDataGrid();
+                    if (System.Deployment.Application.ApplicationDeployment.IsNetworkDeployed)
+                    {
+                        _LabelVersionNumber.Content = System.Deployment.Application.ApplicationDeployment.CurrentDeployment.CurrentVersion.ToString();
+                    }
 
-                else
-                {
-                    _LabelVersionNumber.Content = "0.0.0.10";
-                }
+                    else
+                    {
+                        _LabelVersionNumber.Content = "0.0.0.10";
+                    }
+                }                
             }
             catch (Exception ex)
             {

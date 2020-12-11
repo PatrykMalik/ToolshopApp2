@@ -22,7 +22,6 @@
             <RowDefinition Height="24*"/>
         </Grid.RowDefinitions>
         <Button x:Name="_ButtonNewTask" Content="New Task" Grid.Row="1" Click="_ButtonNewTaskClick"/>
-        <MainWindowControllers:SpinnerUserControl x:Name="_SpinnerUserControl"/>
         <TabControl Grid.Row="2" Grid.ColumnSpan="2">
 
             <TabItem x:Name="_TabItemCalendarView" Header="Calendar View">
