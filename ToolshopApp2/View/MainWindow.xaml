@@ -21,7 +21,7 @@
             <RowDefinition Height="699*"/>
             <RowDefinition Height="24*"/>
         </Grid.RowDefinitions>
-        <Button x:Name="_ButtonNewTask" Content="New Task" Grid.Row="1" Click="_ButtonNewTaskClick"/>
+        <Button x:Name="_ButtonNewTask" FontSize="30" Content="New Task" Grid.Row="1" Click="_ButtonNewTaskClick" Background="#FF474747" Foreground="White" BorderBrush="White"/>
         <TabControl Grid.Row="2" Grid.ColumnSpan="2">
 
             <TabItem x:Name="_TabItemCalendarView" Header="Calendar View">
@@ -74,8 +74,8 @@
                         </DataGrid.Columns>                        
                     </DataGrid>
 
-                    <Button x:Name="_ButtonRefresh" Click="_ButtonRefresh_Click" Content="Refresh" HorizontalAlignment="Left" VerticalAlignment="Top" Width="76" Height="26"/>
-                    <Button x:Name="_ButtonClear" Click="_ButtonClear_Click" Content="Clear Filers" HorizontalAlignment="Left" VerticalAlignment="Top" Width="76" Height="23" Margin="0,26,0,0"/>
+                    <Button x:Name="_ButtonRefresh" Click="_ButtonRefresh_Click" Content="Refresh" HorizontalAlignment="Left" VerticalAlignment="Top" Width="76" Height="26" Background="#FF474747" Foreground="White" BorderBrush="White"/>
+                    <Button x:Name="_ButtonClear" Click="_ButtonClear_Click" Content="Clear Filers" HorizontalAlignment="Left" VerticalAlignment="Top" Width="76" Height="23" Margin="0,26,0,0" Background="#FF474747" Foreground="White" BorderBrush="White"/>
 
                     <TextBox x:Name="_TextboxId"  HorizontalAlignment="Left" Height="22" Margin="81,26,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="33"/>
 
@@ -96,7 +96,7 @@
                     <Label Content="To date:" Foreground="White" HorizontalAlignment="Left" Margin="718,0,0,0" VerticalAlignment="Top"/>
                     <DatePicker x:Name="_DatepickerFrom" HorizontalAlignment="Left" Margin="611,25,0,0" VerticalAlignment="Top"/>
                     <DatePicker x:Name="_DatepickerTo" HorizontalAlignment="Left" Margin="718,25,0,0" VerticalAlignment="Top"/>
-                    <Button x:Name="_ButtonDuplicate" Click="_ButtonDuplicate_Click"  Content="Duplicate" HorizontalAlignment="Left" Margin="820,26,0,0" VerticalAlignment="Top" Width="75" Grid.RowSpan="2" Height="22"/>
+                    <Button x:Name="_ButtonDuplicate" Click="_ButtonDuplicate_Click"  Content="Duplicate" HorizontalAlignment="Left" Margin="820,26,0,0" VerticalAlignment="Top" Width="75" Grid.RowSpan="2" Height="22" Background="#FF474747" Foreground="White" BorderBrush="White"/>
                 </Grid>
             </TabItem>
 

@@ -17,28 +17,28 @@ namespace ToolshopApp2.Controllers
             var request = new Request()
             {
                 User = Environment.UserName.ToLower(),
-                Classyfy = TaskWindow.task._SimpleTaskUserControl._ComboBoxClassyfy.Text,
-                Project = TaskWindow.task._SimpleTaskUserControl._ComboBoxProject.Text,
-                Order = TaskWindow.task._SimpleTaskUserControl._ComboboxTask.Text,
-                Date = TaskWindow.task._SimpleTaskUserControl._DatePickerDeadline.SelectedDate.Value,
-                Description = TaskWindow.task._SimpleTaskUserControl._TextBoxDescription.Text,
-                CostCenter = TaskWindow.task._SimpleTaskUserControl._ComboBoxCostCenter.Text,
+                Classyfy = TaskWindow.taskWindow._SimpleTaskUserControl._ComboBoxClassyfy.Text,
+                Project = TaskWindow.taskWindow._SimpleTaskUserControl._ComboBoxProject.Text,
+                Order = TaskWindow.taskWindow._SimpleTaskUserControl._ComboboxTask.Text,
+                Date = TaskWindow.taskWindow._SimpleTaskUserControl._DatePickerDeadline.SelectedDate.Value,
+                Description = TaskWindow.taskWindow._SimpleTaskUserControl._TextBoxDescription.Text,
+                CostCenter = TaskWindow.taskWindow._SimpleTaskUserControl._ComboBoxCostCenter.Text,
                 Status = "Open",
                 //Status = new RequestStatus { StatusId = 1 },
                 //RequestStatus = new RequestStatus(),
-                Attachment = TaskWindow.task._TaskControlersUserControl._CheckBoxAttachement.IsChecked.Value,
+                Attachment = TaskWindow.taskWindow._TaskControlersUserControl._CheckBoxAttachement.IsChecked.Value,
                 CreationTime = DateTime.UtcNow
             };
-            if ((request.Order == "Shipping Dishwasher" || request.Order == "Shipping Components") && TaskWindow.task._ShipmentTaskUserControl.IsInitialized)
+            if ((request.Order == "Shipping Dishwasher" || request.Order == "Shipping Components") && TaskWindow.taskWindow._ShipmentTaskUserControl.IsInitialized)
             {
-                request.ContactPerson = TaskWindow.task._ShipmentTaskUserControl._ComboBoxContactPerson.Text;
-                request.Email = TaskWindow.task._ShipmentTaskUserControl._TextBoxEmail.Text;
-                request.Address = TaskWindow.task._ShipmentTaskUserControl._TextBoxAdress.Text;
-                request.BeginigSrz = TaskWindow.task._ShipmentTaskUserControl._TextBoxSrzBegin.Text;
-                request.EndingSrz = TaskWindow.task._ShipmentTaskUserControl._TextBoxSrzEnd.Text;
-                request.Transpot = TaskWindow.task._ShipmentTaskUserControl._ComboBoxTransport.Text;
-                request.Insurance = TaskWindow.task._ShipmentTaskUserControl._ComboBoxInsurance.IsChecked.Value;
-                request.InsuranceCost = TaskWindow.task._ShipmentTaskUserControl._TextBoxInsuranceCost.Text;
+                request.ContactPerson = TaskWindow.taskWindow._ShipmentTaskUserControl._ComboBoxContactPerson.Text;
+                request.Email = TaskWindow.taskWindow._ShipmentTaskUserControl._TextBoxEmail.Text;
+                request.Address = TaskWindow.taskWindow._ShipmentTaskUserControl._TextBoxAdress.Text;
+                request.BeginigSrz = TaskWindow.taskWindow._ShipmentTaskUserControl._TextBoxSrzBegin.Text;
+                request.EndingSrz = TaskWindow.taskWindow._ShipmentTaskUserControl._TextBoxSrzEnd.Text;
+                request.Transpot = TaskWindow.taskWindow._ShipmentTaskUserControl._ComboBoxTransport.Text;
+                request.Insurance = TaskWindow.taskWindow._ShipmentTaskUserControl._ComboBoxInsurance.IsChecked.Value;
+                request.InsuranceCost = TaskWindow.taskWindow._ShipmentTaskUserControl._TextBoxInsuranceCost.Text;
             }
             if (UserController.IsUserToolshopMemberOrAdministator())
             {
@@ -52,7 +52,7 @@ namespace ToolshopApp2.Controllers
                 //request.Swz3 = TaskWindow.task._ToolshopPartUserControl._TextBoxSwz_3.Text;
                 //request.Swz4 = TaskWindow.task._ToolshopPartUserControl._TextBoxSwz_4.Text;
                 //request.Swz5 = TaskWindow.task._ToolshopPartUserControl._TextBoxSwz_5.Text;
-                request.DescpriptionToolshop = TaskWindow.task._ToolshopPartUserControl._TextBoxDescription.Text;
+                //request.DescpriptionToolshop = TaskWindow.task._ToolshopPartUserControl._TextBoxDescription.Text;
             }
             return request;
         }
@@ -65,26 +65,26 @@ namespace ToolshopApp2.Controllers
             {
                 Id = id,
                 User = user,
-                Classyfy = TaskWindow.task._SimpleTaskUserControl._ComboBoxClassyfy.Text,
-                Project = TaskWindow.task._SimpleTaskUserControl._ComboBoxProject.Text,
-                Order = TaskWindow.task._SimpleTaskUserControl._ComboboxTask.Text,
-                Date = TaskWindow.task._SimpleTaskUserControl._DatePickerDeadline.SelectedDate.Value,
-                Description = TaskWindow.task._SimpleTaskUserControl._TextBoxDescription.Text,
-                CostCenter = TaskWindow.task._SimpleTaskUserControl._ComboBoxCostCenter.Text,
+                Classyfy = TaskWindow.taskWindow._SimpleTaskUserControl._ComboBoxClassyfy.Text,
+                Project = TaskWindow.taskWindow._SimpleTaskUserControl._ComboBoxProject.Text,
+                Order = TaskWindow.taskWindow._SimpleTaskUserControl._ComboboxTask.Text,
+                Date = TaskWindow.taskWindow._SimpleTaskUserControl._DatePickerDeadline.SelectedDate.Value,
+                Description = TaskWindow.taskWindow._SimpleTaskUserControl._TextBoxDescription.Text,
+                CostCenter = TaskWindow.taskWindow._SimpleTaskUserControl._ComboBoxCostCenter.Text,
                 Status = context.Requests.Where(x => x.Id == id).FirstOrDefault().Status,
-                Attachment = TaskWindow.task._TaskControlersUserControl._CheckBoxAttachement.IsChecked.Value,
+                Attachment = TaskWindow.taskWindow._TaskControlersUserControl._CheckBoxAttachement.IsChecked.Value,
                 CreationTime = DateTime.UtcNow
             };
-            if ((request.Order == "Shipping Dishwasher" || request.Order == "Shipping Components") && TaskWindow.task._ShipmentTaskUserControl.IsInitialized)
+            if ((request.Order == "Shipping Dishwasher" || request.Order == "Shipping Components") && TaskWindow.taskWindow._ShipmentTaskUserControl.IsInitialized)
             {
-                request.ContactPerson = TaskWindow.task._ShipmentTaskUserControl._ComboBoxContactPerson.Text;
-                request.Email = TaskWindow.task._ShipmentTaskUserControl._TextBoxEmail.Text;
-                request.Address = TaskWindow.task._ShipmentTaskUserControl._TextBoxAdress.Text;
-                request.BeginigSrz = TaskWindow.task._ShipmentTaskUserControl._TextBoxSrzBegin.Text;
-                request.EndingSrz = TaskWindow.task._ShipmentTaskUserControl._TextBoxSrzEnd.Text;
-                request.Transpot = TaskWindow.task._ShipmentTaskUserControl._ComboBoxTransport.Text;
-                request.Insurance = TaskWindow.task._ShipmentTaskUserControl._ComboBoxInsurance.IsChecked.Value;
-                request.InsuranceCost = TaskWindow.task._ShipmentTaskUserControl._TextBoxInsuranceCost.Text;
+                request.ContactPerson = TaskWindow.taskWindow._ShipmentTaskUserControl._ComboBoxContactPerson.Text;
+                request.Email = TaskWindow.taskWindow._ShipmentTaskUserControl._TextBoxEmail.Text;
+                request.Address = TaskWindow.taskWindow._ShipmentTaskUserControl._TextBoxAdress.Text;
+                request.BeginigSrz = TaskWindow.taskWindow._ShipmentTaskUserControl._TextBoxSrzBegin.Text;
+                request.EndingSrz = TaskWindow.taskWindow._ShipmentTaskUserControl._TextBoxSrzEnd.Text;
+                request.Transpot = TaskWindow.taskWindow._ShipmentTaskUserControl._ComboBoxTransport.Text;
+                request.Insurance = TaskWindow.taskWindow._ShipmentTaskUserControl._ComboBoxInsurance.IsChecked.Value;
+                request.InsuranceCost = TaskWindow.taskWindow._ShipmentTaskUserControl._TextBoxInsuranceCost.Text;
             }
             if (UserController.IsUserToolshopMemberOrAdministator())
             {
@@ -98,7 +98,7 @@ namespace ToolshopApp2.Controllers
                 //request.Swz3 = TaskWindow.task._ToolshopPartUserControl._TextBoxSwz_3.Text;
                 //request.Swz4 = TaskWindow.task._ToolshopPartUserControl._TextBoxSwz_4.Text;
                 //request.Swz5 = TaskWindow.task._ToolshopPartUserControl._TextBoxSwz_5.Text;
-                request.DescpriptionToolshop = TaskWindow.task._ToolshopPartUserControl._TextBoxDescription.Text;
+                //request.DescpriptionToolshop = TaskWindow.task._ToolshopPartUserControl._TextBoxDescription.Text;
             }
             return request;
         }

@@ -23,7 +23,7 @@ namespace ToolshopApp2.View.UserControlers
         {
             if (TaskWindowController.AddRequest(filePath))
             {
-                TaskWindow.task.Close();
+                TaskWindowController.ShowControls();
             }
             else
             {
@@ -40,15 +40,15 @@ namespace ToolshopApp2.View.UserControlers
             {
                 // adding attachment to already exiting request
                 if (TaskWindowController.SendAttachments(openFileDialog.FileName))
-                {                 
-                    _CheckBoxAttachement.IsChecked = true;
-                    TaskWindowController.AddRequest(filePath);
+                {              
+                   
                 }
                 // adding addreses to new request (without assigned ID)
                 else
                 {
-                    filePath.Add(openFileDialog.FileName);
-                    _CheckBoxAttachement.IsChecked = true;
+                    //filePath.Add(openFileDialog.FileName);
+                    //_CheckBoxAttachement.IsChecked = true;
+                    MessageBox.Show("It was imposible to add attachment to you task. Please try again", "Attachment Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
         }
@@ -61,6 +61,16 @@ namespace ToolshopApp2.View.UserControlers
             }
             else
                 MessageBox.Show("You can't open attachments if they don't exitst!", "Missing Attachment", MessageBoxButton.OK, MessageBoxImage.Warning);
+        }
+
+        private void _ButtonGeneratePIC_Click(object sender, RoutedEventArgs e)
+        {
+            TaskWindowController.GeneratePIC();
+        }
+
+        private void _CloseWindowButton_Click(object sender, RoutedEventArgs e)
+        {
+            TaskWindow.taskWindow.Close();
         }
     }
 }

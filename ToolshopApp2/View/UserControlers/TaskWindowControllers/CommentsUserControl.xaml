@@ -4,14 +4,26 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:ToolshopApp2.View.UserControlers.TaskWindowControllers"
-             mc:Ignorable="d" Width="500" Height="150">
-    <Grid>
-        <TextBox x:Name="_TextboxComment" Margin="0,0,81,0" TextWrapping="Wrap" Text="Add Comment"/>
-        <Button x:Name="_ButtonAddComment" Click="_ButtonAddComment_Click" ContentStringFormat="Wrap" HorizontalAlignment="Right" Width="76">
+             mc:Ignorable="d" FontSize="16" >
+    <Grid Width="Auto">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <TextBox x:Name="_TextboxComment" Grid.Row="1" Grid.Column="1" Margin="5 0 20 0" MinWidth="420" MaxWidth="700">
+            Note
+        </TextBox>
+        <Button x:Name="_ButtonAddComment" Grid.Row="0" Grid.Column="2" MinWidth="80" Margin="10 0 10 0" Click="_ButtonAddComment_Click"
+                Background="#FF474747" Foreground="White" BorderBrush="White">
             <Button.Content>
                 <StackPanel Orientation="Vertical">
-                    <TextBlock Text="Add" HorizontalAlignment="Center"/>
-                    <TextBlock Text="Comment"/>
+                    <TextBlock Text="Add"  FontSize="20"/>
+                    <TextBlock Text="Note" FontSize="20"/>
                 </StackPanel>
             </Button.Content>
         </Button>

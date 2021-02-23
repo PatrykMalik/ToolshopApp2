@@ -17,7 +17,7 @@
         <Label Name="_UserTypeLabel" Content="User Type" Grid.Column="1" Margin="10,41,10,0" VerticalAlignment="Top" Foreground="LightGray"/>
         <Label Content="Email Adress: " HorizontalAlignment="Left" Margin="10,72,0,0" VerticalAlignment="Top" Width="171" Foreground="LightGray"/>
         <TextBox x:Name="_UserEmailTextbox" Grid.Column="1" Height="23" Margin="10,76,10,0" TextWrapping="Wrap" Text="Email" VerticalAlignment="Top" Background="{x:Null}" Foreground="LightGray" BorderBrush="DarkBlue"/>
-        <Button x:Name="_UpdateUserDataButton" Click="_UpdateUserDataButton_Click" Content="Update Data" Grid.Column="1" HorizontalAlignment="Left" Margin="90,104,0,0" VerticalAlignment="Top" Width="90" Height="30" Background="DarkGray" Foreground="Black"/>
+        <Button x:Name="_UpdateUserDataButton" Click="_UpdateUserDataButton_Click" Content="Update Data" Grid.Column="1" HorizontalAlignment="Left" Margin="90,104,0,0" VerticalAlignment="Top" Width="90" Height="30" Background="#FF474747" Foreground="White" BorderBrush="White"/>
 
     </Grid>
 </UserControl>

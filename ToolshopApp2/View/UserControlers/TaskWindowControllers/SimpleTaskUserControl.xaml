@@ -4,24 +4,67 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:ToolshopApp2.View.UserControlers"
-             mc:Ignorable="d" Width="400" Height="500">
-    <Grid>
-        <Label Content="Classyfy:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="138" Foreground="White"/>
-        <Label Content="Name of Project/Action:" HorizontalAlignment="Left" Margin="10,41,0,0" VerticalAlignment="Top" Width="138" Foreground="White"/>
-        <Label Content="Task:" HorizontalAlignment="Left" Margin="10,72,0,0" VerticalAlignment="Top" Width="138" Foreground="White"/>
-        <Label Content="Cost Center:" HorizontalAlignment="Left" Margin="10,103,0,0" VerticalAlignment="Top" Width="138" Foreground="White"/>
-        <Label Content="Dead Line:" HorizontalAlignment="Left" Margin="10,134,0,0" VerticalAlignment="Top" Width="138" Foreground="White"/>
-        <Label Content="Task description:" HorizontalAlignment="Left" Margin="10,165,0,0" VerticalAlignment="Top" Width="138" Foreground="White"/>
-        <TextBox x:Name="_TextBoxId" Grid.Column="1" Height="22" Margin="0,14,10,0" TextWrapping="Wrap" Text="ID" VerticalAlignment="Top" IsEnabled="False" HorizontalAlignment="Right" Width="104"/>
+             mc:Ignorable="d" FontSize="18">
+    <Grid Grid.IsSharedSizeScope="True">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <!-- Column 1 -->
+        <TextBlock Foreground="White" Grid.Column="1" Grid.Row="0" Margin="5">
+            Classyfy:
+        </TextBlock>
+        <TextBlock Foreground="White" Grid.Column="1" Grid.Row="1" Margin="5">
+            Name of Project/Action:
+        </TextBlock>
+        <TextBlock Foreground="White" Grid.Column="1" Grid.Row="2" Margin="5">
+            Task:
+        </TextBlock>
+        <TextBlock Foreground="White" Grid.Column="1" Grid.Row="3" Margin="5">
+            Cost Center:
+        </TextBlock>
+        <TextBlock Foreground="White" Grid.Column="1" Grid.Row="4" Margin="5">
+            Dead Line:
+        </TextBlock>
+        <TextBlock Foreground="White" Grid.Column="1" Grid.Row="5" Margin="5">
+            Task description:
+        </TextBlock>
+        <TextBox x:Name="_TextBoxDescription" Grid.Column="1" Grid.ColumnSpan="3" Grid.Row="6" Margin="5" TextWrapping="Wrap" 
+                 SpellCheck.IsEnabled="True" AcceptsReturn="True" MinHeight="200" MaxHeight="500" MaxWidth="700" 
+                 Background="#FFECECEC" MaxLines="50" MaxLength="2000" VerticalScrollBarVisibility="Auto" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" Grid.IsSharedSizeScope="True">
+            Description
+        </TextBox>
+        <!-- Column 2 -->
+        <ComboBox x:Name="_ComboBoxClassyfy" SelectedIndex="0" Grid.Column="2" Grid.Row="0" MinWidth="200" Margin="5" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch"/>
+        <ComboBox x:Name="_ComboBoxProject"  IsEditable="True" Grid.Column="2" Grid.Row="1" MinWidth="200" Margin="5"/>
+        <ComboBox x:Name="_ComboboxTask" SelectedIndex="0" Grid.Column="2" Grid.Row="2" Grid.ColumnSpan="2" MinWidth="200"  Margin="5" SelectionChanged="_ComboboxTask_SelectionChanged" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch"/>
+        <ComboBox x:Name="_ComboBoxCostCenter" IsEditable="True" Grid.Column="2" Grid.Row="3" MinWidth="200" Margin="5" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch"/>
+        <DatePicker x:Name="_DatePickerDeadline" Grid.Column="2" Grid.ColumnSpan="2" Grid.Row="4"  Margin="5"
+                    FirstDayOfWeek="Monday" SelectedDateFormat="Short" VerticalContentAlignment="Stretch"/>
+        <!-- Column 3 -->
+        <TextBox x:Name="_TextBoxId" Grid.Column="3" Grid.Row="0"  Margin="5" IsReadOnly="true" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch">
+            ID
+        </TextBox>
+        <Button x:Name="_ButtonAddProject" Click="_ButtonAddProjectClick" Grid.Column="3" Grid.Row="1" MinWidth="120" Margin="5" Background="#FF474747" Foreground="White" BorderBrush="White">
+            Add Project
+        </Button>
+        <Button x:Name="_ButtonAddCostCenter" Click="_ButtonAddCostCenterClick"  Grid.Column="3" Grid.Row="3" Margin="5" Background="#FF474747" Foreground="White" BorderBrush="White">
+            Add CC
+        </Button>
 
-        <ComboBox x:Name="_ComboBoxClassyfy" Margin="153,14,119,0" VerticalAlignment="Top" SelectedIndex="0" Grid.ColumnSpan="2"/>
-        <ComboBox x:Name="_ComboBoxProject" Margin="153,41,119,0" VerticalAlignment="Top" Height="26" IsEditable="True" Grid.ColumnSpan="2"/>
-        <Button x:Name="_ButtonAddProject" Content="Add Project" Click="_ButtonAddProjectClick" HorizontalAlignment="Right" Margin="0,41,10,0" VerticalAlignment="Top" Width="104" Height="26" Grid.Column="1"/>
-        <ComboBox x:Name="_ComboboxTask" Margin="153,72,10,0" VerticalAlignment="Top" Height="26" SelectedIndex="0" Grid.ColumnSpan="2" SelectionChanged="_ComboboxTask_SelectionChanged"/>
-        <ComboBox x:Name="_ComboBoxCostCenter" Margin="153,103,119,0" VerticalAlignment="Top" Height="26" IsEditable="True" Grid.ColumnSpan="2"/>
-        <Button x:Name="_ButtonAddCostCenter" Content="Add CC" Click="_ButtonAddCostCenterClick" HorizontalAlignment="Right" Margin="0,103,10,0" VerticalAlignment="Top" Width="104" Height="26" Grid.Column="1"/>
-        <DatePicker x:Name="_DatePickerDeadline" Margin="153,134,10,0" VerticalAlignment="Top" Height="26" FirstDayOfWeek="Monday" SelectedDateFormat="Short" Grid.ColumnSpan="2" SelectedDateChanged="_DatePickerDeadlineSelectedDateChanged" />
-        <TextBox x:Name="_TextBoxDescription" Height="Auto" Margin="10,196,10,10" TextWrapping="Wrap" SpellCheck.IsEnabled="True" AcceptsReturn="True" Background="#FFECECEC" Text="Task description" MaxLines="50" MaxLength="2000" VerticalScrollBarVisibility="Auto"/>
-        
+
     </Grid>
 </UserControl>

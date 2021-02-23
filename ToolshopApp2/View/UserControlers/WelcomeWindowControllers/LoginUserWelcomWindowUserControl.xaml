@@ -7,7 +7,7 @@
              mc:Ignorable="d" Height="52.5" Width="419.375">
     <Grid>
         <Label Content="If you already added your email, please try log in." HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="32" Width="279" Foreground="White"/>
-        <Button Content="Login" HorizontalAlignment="Left" Margin="294,10,0,0" VerticalAlignment="Top" Width="114" Height="32"/>
+        <Button Content="Login" HorizontalAlignment="Left" Margin="294,10,0,0" VerticalAlignment="Top" Width="114" Height="32" Background="#FF474747" Foreground="White" BorderBrush="White"/>
 
     </Grid>
 </UserControl>

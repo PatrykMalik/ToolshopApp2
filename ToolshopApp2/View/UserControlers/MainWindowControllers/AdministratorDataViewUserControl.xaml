@@ -11,8 +11,8 @@
             <RowDefinition Height="40"/>
             <RowDefinition Height="407*"/>
         </Grid.RowDefinitions>
-        <Button x:Name="_ButtonShowUsers" Click="_ButtonShowUsersClick" Content="Show Users" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="75" />
-        <Button x:Name="_ButtonShowProject" Click="_ButtonShowProjectClick"  Content="Show Project" HorizontalAlignment="Left" Margin="90,10,0,0" VerticalAlignment="Top" Width="75"/>
+        <Button x:Name="_ButtonShowUsers" Click="_ButtonShowUsersClick" Content="Show Users" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="75" Background="#FF474747" Foreground="White" BorderBrush="White"/>
+        <Button x:Name="_ButtonShowProject" Click="_ButtonShowProjectClick"  Content="Show Project" HorizontalAlignment="Left" Margin="90,10,0,0" VerticalAlignment="Top" Width="75" Background="#FF474747" Foreground="White" BorderBrush="White"/>
         <DataGrid x:Name="_DataGridDatabaseView" Grid.Row="1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" CellEditEnding="_DataGridDatabaseView_CellEditEnding" />
     </Grid>
 </UserControl>

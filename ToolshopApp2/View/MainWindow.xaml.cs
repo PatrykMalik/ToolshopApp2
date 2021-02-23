@@ -63,7 +63,7 @@ namespace ToolshopApp2
 
                     else
                     {
-                        _LabelVersionNumber.Content = "0.0.0.10";
+                        _LabelVersionNumber.Content = "0.0.0.12";
                     }
                 }                
             }

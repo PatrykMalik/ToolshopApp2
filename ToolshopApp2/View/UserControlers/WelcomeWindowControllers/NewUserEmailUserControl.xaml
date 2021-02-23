@@ -9,6 +9,6 @@
         <Label Name="_LabelInfo" Content="You are new user" Height="69" Margin="10,0,10,0" VerticalAlignment="Top"  Foreground="AliceBlue" FontSize="18" HorizontalContentAlignment="Center"/>
         <Label Name="_LabelEmail" Content="Please enter your email: " Height="29" Margin="10,74,0,0" VerticalAlignment="Top"  Foreground="AliceBlue" HorizontalAlignment="Left" Width="144"/>
         <TextBox Name="_TextboxEmail" HorizontalAlignment="Left" Height="29" Margin="159,74,0,0" TextWrapping="Wrap" Text="@electrolux.com" VerticalAlignment="Top" Width="239"/>
-        <Button Name="_ButtonAddEmail" Content="Add Email" HorizontalAlignment="Left" Margin="403,74,0,0" VerticalAlignment="Top" Width="87" Height="29" Click="_ButtonAddEmailClick"/>
+        <Button Name="_ButtonAddEmail" Content="Add Email" HorizontalAlignment="Left" Margin="403,74,0,0" VerticalAlignment="Top" Width="87" Height="29" Click="_ButtonAddEmailClick" Background="#FF474747" Foreground="White" BorderBrush="White"/>
     </Grid>
 </UserControl>

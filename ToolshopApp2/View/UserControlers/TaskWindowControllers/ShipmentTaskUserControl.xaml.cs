@@ -47,7 +47,7 @@ namespace ToolshopApp2.View.UserControlers
         {
             _ComboBoxContactPerson.Text = String.Empty;
             _TextBoxEmail.Text = String.Empty;
-            _TextBoxAdress.Text = "VIA L. ZANUSSI 24" + Environment.NewLine + "PORCIA" + Environment.NewLine + "33080" + Environment.NewLine + "Italy";
+            _TextBoxAdress.Text = "Electrolux Italia SpA," + Environment.NewLine + "Corso Lino Zanussi 24"+ Environment.NewLine + "PORCIA" + Environment.NewLine + "33080" + Environment.NewLine + "Italy";
         }
 
         private void _ButtonSolaro_Click(object sender, RoutedEventArgs e)

@@ -22,21 +22,11 @@ namespace ToolshopApp2.View
     /// 
     public partial class TaskWindow : Window
     {
-        public static TaskWindow task;
-        
+        public static TaskWindow taskWindow;
         public TaskWindow()
         {
             InitializeComponent();
-            task = this;
-        }
-
-        private void _TaskWindow_SizeChanged(object sender, SizeChangedEventArgs e)
-        {
-            _ColumnSecond.Width = GridLength.Auto;
-            _RowSecond.Height = GridLength.Auto;
-            _RowThird.Height = GridLength.Auto;
-            _RowFourth.Height = GridLength.Auto;
-            _SimpleTaskUserControl.Height = task.Height - _TaskControlersUserControl.Height - _CommentPartUserControl.Height - _ToolshopPartUserControl.Height;           
+            taskWindow = this;
         }
     }
 }

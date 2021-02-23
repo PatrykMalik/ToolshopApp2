@@ -29,6 +29,7 @@ namespace ToolshopApp2.View.UserControlers.TaskWindowControllers
         private void _ButtonAddComment_Click(object sender, RoutedEventArgs e)
         {
             TaskWindowController.AddComment(_TextboxComment.Text);
+            _TextboxComment.Text = String.Empty;
         }
     }
 }

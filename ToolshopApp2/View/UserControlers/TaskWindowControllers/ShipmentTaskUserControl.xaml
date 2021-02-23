@@ -4,37 +4,94 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:ToolshopApp2.View.UserControlers"
-             mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             mc:Ignorable="d"
+             FontSize="18" Foreground="White" >
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="399*"/>
-            <ColumnDefinition Width="401*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
 
-        <Label Content="Begining SRZ: " HorizontalAlignment="Left" Margin="10,37,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.053,-0.09" Foreground="White" Grid.Column="1" Height="26" Width="86"/>
-        <Label Content="Ending SRZ:" HorizontalAlignment="Left" Margin="10,69,0,0" VerticalAlignment="Top" Foreground="White" Grid.Column="1" Height="26" Width="73"/>
-        <Label Content="Transport: " HorizontalAlignment="Left" Margin="10,99,0,0" VerticalAlignment="Top" Foreground="White" Height="27" Grid.Column="1" Width="66"/>
-        <Label Content="Insurance:" HorizontalAlignment="Left" Margin="10,139,0,0" VerticalAlignment="Top" Foreground="White" Grid.Column="1" Height="26" Width="63"/>
-        <Label Content="Insurance Cost [EUR]: " HorizontalAlignment="Left" Margin="10,165,0,0" VerticalAlignment="Top" Foreground="White" Grid.Column="1" Height="26" Width="126"/>
-        <Label Content="Contact_Person:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Foreground="White" Height="26" Width="89"/>
-        <Label Content="Email Address:" HorizontalAlignment="Left" Margin="10,69,0,0" VerticalAlignment="Top" Width="181" Foreground="White" Height="26"/>
+
+        <!-- Column 1 -->
+        <TextBlock Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="1" Margin="5">
+            Contact Person:
+        </TextBlock>
+        <TextBlock Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="3" Margin="5">
+            Email Address:
+        </TextBlock>
+        <ComboBox  x:Name="_ComboBoxContactPerson" Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="2" Margin="5" SelectionChanged="_ComboBoxContactPerson_SelectionChanged"/>
+        <TextBox x:Name="_TextBoxEmail" Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="4" Margin="5" MaxLines="1" MaxLength="200"/>
+        <TextBlock Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="5" Margin="5">
+            Address:
+        </TextBlock>
+        <TextBox x:Name="_TextBoxAdress" Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="6" Grid.RowSpan="3" Margin="5" AcceptsReturn="True" MaxLines="20" MaxLength="5000"/>
+        <Button x:Name="_ButtonAddAdress" Grid.Column="1" Grid.Row="9" Margin="5" Click="_ButtonAddAdress_Click" 
+                Background="#FF474747" Foreground="White" BorderBrush="White">
+            Add Address
+        </Button>
+        <!-- Column 2 -->
+        <Button x:Name="_ButtonClearAdress" Grid.Column="2" Grid.Row="9" Margin="5" Click="_ButtonClearAdress_Click" 
+                Background="#FF474747" Foreground="White" BorderBrush="White">
+            Clear Address
+        </Button>
+
         
-        <ComboBox x:Name="_ComboBoxContactPerson" Margin="10,41,25,0" VerticalAlignment="Top" IsEditable="True" Height="26" SelectionChanged="_ComboBoxContactPerson_SelectionChanged" />
-        <TextBox x:Name="_TextBoxEmail" Height="26" Margin="10,99,25,0" TextWrapping="Wrap" VerticalAlignment="Top" MaxLines="1" MaxLength="200"/>
-        <TextBox x:Name="_TextBoxAdress" Margin="10,134,25,51" TextWrapping="Wrap" Text="Address" AcceptsReturn="True" MaxLines="20" MaxLength="5000"/>
-        <Button x:Name="_ButtonAddAdress" Content="Add Adress" HorizontalAlignment="Left" Margin="10,0,0,10" Width="101"  Height="26" VerticalAlignment="Bottom" Click="_ButtonAddAdress_Click"/>
-        <Button x:Name="_ButtonClearAdress" Content="Clear Adress" HorizontalAlignment="Left" Margin="116,0,0,10" Width="101"  Height="26" VerticalAlignment="Bottom" Click="_ButtonClearAdress_Click"/>
-        <TextBox x:Name="_TextBoxSrzBegin" Height="26" Margin="109,37,10,0" TextWrapping="Wrap" VerticalAlignment="Top" Grid.Column="1" MaxLines="1" MaxLength="5" TextChanged="_TextBoxSrzBegin_TextChanged"/>
-        <TextBox x:Name="_TextBoxSrzEnd" Height="26" Margin="109,68,10,0" TextWrapping="Wrap" VerticalAlignment="Top" Grid.Column="1" MaxLines="1" MaxLength="5" TextChanged="_TextBoxSrzEnd_TextChanged"/>        
-        <ComboBox x:Name="_ComboBoxTransport" Margin="109,99,10,0" VerticalAlignment="Top" Height="26" SelectedIndex="1" Grid.Column="1">
-            <ComboBoxItem Content="Ekspress" HorizontalAlignment="Left" Width="108"/>
+        <!-- Column 3 -->
+        <TextBlock Grid.Column="3" Grid.Row="2" Margin="5">
+            Begining SRZ:
+        </TextBlock>
+        <TextBlock Grid.Column="3" Grid.Row="3" Margin="5">
+            Ending SRZ:
+        </TextBlock>
+        <TextBlock Grid.Column="3" Grid.Row="4" Margin="5">
+            Transport:
+        </TextBlock>
+        <TextBlock Grid.Column="3" Grid.Row="5" Margin="5">
+            Insurance:
+        </TextBlock>
+        <TextBlock Grid.Column="3" Grid.Row="6" Margin="5">
+            Insurance Cost [EUR]:
+        </TextBlock>
+        <Button x:Name="_ButtonPorcia" Grid.Column="3" Grid.Row="7" Margin="5" Click="_ButtonPorcia_Click" 
+                Background="#FF474747" Foreground="White" BorderBrush="White" BorderThickness="2">
+            Porcia
+        </Button>
+        <Button x:Name="_ButtonSolaro" Grid.Column="3" Grid.Row="8" Margin="5" Click="_ButtonSolaro_Click" 
+                Background="#FF474747" Foreground="White" BorderBrush="White" BorderThickness="2">
+            Solaro
+        </Button>
+        <Button x:Name="_ButtonStockholm" Grid.Column="3" Grid.Row="9" Margin="5" Click="_ButtonStockholm_Click" 
+                Background="#FF474747" Foreground="White" BorderBrush="White" BorderThickness="2">
+            Stockholm
+        </Button>
+
+        <!-- Column 4 -->
+        <TextBox x:Name="_TextBoxSrzBegin" Grid.Column="4" Grid.Row="2" MaxLines="1" MaxLength="5" Margin="5" MinWidth="120" TextChanged="_TextBoxSrzBegin_TextChanged"/>
+        <TextBox x:Name="_TextBoxSrzEnd" Grid.Column="4" Grid.Row="3" MaxLines="1" MaxLength="5" Margin="5" MinWidth="120" TextChanged="_TextBoxSrzEnd_TextChanged"/>
+        <ComboBox x:Name="_ComboBoxTransport" Grid.Column="4" Grid.Row="4" SelectedIndex="1" Margin="5" MinWidth="120">
+            <ComboBoxItem Content="Express" HorizontalAlignment="Left" Width="108"/>
             <ComboBoxItem Content="Standard" HorizontalAlignment="Left" Width="108"/>
         </ComboBox>
-        <CheckBox x:Name="_ComboBoxInsurance" Content="CheckBox" HorizontalAlignment="Left" Margin="109,139,0,0" VerticalAlignment="Top" Width="22" Height="22" RenderTransformOrigin="-0.727,0.545"  Grid.Column="1" Unchecked="_ComboBoxInsurance_Unchecked" Checked="_ComboBoxInsurance_Checked"/>
-        <TextBox x:Name="_TextBoxInsuranceCost" Height="23" Margin="141,168,10,0" TextWrapping="Wrap" VerticalAlignment="Top" IsEnabled="False" Grid.Column="1" MaxLines="1" MaxLength="13"/>
-        <Button x:Name="_ButtonPorcia" Content="Porcia" Margin="10,196,0,0" VerticalAlignment="Top" Height="26" Grid.Column="1" HorizontalAlignment="Left" Width="86" Click="_ButtonPorcia_Click" />
-        <Button x:Name="_ButtonSolaro" Content="Solaro" Margin="10,227,0,0" VerticalAlignment="Top" Height="26" Grid.Column="1" HorizontalAlignment="Left" Width="86" Click="_ButtonSolaro_Click" />
-        <Button x:Name="_ButtonStockholm" Content="Stockholm" Margin="10,258,0,0" VerticalAlignment="Top" Height="26" Grid.Column="1" HorizontalAlignment="Left" Width="86" Click="_ButtonStockholm_Click" />
+        <CheckBox x:Name="_ComboBoxInsurance" Grid.Column="4" Grid.Row="5" Margin="5" Unchecked="_ComboBoxInsurance_Unchecked" Checked="_ComboBoxInsurance_Checked"/>
+        <TextBox x:Name="_TextBoxInsuranceCost" Grid.Column="4" Grid.Row="6" Margin="5" MinWidth="120" IsEnabled="False" MaxLines="1" MaxLength="13"/>
+
     </Grid>
 </UserControl>

@@ -4,36 +4,35 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:ToolshopApp2.View.UserControlers"
-             mc:Ignorable="d" d:DesignWidth="600" Height="172.941">
+             mc:Ignorable="d" d:DesignWidth="600" FontSize="18">
     <Grid x:Name="g_main">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="170*"/>
-            <ColumnDefinition Width="170*"/>
-        </Grid.ColumnDefinitions>
-
-        <Label x:Name="_LabelTime" Content="Time:" HorizontalAlignment="Left" Margin="10,108,0,0" VerticalAlignment="Top" Foreground="White"/>
-        <!--<Label Content="SWZ:" HorizontalAlignment="Left" Margin="10,54,0,0" VerticalAlignment="Top" Foreground="White"/>
-        <Label Content="SRZ:" HorizontalAlignment="Left" Margin="10,5,0,0" VerticalAlignment="Top" Foreground="White"/>-->
-
-        <TextBox x:Name="_TextBoxDescription" Margin="10,10,10,14" TextWrapping="Wrap" Text="Description" Grid.Column="1" AcceptsReturn="True"/>
-        <!--<TextBox x:Name="_TextBoxSrz_1" HorizontalAlignment="Left" Height="23" Margin="61,31,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="40" MaxLines="1" MaxLength="5"/>
-        <TextBox x:Name="_TextBoxSrz_2" HorizontalAlignment="Left" Height="23" Margin="106,31,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="40" MaxLines="1" MaxLength="5"/>
-        <TextBox x:Name="_TextBoxSrz_3" HorizontalAlignment="Left" Height="23" Margin="151,31,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="40" MaxLines="1" MaxLength="5"/>
-        <TextBox x:Name="_TextBoxSrz_4" HorizontalAlignment="Left" Height="23" Margin="196,31,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="40" MaxLines="1" MaxLength="5"/>
-        <TextBox x:Name="_TextBoxSrz_5" HorizontalAlignment="Left" Height="23" Margin="241,31,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="40" MaxLines="1" MaxLength="5"/>
-        <TextBox x:Name="_TextBoxSwz_1" HorizontalAlignment="Left" Height="23" Margin="61,80,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="40" MaxLines="1" MaxLength="5"/>
-        <TextBox x:Name="_TextBoxSwz_2" HorizontalAlignment="Left" Height="23" Margin="106,80,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="40" MaxLines="1" MaxLength="5"/>
-        <TextBox x:Name="_TextBoxSwz_3" HorizontalAlignment="Left" Height="23" Margin="151,80,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="40" MaxLines="1" MaxLength="5"/>
-        <TextBox x:Name="_TextBoxSwz_4" HorizontalAlignment="Left" Height="23" Margin="196,80,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="40" MaxLines="1" MaxLength="5"/>
-        <TextBox x:Name="_TextBoxSwz_5" HorizontalAlignment="Left" Height="23" Margin="241,80,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="40" MaxLines="1" MaxLength="5"/>-->
-        <TextBox x:Name="_TextBoxTime" HorizontalAlignment="Left" Height="23" Margin="72,111,0,0" TextWrapping="Wrap" Text="minutes" VerticalAlignment="Top" Width="74" MaxLength="4" MaxLines="1"/>
-
-        <!--<Button x:Name="_ButtonSrzPlus" Content="+" Click="_ButtonSrzPlus_Click" HorizontalAlignment="Left" Margin="10,31,0,0" VerticalAlignment="Top" Width="23" Height="23" />
-        <Button x:Name="_ButtonSrzMinus" Content="-" Click="_ButtonSrzMinus_Click" HorizontalAlignment="Left" Margin="33,31,0,0" VerticalAlignment="Top" Width="23" Height="23" />
-        <Button x:Name="_ButtonSwzPlus" Content="+" Click="_ButtonSwzPlus_Click" HorizontalAlignment="Left" Margin="10,80,0,0" VerticalAlignment="Top" Width="23" Height="23" />
-        <Button x:Name="_ButtonSwzMinus" Content="-" Click="_ButtonSwzMinus_Click" HorizontalAlignment="Left" Margin="33,80,0,0" VerticalAlignment="Top" Width="23" Height="23" />-->
-        <Button x:Name="_ButtonAccept" Content="Accept task" Click="_ButtonAccept_Click" HorizontalAlignment="Left" Margin="10,139,0,0" Width="75" Height="20" VerticalAlignment="Top"/>
-        <Button x:Name="_ButtonClose" Content="Close Task" Click="_ButtonClose_Click" HorizontalAlignment="Left" Margin="90,139,0,0" VerticalAlignment="Top" Width="75" />
-        <Button x:Name="_ButtonReopen" Content="Reopen task" Click="_ButtonReopen_Click" HorizontalAlignment="Left" Margin="170,139,0,0" VerticalAlignment="Top" Width="75"/>
+        <Grid.ColumnDefinitions>            
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Button Grid.Column="1" Grid.Row="0" Margin="10" MinHeight="30" MinWidth="100" x:Name="_ButtonAccept" Click="_ButtonAccept_Click" Background="#FF474747" Foreground="White" BorderBrush="White">
+            Accept task
+        </Button>
+        <Button Grid.Column="2" Grid.Row="0" Margin="10" MinHeight="30" MinWidth="100" x:Name="_ButtonClose"  Click="_ButtonClose_Click"  Background="#FF474747" Foreground="White" BorderBrush="White">
+            Close Task
+        </Button>
+        <Button Grid.Column="3" Grid.Row="0" Margin="10" MinHeight="30" MinWidth="100" x:Name="_ButtonReopen" Click="_ButtonReopen_Click" Background="#FF474747" Foreground="White" BorderBrush="White">
+            Reopen task
+        </Button>
+        <TextBlock Grid.Column="4" Grid.Row="0" FontSize="20" Margin="20 10 10 10" x:Name="_LabelTime" Foreground="White">
+            Time:
+        </TextBlock >
+        <TextBox Grid.Column="5" Grid.Row="0" Margin="10" x:Name="_TextBoxTime" MinWidth="50" MaxLength="4" MaxLines="1">
+            Minutes
+        </TextBox>
     </Grid>
 </UserControl>

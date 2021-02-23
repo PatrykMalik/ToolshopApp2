@@ -6,24 +6,35 @@
         xmlns:local="clr-namespace:ToolshopApp2.View"
         xmlns:UserControlers="clr-namespace:ToolshopApp2.View.UserControlers" xmlns:TaskWindowControllers="clr-namespace:ToolshopApp2.View.UserControlers.TaskWindowControllers" x:Class="ToolshopApp2.View.TaskWindow"
         mc:Ignorable="d"
-        x:Name="_TaskWindow" Title="Task Window" Height="800" Width="{Binding WindowWidtProperty, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SizeToContent="WidthAndHeight" SizeChanged="_TaskWindow_SizeChanged">
-    <Grid Background="Black" x:Name="_TaskWindowGrid">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition x:Name="_ColumnFirst" Width="450*"/>
-            <ColumnDefinition x:Name="_ColumnSecond" Width="450*"/>
-        </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition x:Name="_RowFirst" Height="350*"/>
-            <RowDefinition x:Name="_RowSecond" Height="130"/>
-            <RowDefinition x:Name="_RowThird" Height="50"/>
-            <RowDefinition x:Name="_RowFourth" Height="150*"/>
-        </Grid.RowDefinitions>
+        x:Name="_TaskWindow" Title="Task Window" SizeToContent="WidthAndHeight">
 
-        <UserControlers:SimpleTaskUserControl x:Name="_SimpleTaskUserControl" Grid.Row ="0" Grid.Column="0" HorizontalAlignment="Stretch" Height="Auto" Width="Auto"/>
-        <UserControlers:ShipmentTaskUserControl x:Name="_ShipmentTaskUserControl" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Stretch" Height="Auto" Width="Auto" />
-        <TaskWindowControllers:CommentsUserControl x:Name="_CommentPartUserControl" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Stretch" Height="Auto" Width="Auto" Margin="10"/>
-        <UserControlers:TaskControlersUserControl x:Name="_TaskControlersUserControl" Grid.Row="2" Grid.Column="0" HorizontalAlignment="Stretch" Height="Auto" Width="Auto"/>
-        <UserControlers:ToolshopPartUserControl x:Name="_ToolshopPartUserControl" Grid.Row="3" Grid.Column="0" HorizontalAlignment="Stretch" Height="Auto" Width="Auto" />
+    <DockPanel>
+        <Grid Background="Black" x:Name="_TaskWindowGrid">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition x:Name="_ColumnFirst" Width="Auto"/>
+                <ColumnDefinition x:Name="_ColumnSecond" Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
 
-    </Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition x:Name="_RowFirst" Height="Auto"/>
+                <RowDefinition x:Name="_RowSecond" Height="Auto"/>
+                <RowDefinition x:Name="_RowThird" Height="Auto"/>
+                <RowDefinition x:Name="_RowFourth" Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <!-- Column 1 -->
+            <UserControlers:SimpleTaskUserControl x:Name="_SimpleTaskUserControl" Grid.Row ="1" Grid.Column="1"/>
+            <TaskWindowControllers:CommentsUserControl x:Name="_CommentPartUserControl" Grid.Row="2" Grid.Column="1" Margin="0 20 0 0"/>
+            <UserControlers:TaskControlersUserControl x:Name="_TaskControlersUserControl" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2" Margin="0 20 0 0"/>
+            <UserControlers:ToolshopPartUserControl x:Name="_ToolshopPartUserControl" Grid.Row="4" Grid.Column="1" Margin="0 20 0 0"/>
+
+            <!-- Column 2 -->
+            <UserControlers:ShipmentTaskUserControl x:Name="_ShipmentTaskUserControl" Grid.Row="1" Grid.Column="2" VerticalAlignment="Top"
+                                                Visibility="Collapsed"/>
+        </Grid>
+    </DockPanel>
 </Window>

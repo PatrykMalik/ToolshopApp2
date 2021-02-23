@@ -8,6 +8,8 @@ using System.Windows.Controls;
 using System.IO;
 using ToolshopApp2.Connection;
 using System.Threading.Tasks;
+using Microsoft.Office.Interop.Excel;
+using Application = Microsoft.Office.Interop.Excel.Application;
 
 namespace ToolshopApp2.Controllers
 {
@@ -21,7 +23,7 @@ namespace ToolshopApp2.Controllers
             _request = null;
             taskWindow = new TaskWindow();
             LoadComboboxItems(taskWindow);
-            HideCommentPart(taskWindow);
+            HideControls(taskWindow);
             SetTaskWindowView(taskWindow);
             taskWindow.ShowDialog();
         }
@@ -59,7 +61,6 @@ namespace ToolshopApp2.Controllers
             SetTaskWindowView(taskWindow);
             taskWindow.ShowDialog();
         }
-
         public static void DuplicateTask(Object row)
         {
             var request = row as Request;
@@ -90,61 +91,45 @@ namespace ToolshopApp2.Controllers
             SetTaskWindowView(taskWindow);
             taskWindow.ShowDialog();
         }
-
         public static bool AddRequest(List<string> filePaths)
         {
-            var context = new DatabaseConnectionContext();
-            if (DateManagingController.IsDateAvaiable(TaskWindow.task._SimpleTaskUserControl._DatePickerDeadline.SelectedDate.Value) && context != null)
+            bool output = false;
+            if (_request == null)
             {
-                if (_request == null)
+                output = AddNewRequestToDatabase(filePaths);
+                if (output)
                 {
-                    _request = RequestController.CreateRequest();
-                    context.Add(_request);
-                    context.SaveChanges();
-                    if (taskWindow._TaskControlersUserControl._CheckBoxAttachement.IsChecked.Value)
-                    {
-                        foreach (var filePath in filePaths)
-                            SendAttachments(filePath);
-                    }
-                    MailController.SendConfirmation(_request);
-                    _request = null;
-                    return true;
-                }
-                else if ((_request.User == Environment.UserName.ToLower()
-                    || UserController.IsUserToolshopMemberOrAdministator()) && _request.Status != "Closed")
-                {
-                    var oldRequest = _request;
-                    _request = RequestController.UpdateRequest(_request.Id, oldRequest.User);
-                    context.Update(_request);
-                    context.SaveChanges();
-                    MailController.SendUpdateNotification(_request, oldRequest);
-                    _request = null;
-                    return true;
-                }
-                else if (_request.Status == "Closed")
-                {
-                    MessageBox.Show("Is imposible to update this task, becouse is in status: " + _request.Status, "Update Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    UpdateRequestStatusInWindow();
                 }
             }
-            return false;
+            else if ((_request.User == Environment.UserName.ToLower()
+                || UserController.IsUserToolshopMemberOrAdministator()) && _request.Status != "Closed")
+            {
+                output = UpdateRequestInDatabase();
+            }
+            else if (_request.Status == "Closed")
+            {
+                MessageBox.Show("Is imposible to update this task, because is in status: " + _request.Status, "Update Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            return output;
         }
         public static bool AddAddress()
         {
             var context = new DatabaseConnectionContext();
             var address = new Address()
             {
-                ContactPerson = TaskWindow.task._ShipmentTaskUserControl._ComboBoxContactPerson.Text,
-                Email = TaskWindow.task._ShipmentTaskUserControl._TextBoxEmail.Text,
-                Adress = TaskWindow.task._ShipmentTaskUserControl._TextBoxAdress.Text
+                ContactPerson = TaskWindow.taskWindow._ShipmentTaskUserControl._ComboBoxContactPerson.Text,
+                Email = TaskWindow.taskWindow._ShipmentTaskUserControl._TextBoxEmail.Text,
+                Adress = TaskWindow.taskWindow._ShipmentTaskUserControl._TextBoxAdress.Text
             };
             if (context != null)
             {
                 context.Add(address);
                 context.SaveChanges();
-                TaskWindow.task._ShipmentTaskUserControl._ComboBoxContactPerson.Items.Clear();
+                TaskWindow.taskWindow._ShipmentTaskUserControl._ComboBoxContactPerson.Items.Clear();
                 foreach (var item in ComboboxListController.GetAddresses())
                 {
-                    TaskWindow.task._ShipmentTaskUserControl._ComboBoxContactPerson.Items.Add(item.ContactPerson);
+                    TaskWindow.taskWindow._ShipmentTaskUserControl._ComboBoxContactPerson.Items.Add(item.ContactPerson);
                 }
                 return true;
             }
@@ -155,10 +140,10 @@ namespace ToolshopApp2.Controllers
             if (!IsProjectEmptyOrDuplicated(s))
             {
                 ComboboxListController.AddProject(s);
-                TaskWindow.task._SimpleTaskUserControl._ComboBoxProject.Items.Clear();
+                TaskWindow.taskWindow._SimpleTaskUserControl._ComboBoxProject.Items.Clear();
                 foreach (var item in ComboboxListController.GetProjectLists())
                 {
-                    TaskWindow.task._SimpleTaskUserControl._ComboBoxProject.Items.Add(item.Name);
+                    TaskWindow.taskWindow._SimpleTaskUserControl._ComboBoxProject.Items.Add(item.Name);
                 }
             }
         }
@@ -224,10 +209,10 @@ namespace ToolshopApp2.Controllers
             if (!IsCostCenterEmptyOrDuplicated(s))
             {
                 ComboboxListController.AddCostCenter(s);
-                TaskWindow.task._SimpleTaskUserControl._ComboBoxCostCenter.Items.Clear();
+                TaskWindow.taskWindow._SimpleTaskUserControl._ComboBoxCostCenter.Items.Clear();
                 foreach (var item in ComboboxListController.GetCostCenterLists())
                 {
-                    TaskWindow.task._SimpleTaskUserControl._ComboBoxCostCenter.Items.Add(item.Name);
+                    TaskWindow.taskWindow._SimpleTaskUserControl._ComboBoxCostCenter.Items.Add(item.Name);
                 }
             }
         }
@@ -243,13 +228,15 @@ namespace ToolshopApp2.Controllers
             {
                 if (_request.Status != "Closed")
                 {
-                    string att_dir = System.IO.Path.Combine(ConnectionString.Attachement_path, _request.Id.ToString());
-                    System.IO.Directory.CreateDirectory(att_dir);
-                    if (System.IO.Directory.Exists(att_dir))
+                    string att_dir = Path.Combine(ConnectionString.Attachement_path, _request.Id.ToString());
+                    Directory.CreateDirectory(att_dir);
+                    if (Directory.Exists(att_dir))
                     {
                         try
                         {
-                            System.IO.File.Copy(filePath, System.IO.Path.Combine(att_dir, System.IO.Path.GetFileName(filePath)), true);
+                            File.Copy(filePath, System.IO.Path.Combine(att_dir, Path.GetFileName(filePath)), true);
+                            taskWindow._TaskControlersUserControl._CheckBoxAttachement.IsChecked = true;
+                            SilentUpdateRequestInDatabase();
                             return true;
                         }
                         catch (Exception ex)
@@ -261,7 +248,6 @@ namespace ToolshopApp2.Controllers
                 else
                 {
                     MessageBox.Show("Adding attachments to closed task is unavaiable", "Attachment Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                    return true;
                 }
             }
             return false;
@@ -275,7 +261,113 @@ namespace ToolshopApp2.Controllers
             taskWindow._SimpleTaskUserControl._TextBoxDescription.Text = _request.Description;
             MailController.SendCommentNotification(s, Environment.UserName, _request);
         }
-
+        public static void GeneratePIC()
+        {
+            if (_request == null)
+            {
+                CopyPICFile(CreateTempDir());
+            }
+            else if (_request != null)
+            {
+                string att_dir = Path.Combine(ConnectionString.Attachement_path, _request.Id.ToString());
+                if (!Directory.Exists(att_dir))
+                {
+                    Directory.CreateDirectory(att_dir);
+                }
+                if (CopyPICFile(att_dir))
+                {
+                    SilentUpdateRequestInDatabase();
+                }
+            }
+        }
+        private static bool SilentUpdateRequestInDatabase()
+        {
+            var context = new DatabaseConnectionContext();
+            if (DateManagingController.IsDateAvaiable(TaskWindow.taskWindow._SimpleTaskUserControl._DatePickerDeadline.SelectedDate.Value) && context != null)
+            {
+                var oldRequest = _request;
+                _request = RequestController.UpdateRequest(_request.Id, oldRequest.User);
+                context.Update(_request);
+                context.SaveChanges();
+                return true;
+            }
+            return false;
+        }
+        private static bool UpdateRequestInDatabase()
+        {
+            var context = new DatabaseConnectionContext();
+            var oldRequest = _request;
+            if (oldRequest.Date == taskWindow._SimpleTaskUserControl._DatePickerDeadline.SelectedDate)
+            {
+                _request = RequestController.UpdateRequest(_request.Id, oldRequest.User);
+                context.Update(_request);
+                context.SaveChanges();
+                MailController.SendUpdateNotification(_request, oldRequest);
+                return true;
+            }
+            if (DateManagingController.IsDateAvaiable(TaskWindow.taskWindow._SimpleTaskUserControl._DatePickerDeadline.SelectedDate.Value) && context != null)
+            {
+                _request = RequestController.UpdateRequest(_request.Id, oldRequest.User);
+                context.Update(_request);
+                context.SaveChanges();
+                MailController.SendUpdateNotification(_request, oldRequest);
+                return true;
+            }
+            return false;
+        }
+        private static bool AddNewRequestToDatabase(List<string> filePaths)
+        {
+            var context = new DatabaseConnectionContext();
+            if (DateManagingController.IsDateAvaiable(TaskWindow.taskWindow._SimpleTaskUserControl._DatePickerDeadline.SelectedDate.Value) && context != null)
+            {
+                _request = RequestController.CreateRequest();
+                context.Add(_request);
+                context.SaveChanges();
+                if (taskWindow._TaskControlersUserControl._CheckBoxAttachement.IsChecked.Value)
+                {
+                    foreach (var filePath in filePaths)
+                        SendAttachments(filePath);
+                }
+                MailController.SendConfirmation(_request);
+                //_request = null;
+                return true;
+            }
+            return false;
+        }
+        private static bool CopyPICFile(string dest_dir_path)
+        {
+            if (Directory.Exists(dest_dir_path))
+            {
+                int i = 1;
+                string dest_file_path = Path.Combine(dest_dir_path, "PIC_" + i.ToString() + ".xlsb");
+                while (File.Exists(dest_file_path))
+                {
+                    i++;
+                    dest_file_path = Path.Combine(dest_dir_path, "PIC_" + i.ToString() + ".xlsb");
+                }
+                File.Copy(ConnectionString.PIC_source_path, dest_file_path, false);
+                Application excel = new Application();
+                Workbook wb = excel.Workbooks.Open(dest_file_path);
+                excel.Visible = true;
+                taskWindow._TaskControlersUserControl._CheckBoxAttachement.IsChecked = true;
+                return true;
+            }
+            else
+            {
+                MessageBox.Show("Problem with destination directory, please try again", "Destination Error", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+            return false;
+        }
+        private static string CreateTempDir()
+        {
+            string temp_dir = Path.Combine(@"C:\Users", Environment.UserName, @"Documents\ToolshopAppTemp");
+            if (Directory.Exists(temp_dir))
+            {
+                return temp_dir;
+            }
+            Directory.CreateDirectory(temp_dir);
+            return temp_dir;
+        }
         private static void UpdateRequestStatusInWindow()
         {
             taskWindow._SimpleTaskUserControl._TextBoxId.Text = _request.Id.ToString() + " - " + _request.Status;
@@ -284,14 +376,35 @@ namespace ToolshopApp2.Controllers
         {
             if (!UserController.IsUserToolshopMemberOrAdministator())
             {
-                taskWindow._ToolshopPartUserControl.Visibility = Visibility.Hidden;
-                taskWindow._ToolshopPartUserControl.Height = 0;
+                taskWindow._ToolshopPartUserControl.Visibility = Visibility.Collapsed;
+            }
+            if (!(_request == null))
+            {
+                if (_request.Status == "Closed")
+                {
+                    taskWindow._TaskControlersUserControl.Visibility = Visibility.Collapsed;
+                    //taskWindow._CommentPartUserControl.Visibility = Visibility.Collapsed;
+                }
             }
         }
-        private static void HideCommentPart(TaskWindow taskWindow)
+        private static void HideControls(TaskWindow taskWindow)
         {
-            taskWindow._CommentPartUserControl.Visibility = Visibility.Hidden;
-            taskWindow._CommentPartUserControl.Height = 0;
+            taskWindow._CommentPartUserControl.Visibility = Visibility.Collapsed;
+            taskWindow._TaskControlersUserControl._ButtonAttachFile.Visibility = Visibility.Collapsed;
+            taskWindow._TaskControlersUserControl._ButtonGeneratePIC.Visibility = Visibility.Collapsed;
+            taskWindow._TaskControlersUserControl._ButtonOpenAttachments.Visibility = Visibility.Collapsed;
+            taskWindow._TaskControlersUserControl._CheckBoxAttachement.Visibility = Visibility.Collapsed;
+            taskWindow._TaskControlersUserControl._CloseWindowButton.Visibility = Visibility.Collapsed;
+        }
+        public static void ShowControls()
+        {
+            taskWindow._CommentPartUserControl.Visibility = Visibility.Visible;
+            taskWindow._TaskControlersUserControl._ButtonAttachFile.Visibility = Visibility.Visible;
+            taskWindow._TaskControlersUserControl._ButtonGeneratePIC.Visibility = Visibility.Visible;
+            taskWindow._TaskControlersUserControl._ButtonOpenAttachments.Visibility = Visibility.Visible;
+            taskWindow._TaskControlersUserControl._CheckBoxAttachement.Visibility = Visibility.Visible;
+            taskWindow._TaskControlersUserControl._CloseWindowButton.Visibility = Visibility.Visible;
+            taskWindow._TaskControlersUserControl._AddRequest.Content = "Update Request";
         }
         private static void LoadComboboxItems(TaskWindow taskWindow)
         {
@@ -316,7 +429,7 @@ namespace ToolshopApp2.Controllers
                 taskWindow._ShipmentTaskUserControl._ComboBoxContactPerson.Items.Add(item.ContactPerson);
             }
         }
-        public static void TextboxOnlyNumeric(TextBox textBox)
+        public static void TextboxOnlyNumeric(System.Windows.Controls.TextBox textBox)
         {
             var tuple = IsStringOnlyNumeric(textBox.Text, textBox.CaretIndex);
             textBox.Text = tuple.Item1;
@@ -364,6 +477,29 @@ namespace ToolshopApp2.Controllers
                     return true;
             }
             return false;
+        }
+        private static void ClearTempDir()
+        {
+            string temp_dir = Path.Combine(@"C:\Users", Environment.UserName, @"Documents\ToolshopAppTemp");
+            if (Directory.Exists(temp_dir))
+            {
+                List<string> temp_files = new List<string>();
+                foreach (var file in Directory.GetFiles(temp_dir))
+                {
+                    temp_files.Add(file);
+                }
+                if (temp_files.Count > 0)
+                {
+                    if (MessageBox.Show("You have prepared PIC files. Do you want to store them? If No, then will be deleted!", "PIC folder not empty", MessageBoxButton.YesNo, MessageBoxImage.Question, MessageBoxResult.Yes)
+                        == MessageBoxResult.No)
+                    {
+                        foreach (var file in temp_files)
+                        {
+                            File.Delete(file);
+                        }
+                    }
+                }
+            }
         }
     }
 }
