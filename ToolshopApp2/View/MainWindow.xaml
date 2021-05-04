@@ -10,7 +10,7 @@
         mc:Ignorable="d"
         x:Name="_MainWindow"  Title="ToolshopApp2" Height="856.5" Width="1269.5">
     <Grid Background="Black">
-        
+
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="71*"/>
             <ColumnDefinition Width="325*"/>
@@ -52,7 +52,7 @@
                                     </DataTrigger>
                                 </Style.Triggers>
                             </Style>
-                        </DataGrid.RowStyle>                            
+                        </DataGrid.RowStyle>
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="Id" Binding="{Binding Path=Id}"/>
                             <DataGridTextColumn Header="User" Binding="{Binding Path=User}"/>
@@ -71,7 +71,7 @@
                             <DataGridTextColumn Header="Deadline" Binding="{Binding Path=Date, StringFormat=d}" SortDirection="Ascending"/>
                             <DataGridTextColumn Header="Created" Binding="{Binding Path=CreationTime, StringFormat=d}"/>
                             <DataGridCheckBoxColumn Header="Attach" Binding="{Binding Path=Attachment}"/>
-                        </DataGrid.Columns>                        
+                        </DataGrid.Columns>
                     </DataGrid>
 
                     <Button x:Name="_ButtonRefresh" Click="_ButtonRefresh_Click" Content="Refresh" HorizontalAlignment="Left" VerticalAlignment="Top" Width="76" Height="26" Background="#FF474747" Foreground="White" BorderBrush="White"/>
@@ -97,9 +97,13 @@
                     <DatePicker x:Name="_DatepickerFrom" HorizontalAlignment="Left" Margin="611,25,0,0" VerticalAlignment="Top"/>
                     <DatePicker x:Name="_DatepickerTo" HorizontalAlignment="Left" Margin="718,25,0,0" VerticalAlignment="Top"/>
                     <Button x:Name="_ButtonDuplicate" Click="_ButtonDuplicate_Click"  Content="Duplicate" HorizontalAlignment="Left" Margin="820,26,0,0" VerticalAlignment="Top" Width="75" Grid.RowSpan="2" Height="22" Background="#FF474747" Foreground="White" BorderBrush="White"/>
+                    <Button x:Name="_ButtonExport" Content="To Excel" Click="_ButtonExport_Click" HorizontalAlignment="Left" Margin="820,0,0,0" VerticalAlignment="Top" Width="75" Height="26" Background="#FF474747" Foreground="White" BorderBrush="White"/>                </Grid>
+            </TabItem>
+            <TabItem Header="User Data" HorizontalAlignment="Left" Height="20" VerticalAlignment="Top" Width="100">
+                <Grid Background="Black">
+                    <MainWindowControllers:UserDataUserControl HorizontalAlignment="Stretch" Margin="10,10,10,10" VerticalAlignment="Stretch"/>
                 </Grid>
             </TabItem>
-
             <TabItem x:Name="_TabItemListOfPCDishwashers" Header="List of PC Dishwashers">
                 <Grid x:Name="_GridListOfPCDishwashers" Background="Black"/>
             </TabItem>
@@ -107,28 +111,45 @@
             <TabItem x:Name="_TabItemAdministrator" Header="Administrator">
                 <Grid x:Name="_GridAdministartor" Background="Black">
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="40"/>
-                        <RowDefinition Height="541*"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
-                    <Button x:Name="_ButtonAddValuesView" Content="Add Values" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="75" Height="20" Click="_ButtonAddValuesViewClick"/>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Button x:Name="_ButtonAddValuesView" Content="Add Values" Grid.Column="1" Grid.Row="0" Margin="10" MinWidth="75" MinHeight="20" Click="_ButtonAddValuesViewClick" Background="#FF474747" Foreground="White" BorderBrush="White"/>
+                    <Button x:Name="_ButtonDataView" Content="Data View" Grid.Column="2" Grid.Row="0" Margin="10" MinWidth="75" Click="_ButtonDataViewClick" Background="#FF474747" Foreground="White" BorderBrush="White"/>
+                    <Button x:Name="_ButtonSelectDatabase" Click="_ButtonSelectDatabase_Click" Content="Select Database" Grid.Column="3" Grid.Row="0" Margin="10" Background="#FF474747" Foreground="White" BorderBrush="White"/>
                     <UserControlers:AdministratorAddValuesToDatabaseUserControl 
                         x:Name="_AdministratorAddValuesToDatabaseUserControl" 
                         HorizontalAlignment="Stretch" 
                         Grid.Row="1" 
-                        VerticalAlignment="Stretch"/>
+                        Grid.Column="1"
+                        Grid.ColumnSpan="3">
+                    </UserControlers:AdministratorAddValuesToDatabaseUserControl>
                     <UserControlers:AdministratorDataViewUserControl
                         x:Name="_AdministratorDataViewUserControl"
                         HorizontalAlignment="Stretch" 
                         Grid.Row="1" 
-                        VerticalAlignment="Stretch"/>
-                    <Button x:Name="_ButtonDataView" Content="Data View" HorizontalAlignment="Left" Margin="90,10,0,0" VerticalAlignment="Top" Width="75" Click="_ButtonDataViewClick"/>
+                        Grid.Column="1"
+                        Grid.ColumnSpan="3">
+                    </UserControlers:AdministratorDataViewUserControl>
+                    <MainWindowControllers:SelectDatabaseUserControl
+                        x:Name="_SelectDatabaseUserControl"
+                        HorizontalAlignment="Stretch" 
+                        Grid.Row="1" 
+                        Grid.Column="1"
+                        Grid.ColumnSpan="3">
+
+                    </MainWindowControllers:SelectDatabaseUserControl>
                 </Grid>
             </TabItem>
-            <TabItem Header="User Data" HorizontalAlignment="Left" Height="20" VerticalAlignment="Top" Width="100">
-                <Grid Background="Black">
-                    <MainWindowControllers:UserDataUserControl HorizontalAlignment="Stretch" Margin="10,10,10,10" VerticalAlignment="Stretch"/>
-                </Grid>
-            </TabItem>
+
 
         </TabControl>
         <Label x:Name="_LabelVersionName" Content="Version:" HorizontalAlignment="Left" Grid.Row="3" VerticalAlignment="Top" Height="24" Width="56" Foreground="White"/>

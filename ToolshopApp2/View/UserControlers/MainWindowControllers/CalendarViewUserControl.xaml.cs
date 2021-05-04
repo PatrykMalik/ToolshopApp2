@@ -99,7 +99,7 @@ namespace ToolshopApp2.View.UserControlers.MainWindowControllers
             if (DateManagingController.IsBlockedDateByToolshop(DateTime.Parse(L_Pon.Content.ToString())))
             {
                 _MondayCheckbox.IsChecked = true;
-                if (!UserController.IsUserAdministartor(user))
+                if (!UserController.IsUserToolshopMemberOrAdministator(user))
                 {
                     _MondayCheckbox.IsEnabled = false;
                 }
@@ -107,12 +107,15 @@ namespace ToolshopApp2.View.UserControlers.MainWindowControllers
             else
             {
                 _MondayCheckbox.IsChecked = false;
-                _MondayCheckbox.IsEnabled = true;
+                if (UserController.IsUserToolshopMemberOrAdministator(user))
+                {
+                    _MondayCheckbox.IsEnabled = false;
+                }
             }
             if (DateManagingController.IsBlockedDateByToolshop(DateTime.Parse(L_Wto.Content.ToString())))
             {
                 _TuesdayCheckbox.IsChecked = true;
-                if (!UserController.IsUserAdministartor(user))
+                if (!UserController.IsUserToolshopMemberOrAdministator(user))
                 {
                     _TuesdayCheckbox.IsEnabled = false;
                 }
@@ -120,12 +123,15 @@ namespace ToolshopApp2.View.UserControlers.MainWindowControllers
             else
             {
                 _TuesdayCheckbox.IsChecked = false;
-                _TuesdayCheckbox.IsEnabled = true;
+                if (UserController.IsUserToolshopMemberOrAdministator(user))
+                {
+                    _TuesdayCheckbox.IsEnabled = true;
+                }
             }
             if (DateManagingController.IsBlockedDateByToolshop(DateTime.Parse(L_Sro.Content.ToString())))
             {
                 _WednesdayCheckbox.IsChecked = true;
-                if (!UserController.IsUserAdministartor(user))
+                if (!UserController.IsUserToolshopMemberOrAdministator(user))
                 {
                     _WednesdayCheckbox.IsEnabled = false;
                 }
@@ -133,12 +139,15 @@ namespace ToolshopApp2.View.UserControlers.MainWindowControllers
             else
             {
                 _WednesdayCheckbox.IsChecked = false;
-                _WednesdayCheckbox.IsEnabled = true;
+                if (UserController.IsUserToolshopMemberOrAdministator(user))
+                {
+                    _WednesdayCheckbox.IsEnabled = true;
+                }
             }
             if (DateManagingController.IsBlockedDateByToolshop(DateTime.Parse(L_Czw.Content.ToString())))
             {
                 _ThursdayCheckbox.IsChecked = true;
-                if (!UserController.IsUserAdministartor(user))
+                if (!UserController.IsUserToolshopMemberOrAdministator(user))
                 {
                     _ThursdayCheckbox.IsEnabled = false;
                 }
@@ -146,12 +155,15 @@ namespace ToolshopApp2.View.UserControlers.MainWindowControllers
             else
             {
                 _ThursdayCheckbox.IsChecked = false;
-                _ThursdayCheckbox.IsEnabled = true;
+                if (UserController.IsUserToolshopMemberOrAdministator(user))
+                {
+                    _ThursdayCheckbox.IsEnabled = true;
+                }
             }
             if (DateManagingController.IsBlockedDateByToolshop(DateTime.Parse(L_Ptk.Content.ToString())))
             {
                 _FridayCheckbox.IsChecked = true;
-                if (!UserController.IsUserAdministartor(user))
+                if (!UserController.IsUserToolshopMemberOrAdministator(user))
                 {
                     _FridayCheckbox.IsEnabled = false;
                 }
@@ -159,7 +171,10 @@ namespace ToolshopApp2.View.UserControlers.MainWindowControllers
             else
             {
                 _FridayCheckbox.IsChecked = false;
-                _FridayCheckbox.IsEnabled = true;
+                if (UserController.IsUserToolshopMemberOrAdministator(user))
+                {
+                    _FridayCheckbox.IsEnabled = true;
+                }                    
             }
         }
 
@@ -326,7 +341,6 @@ namespace ToolshopApp2.View.UserControlers.MainWindowControllers
                 _ThursdayCheckbox.IsEnabled = false;
             }
         }
-
         private void _FridayCheckbox_Click(object sender, RoutedEventArgs e)
         {
             BlockDateIfTrue(_FridayCheckbox.IsChecked.Value, DateTime.Parse(L_Ptk.Content.ToString()));

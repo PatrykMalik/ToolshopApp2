@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ToolshopApp2.Model
 {
-    class BlockedDay
+    public class BlockedDay
     {
         [Key]
         public int Id { get; set; }

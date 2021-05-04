@@ -25,10 +25,5 @@ namespace ToolshopApp2.View.UserControlers
         {
 
         }
-
-        private void _DataGridDatabaseView_CellEditEnding(object sender, DataGridCellEditEndingEventArgs e)
-        {
-
-        }
     }
 }

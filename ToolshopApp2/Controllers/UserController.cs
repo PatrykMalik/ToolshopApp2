@@ -8,8 +8,6 @@ namespace ToolshopApp2.Controllers
 {
     public static class UserController
     {
-        //static DatabaseConnectionContext _context = new DatabaseConnectionContext();
-
         public static bool UserExistInDatabase()
         {
             DatabaseConnectionContext _context = new DatabaseConnectionContext();
@@ -20,6 +18,14 @@ namespace ToolshopApp2.Controllers
         {
             DatabaseConnectionContext _context = new DatabaseConnectionContext();
             return _context.Users.Where(u => u.Name == Environment.UserName.ToLower() && u.KindOfUserId > 1).FirstOrDefault() != null;
+        }
+        public static bool IsUserToolshopMemberOrAdministator(User user)
+        {
+            if (user == null)
+            {
+                return false;
+            }
+            return user.KindOfUserId > 1;
         }
 
         public static bool IsUserAdministartor()

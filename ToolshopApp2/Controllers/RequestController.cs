@@ -4,14 +4,14 @@ using System.Linq;
 using ToolshopApp2.Model;
 using ToolshopApp2.View;
 using ToolshopApp2.Data;
-using Microsoft.Office.Interop.Excel;
+using System.Data;
+using System.Reflection;
+//using Microsoft.Office.Interop.Excel;
 
 namespace ToolshopApp2.Controllers
 {
     public class RequestController
     {
-        //private static DatabaseConnectionContext _context = new DatabaseConnectionContext();
-        
         public static Request CreateRequest()
         {
             var request = new Request()
@@ -24,8 +24,6 @@ namespace ToolshopApp2.Controllers
                 Description = TaskWindow.taskWindow._SimpleTaskUserControl._TextBoxDescription.Text,
                 CostCenter = TaskWindow.taskWindow._SimpleTaskUserControl._ComboBoxCostCenter.Text,
                 Status = "Open",
-                //Status = new RequestStatus { StatusId = 1 },
-                //RequestStatus = new RequestStatus(),
                 Attachment = TaskWindow.taskWindow._TaskControlersUserControl._CheckBoxAttachement.IsChecked.Value,
                 CreationTime = DateTime.UtcNow
             };
@@ -42,17 +40,7 @@ namespace ToolshopApp2.Controllers
             }
             if (UserController.IsUserToolshopMemberOrAdministator())
             {
-                //request.Srz1 = TaskWindow.task._ToolshopPartUserControl._TextBoxSrz_1.Text;
-                //request.Srz2 = TaskWindow.task._ToolshopPartUserControl._TextBoxSrz_2.Text;
-                //request.Srz3 = TaskWindow.task._ToolshopPartUserControl._TextBoxSrz_3.Text;
-                //request.Srz4 = TaskWindow.task._ToolshopPartUserControl._TextBoxSrz_4.Text;
-                //request.Srz5 = TaskWindow.task._ToolshopPartUserControl._TextBoxSrz_5.Text;
-                //request.Swz1 = TaskWindow.task._ToolshopPartUserControl._TextBoxSwz_1.Text;
-                //request.Swz2 = TaskWindow.task._ToolshopPartUserControl._TextBoxSwz_2.Text;
-                //request.Swz3 = TaskWindow.task._ToolshopPartUserControl._TextBoxSwz_3.Text;
-                //request.Swz4 = TaskWindow.task._ToolshopPartUserControl._TextBoxSwz_4.Text;
-                //request.Swz5 = TaskWindow.task._ToolshopPartUserControl._TextBoxSwz_5.Text;
-                //request.DescpriptionToolshop = TaskWindow.task._ToolshopPartUserControl._TextBoxDescription.Text;
+                request.Time = TaskWindow.taskWindow._ToolshopPartUserControl._TextBoxTime.Text;
             }
             return request;
         }
@@ -60,7 +48,7 @@ namespace ToolshopApp2.Controllers
         public static Request UpdateRequest(int id, string user)
         {
             DatabaseConnectionContext context = new DatabaseConnectionContext();
-            
+
             var request = new Request()
             {
                 Id = id,
@@ -88,62 +76,58 @@ namespace ToolshopApp2.Controllers
             }
             if (UserController.IsUserToolshopMemberOrAdministator())
             {
-                //request.Srz1 = TaskWindow.task._ToolshopPartUserControl._TextBoxSrz_1.Text;
-                //request.Srz2 = TaskWindow.task._ToolshopPartUserControl._TextBoxSrz_2.Text;
-                //request.Srz3 = TaskWindow.task._ToolshopPartUserControl._TextBoxSrz_3.Text;
-                //request.Srz4 = TaskWindow.task._ToolshopPartUserControl._TextBoxSrz_4.Text;
-                //request.Srz5 = TaskWindow.task._ToolshopPartUserControl._TextBoxSrz_5.Text;
-                //request.Swz1 = TaskWindow.task._ToolshopPartUserControl._TextBoxSwz_1.Text;
-                //request.Swz2 = TaskWindow.task._ToolshopPartUserControl._TextBoxSwz_2.Text;
-                //request.Swz3 = TaskWindow.task._ToolshopPartUserControl._TextBoxSwz_3.Text;
-                //request.Swz4 = TaskWindow.task._ToolshopPartUserControl._TextBoxSwz_4.Text;
-                //request.Swz5 = TaskWindow.task._ToolshopPartUserControl._TextBoxSwz_5.Text;
-                //request.DescpriptionToolshop = TaskWindow.task._ToolshopPartUserControl._TextBoxDescription.Text;
+                request.Time = TaskWindow.taskWindow._ToolshopPartUserControl._TextBoxTime.Text;
             }
             return request;
         }
-
         public static Request GetRequest(int id)
         {
             DatabaseConnectionContext context = new DatabaseConnectionContext();
             return context.Requests.Where(x => x.Id == id).FirstOrDefault();
         }
-
-        public  static void AcceptRequest(Request request)
+        public static void AcceptRequest(Request request)
         {
             request.Status = "Accepted";
             var context = new DatabaseConnectionContext();
             context.Update(request);
             context.SaveChanges();
         }
-
-        public static void AddComment(string comment)
-        {
-
-        }
-
         public static IEnumerable<Request> GetRequests()
         {
             var context = new DatabaseConnectionContext();
             return context.Requests.ToArray<Request>();
         }
-        
+        public static DataTable GetRequestsTable()
+        {
+            var context = new DatabaseConnectionContext();
+            var requestTable = new DataTable(typeof(Request).Name);
+            var list = context.Requests.ToArray<Request>();
+            PropertyInfo[] properties = typeof(Request).GetProperties(BindingFlags.Public | BindingFlags.Instance);
+
+            foreach (var prop in properties)
+            {
+                requestTable.Columns.Add(prop.Name);
+            }
+            foreach (var item in list)
+            {
+                var values = new object[properties.Length];
+                for (var i = 0; i < properties.Length; i++)
+                {
+                    values[i] = properties[i].GetValue(item, null);
+                }
+                requestTable.Rows.Add(values);
+            }
+            return requestTable;
+        }
         public static IEnumerable<Request> GetOpenRequests()
         {
             var context = new DatabaseConnectionContext();
             return context.Requests.Where<Request>(x => x.Status == "Open").ToList();
         }
-        
         public static IEnumerable<Request> GetRequests(DateTime date)
         {
             DatabaseConnectionContext context = new DatabaseConnectionContext();
             return context.Requests.Where(p => p.Date == date).ToArray<Request>();
-        }
-        
-        public static RequestStatus GetStatus(int id)
-        {
-            //return _context.RequestStatuses.Where(i => i.StatusId == id).FirstOrDefault<RequestStatus>();
-            return null;
         }
     }
 }

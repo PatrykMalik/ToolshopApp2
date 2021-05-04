@@ -8,11 +8,20 @@
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="40"/>
-            <RowDefinition Height="407*"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <Button x:Name="_ButtonShowUsers" Click="_ButtonShowUsersClick" Content="Show Users" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="75" Background="#FF474747" Foreground="White" BorderBrush="White"/>
-        <Button x:Name="_ButtonShowProject" Click="_ButtonShowProjectClick"  Content="Show Project" HorizontalAlignment="Left" Margin="90,10,0,0" VerticalAlignment="Top" Width="75" Background="#FF474747" Foreground="White" BorderBrush="White"/>
-        <DataGrid x:Name="_DataGridDatabaseView" Grid.Row="1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" CellEditEnding="_DataGridDatabaseView_CellEditEnding" />
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Button x:Name="_ButtonShowUsers" Click="_ButtonShowUsersClick" Content="Show Users" Grid.Column="1" Grid.Row="0" Margin="10" MinWidth="75" MinHeight="40" Background="#FF474747" Foreground="White" BorderBrush="White"/>
+        <Button x:Name="_ButtonShowProject" Click="_ButtonShowProjectClick"  Content="Show Project" Grid.Column="2" Grid.Row="0" Margin="10" MinWidth="75" Background="#FF474747" Foreground="White" BorderBrush="White"/>
+       
+        <DataGrid x:Name="_DataGridDatabaseView" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"/>
     </Grid>
 </UserControl>

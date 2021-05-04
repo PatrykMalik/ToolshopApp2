@@ -22,7 +22,6 @@ namespace ToolshopApp2.Controllers
             }
             return true;
         }
-
         public static bool IsSelectedDateOnWeekend(DateTime dateToCheck)
         {
             if (dateToCheck.DayOfWeek == DayOfWeek.Saturday || dateToCheck.DayOfWeek == DayOfWeek.Sunday)
@@ -63,33 +62,14 @@ namespace ToolshopApp2.Controllers
         public static bool IsBlockedDateByToolshop(DateTime dateToCheck)
         {
             var context = new DatabaseConnectionContext();
-            foreach (var date in context.BlockedDays)
-            {
-                if (dateToCheck == date.blockedDate)
-                {
-                    return true;
-                }
-            }
-            return false;
+            return (context.BlockedDays.Where(x => x.blockedDate == dateToCheck).FirstOrDefault() != null) ;
         }
 
         private static bool IsAvaiableSpaceInSelectedDate(DateTime dateToCheck)
         {
             var context = new DatabaseConnectionContext();
-            var ts = context.Requests.Where(t => t.Date == dateToCheck).ToList();
-            if (ts == null)
-            {
-                return true;
-            }
-            else if (ts.Count < 6)
-            {
-                return true;
-            }
-            else
-                return false;
+            return (context.Requests.Where(t => t.Date == dateToCheck).Count() < 6);
         }
-
-
     }
 }
 

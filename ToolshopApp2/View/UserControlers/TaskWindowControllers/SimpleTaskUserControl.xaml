@@ -43,7 +43,7 @@
             Task description:
         </TextBlock>
         <TextBox x:Name="_TextBoxDescription" Grid.Column="1" Grid.ColumnSpan="3" Grid.Row="6" Margin="5" TextWrapping="Wrap" 
-                 SpellCheck.IsEnabled="True" AcceptsReturn="True" MinHeight="200" MaxHeight="500" MaxWidth="700" 
+                 SpellCheck.IsEnabled="True" AcceptsReturn="True" MinHeight="200" MaxHeight="400" MaxWidth="700" 
                  Background="#FFECECEC" MaxLines="50" MaxLength="2000" VerticalScrollBarVisibility="Auto" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" Grid.IsSharedSizeScope="True">
             Description
         </TextBox>

@@ -30,7 +30,6 @@ namespace ToolshopApp2.Controllers
             };
             context.Add(classyfyList);
             context.SaveChanges();
-
         }
         public static void AddProject(string s)
         {
@@ -56,53 +55,28 @@ namespace ToolshopApp2.Controllers
         public static IEnumerable<TaskList> GetTaskLists()
         {
             var context = new DatabaseConnectionContext();
-            List<TaskList> taskList = new List<TaskList>();
-            foreach (TaskList task in context.TaskLists)
-            {
-                taskList.Add(task);
-            }
-            return taskList;
+            return context.TaskLists;            
         }
         
         public static IEnumerable<ClassyfyList> GetClassyfyLists()
         {
             var context = new DatabaseConnectionContext();
-            List<ClassyfyList> taskList = new List<ClassyfyList>();
-            foreach (var task in context.ClassyfyLists)
-            {
-                taskList.Add(task);
-            }
-            return taskList;
+            return context.ClassyfyLists;            
         }
         public static IEnumerable<ProjectList> GetProjectLists()
         {
             var context = new DatabaseConnectionContext();
-            List<ProjectList> taskList = new List<ProjectList>();
-            foreach (var task in context.ProjectLists)
-            {
-                taskList.Add(task);
-            }
-            return taskList;
+            return context.ProjectLists;     
         }
         public static IEnumerable<CostCenterList> GetCostCenterLists()
         {
             var context = new DatabaseConnectionContext();
-            List<CostCenterList> taskList = new List<CostCenterList>();
-            foreach (var task in context.CostCenterLists)
-            {
-                taskList.Add(task);
-            }
-            return taskList;
+            return context.CostCenterLists;           
         }
         public static IEnumerable<Address> GetAddresses()
         {
             var context = new DatabaseConnectionContext();
-            List<Address> addresses = new List<Address>();
-            foreach (var address in context.Addresses)
-            {
-                addresses.Add(address);
-            }
-            return addresses;
+            return context.Addresses;
         }
         public static Address GetAddress(string contactPerson)
         {

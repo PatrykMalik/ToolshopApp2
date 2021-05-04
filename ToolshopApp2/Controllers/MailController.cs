@@ -54,7 +54,7 @@ namespace ToolshopApp2.Controllers
                 sendmail(user.Emial,
                     "New comment added by " + user.Name + " to task: " + request.Id,
                     comment);
-                if(user != owner)
+                if(user.Name != owner.Name)
                 {
                     sendmail(owner.Emial,
                         "New comment added by " + user.Name + " to task: " + request.Id,

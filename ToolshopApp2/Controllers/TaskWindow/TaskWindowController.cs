@@ -283,9 +283,16 @@ namespace ToolshopApp2.Controllers
         private static bool SilentUpdateRequestInDatabase()
         {
             var context = new DatabaseConnectionContext();
-            if (DateManagingController.IsDateAvaiable(TaskWindow.taskWindow._SimpleTaskUserControl._DatePickerDeadline.SelectedDate.Value) && context != null)
+            var oldRequest = _request;
+            if (oldRequest.Date == taskWindow._SimpleTaskUserControl._DatePickerDeadline.SelectedDate)
+            {                
+                _request = RequestController.UpdateRequest(_request.Id, oldRequest.User);
+                context.Update(_request);
+                context.SaveChanges();
+                return true;
+            }
+            else if (DateManagingController.IsDateAvaiable(TaskWindow.taskWindow._SimpleTaskUserControl._DatePickerDeadline.SelectedDate.Value) && context != null)
             {
-                var oldRequest = _request;
                 _request = RequestController.UpdateRequest(_request.Id, oldRequest.User);
                 context.Update(_request);
                 context.SaveChanges();
@@ -305,7 +312,7 @@ namespace ToolshopApp2.Controllers
                 MailController.SendUpdateNotification(_request, oldRequest);
                 return true;
             }
-            if (DateManagingController.IsDateAvaiable(TaskWindow.taskWindow._SimpleTaskUserControl._DatePickerDeadline.SelectedDate.Value) && context != null)
+            else if (DateManagingController.IsDateAvaiable(TaskWindow.taskWindow._SimpleTaskUserControl._DatePickerDeadline.SelectedDate.Value) && context != null)
             {
                 _request = RequestController.UpdateRequest(_request.Id, oldRequest.User);
                 context.Update(_request);

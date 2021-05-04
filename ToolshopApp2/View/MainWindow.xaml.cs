@@ -7,11 +7,12 @@ using ToolshopApp2.View;
 using ToolshopApp2.Controllers;
 using System.Globalization;
 using System.Threading;
-//using Microsoft.Office.Interop.Excel;
 using System.Data;
 using System.ComponentModel;
 using System.Collections.ObjectModel;
 using ToolshopApp2.Model;
+using ClosedXML.Excel;
+using System.Windows.Forms;
 
 namespace ToolshopApp2
 {
@@ -38,7 +39,7 @@ namespace ToolshopApp2
                     {
                         proceedInitialazig = false;
                         this.Close();
-                    }                        
+                    }
                 }
                 if (proceedInitialazig)
                 {
@@ -53,9 +54,8 @@ namespace ToolshopApp2
                         _TabItemListOfPCDishwashers.Visibility = Visibility.Hidden;
                         _TabItemAdministrator.Visibility = Visibility.Hidden;
                     }
-
                     SetComboboxes();
-                    RefrashDataGrid();
+                    RefreshDataGrid();
                     if (System.Deployment.Application.ApplicationDeployment.IsNetworkDeployed)
                     {
                         _LabelVersionNumber.Content = System.Deployment.Application.ApplicationDeployment.CurrentDeployment.CurrentVersion.ToString();
@@ -63,9 +63,9 @@ namespace ToolshopApp2
 
                     else
                     {
-                        _LabelVersionNumber.Content = "0.0.0.12";
+                        _LabelVersionNumber.Content = "0.0.0.13";
                     }
-                }                
+                }
             }
             catch (Exception ex)
             {
@@ -132,7 +132,7 @@ namespace ToolshopApp2
             return false;
         }
 
-        private void RefrashDataGrid()
+        private void RefreshDataGrid()
         {
             var ObColl = new ObservableCollection<Request>();
             foreach (var model in RequestController.GetRequests())
@@ -150,6 +150,7 @@ namespace ToolshopApp2
         {
             _AdministratorAddValuesToDatabaseUserControl.Visibility = Visibility.Hidden;
             _AdministratorDataViewUserControl.Visibility = Visibility.Hidden;
+            _SelectDatabaseUserControl.Visibility = Visibility.Hidden;
         }
 
         private void _ButtonNewTaskClick(object sender, RoutedEventArgs e)
@@ -176,12 +177,12 @@ namespace ToolshopApp2
 
         private void _DataGridAllRequestsMouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            DataGrid dg = (DataGrid)sender;
+            System.Windows.Controls.DataGrid dg = (System.Windows.Controls.DataGrid)sender;
             var row = dg.SelectedItem;
             if (row != null)
             {
                 TaskWindowController.InitializeTaskWindow(row);
-                RefrashDataGrid();
+                RefreshDataGrid();
             }
         }
 
@@ -209,7 +210,7 @@ namespace ToolshopApp2
 
         private void _ButtonRefresh_Click(object sender, RoutedEventArgs e)
         {
-            RefrashDataGrid();
+            RefreshDataGrid();
         }
 
         private void _ButtonClear_Click(object sender, RoutedEventArgs e)
@@ -227,6 +228,31 @@ namespace ToolshopApp2
         {
             var row = _DataGridAllRequests.SelectedItem;
             TaskWindowController.DuplicateTask(row);
+        }
+
+        private void _ButtonSelectDatabase_Click(object sender, RoutedEventArgs e)
+        {
+            _SelectDatabaseUserControl.Visibility = Visibility.Visible;
+        }
+
+        private void _ButtonExport_Click(object sender, RoutedEventArgs e)
+        {
+            var workbook = new XLWorkbook();
+            var table = RequestController.GetRequestsTable();
+            workbook.Worksheets.Add(table, "Export");
+
+            var savefiledialog = new SaveFileDialog();
+            savefiledialog.FileName = "ToolshopExport" + DateTime.Now.ToShortDateString().Replace(".", "").Replace("/", "").Replace("-", "").Replace("\\", "") + DateTime.Now.Hour + DateTime.Now.Minute;
+            savefiledialog.DefaultExt = "xlsx";
+            savefiledialog.Filter = "Excel Files (*.xlsx)|*.xlsx";
+            savefiledialog.FilterIndex = 1;
+            savefiledialog.RestoreDirectory = true;
+
+            if (savefiledialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                workbook.SaveAs(savefiledialog.FileName);                       
+            }
+
         }
     }
 }

@@ -15,7 +15,8 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
-        <TextBox x:Name="_TextboxComment" Grid.Row="1" Grid.Column="1" Margin="5 0 20 0" MinWidth="420" MaxWidth="700">
+        <TextBox x:Name="_TextboxComment" Grid.Row="1" Grid.Column="1" Margin="5 0 20 0" MinWidth="420" MaxWidth="700" 
+                 MaxHeight="200" VerticalScrollBarVisibility="Auto" AcceptsReturn="True">
             Note
         </TextBox>
         <Button x:Name="_ButtonAddComment" Grid.Row="0" Grid.Column="2" MinWidth="80" Margin="10 0 10 0" Click="_ButtonAddComment_Click"
