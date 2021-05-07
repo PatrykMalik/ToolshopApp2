@@ -22,7 +22,7 @@ namespace ToolshopApp2.Data
         public DbSet<BlockedDay> BlockedDays { get; set; }
         public DbSet<Address> Addresses { get; set; }
         public DbSet<AcceptanceDate> AcceptanceDates { get; set; }
-
+        public DbSet<DishwashersOnStock> DishwashersOnStock { get; set; }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlServer(ConnectionString.connectionString);

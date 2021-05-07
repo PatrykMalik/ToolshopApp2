@@ -33,7 +33,7 @@
     <PublisherName>Patryk Malik</PublisherName>
     <WebPage>publish.htm</WebPage>
     <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
-    <ApplicationRevision>14</ApplicationRevision>
+    <ApplicationRevision>15</ApplicationRevision>
     <ApplicationVersion>0.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -242,6 +242,7 @@
     </ApplicationDefinition>
     <Compile Include="Controllers\AutomaticAcceptanceController.cs" />
     <Compile Include="Controllers\DateManagingController.cs" />
+    <Compile Include="Controllers\DishwasherOnStockController.cs" />
     <Compile Include="Controllers\LogSingleton.cs" />
     <Compile Include="Controllers\MailController.cs" />
     <Compile Include="Controllers\MainWindow\ComboboxListController.cs" />
@@ -322,6 +323,10 @@
     <Compile Include="Migrations\20200724100017_acceptanceDate.designer.cs">
       <DependentUpon>20200724100017_acceptanceDate.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\20210507093917_DishwasherOnStock.cs" />
+    <Compile Include="Migrations\20210507093917_DishwasherOnStock.designer.cs">
+      <DependentUpon>20210507093917_DishwasherOnStock.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\DatabaseConnectionContextModelSnapshot.cs" />
     <Compile Include="Migrations\LocalDatabaseConnection\20210224094823_initial_localDB.cs" />
     <Compile Include="Migrations\LocalDatabaseConnection\20210224094823_initial_localDB.designer.cs">
@@ -333,12 +338,19 @@
     <Compile Include="Model\BlockedDay.cs" />
     <Compile Include="Model\ClassyfyList.cs" />
     <Compile Include="Model\CostCenterList.cs" />
+    <Compile Include="Model\DishwashersOnStock.cs" />
     <Compile Include="Model\KindOfUser.cs" />
     <Compile Include="Model\ProjectList.cs" />
     <Compile Include="Model\RequestStatus.cs" />
     <Compile Include="Model\TaskList.cs" />
     <Compile Include="Model\User.cs" />
+    <Compile Include="View\AddDishwaserWindow.xaml.cs">
+      <DependentUpon>AddDishwaserWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\CulturecInfo.cs" />
+    <Compile Include="View\EditDishwaserWindow.xaml.cs">
+      <DependentUpon>EditDishwaserWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\TaskWindow.xaml.cs">
       <DependentUpon>TaskWindow.xaml</DependentUpon>
     </Compile>
@@ -350,6 +362,9 @@
     </Compile>
     <Compile Include="View\UserControlers\MainWindowControllers\CalendarViewUserControl.xaml.cs">
       <DependentUpon>CalendarViewUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\UserControlers\MainWindowControllers\DishwasersOnStockUserControl.xaml.cs">
+      <DependentUpon>DishwasersOnStockUserControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\UserControlers\MainWindowControllers\SelectDatabaseUserControl.xaml.cs">
       <DependentUpon>SelectDatabaseUserControl.xaml</DependentUpon>
@@ -385,6 +400,14 @@
     <Compile Include="View\WelcomeWindow.xaml.cs">
       <DependentUpon>WelcomeWindow.xaml</DependentUpon>
     </Compile>
+    <Page Include="View\AddDishwaserWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\EditDishwaserWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -411,6 +434,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\UserControlers\MainWindowControllers\CalendarViewUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\UserControlers\MainWindowControllers\DishwasersOnStockUserControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

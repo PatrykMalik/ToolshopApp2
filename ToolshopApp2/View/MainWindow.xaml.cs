@@ -49,6 +49,11 @@ namespace ToolshopApp2
                     {
                         InitializeAdministratorTab();
                     }
+                    else if (UserController.IsUserToolshopMemberOrAdministator(user))
+                    {
+                        _TabItemListOfPCDishwashers.Visibility = Visibility.Visible;
+                        _TabItemAdministrator.Visibility = Visibility.Hidden;
+                    }
                     else
                     {
                         _TabItemListOfPCDishwashers.Visibility = Visibility.Hidden;
@@ -63,7 +68,7 @@ namespace ToolshopApp2
 
                     else
                     {
-                        _LabelVersionNumber.Content = "0.0.0.13";
+                        _LabelVersionNumber.Content = "0.0.0.14";
                     }
                 }
             }

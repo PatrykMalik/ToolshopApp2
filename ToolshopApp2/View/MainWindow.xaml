@@ -105,7 +105,9 @@
                 </Grid>
             </TabItem>
             <TabItem x:Name="_TabItemListOfPCDishwashers" Header="List of PC Dishwashers">
-                <Grid x:Name="_GridListOfPCDishwashers" Background="Black"/>
+                <Grid x:Name="_GridListOfPCDishwashers" Background="Black">
+                    <MainWindowControllers:DishwasersOnStockUserControl HorizontalAlignment="Stretch" Margin="10,10,10,10" VerticalAlignment="Stretch"/>
+                </Grid>
             </TabItem>
 
             <TabItem x:Name="_TabItemAdministrator" Header="Administrator">
